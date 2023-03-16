@@ -1,3 +1,5 @@
+### GitHubin ja paikallisen repon epäsynkan testausta###
+
 $ git log --stat | cat
 commit 6aa87b1c887f97f9b1b4a62390c465068b4264c7
 Author: Vlle Syrjäläinen <ville.syrjalainen@gmail.com>
