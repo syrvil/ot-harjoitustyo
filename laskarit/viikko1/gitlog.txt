@@ -1,0 +1,94 @@
+$ git log --stat | cat
+commit 6aa87b1c887f97f9b1b4a62390c465068b4264c7
+Author: Vlle Syrjäläinen <ville.syrjalainen@gmail.com>
+Date:   Wed Mar 15 20:53:45 2023 +0200
+
+    poistettiin tiedosto ja muutettiin toisen nimeä
+
+ tiedostoja/file2             | 0
+ tiedostoja/{file1 => file22} | 0
+ 2 files changed, 0 insertions(+), 0 deletions(-)
+
+commit 7d3b2c4fb245f56792040433f9c44189cd9e0d4d
+Author: Vlle Syrjäläinen <ville.syrjalainen@gmail.com>
+Date:   Wed Mar 15 20:33:21 2023 +0200
+
+    lisättiin tiedostoja
+
+ tiedostoja/file1 | 0
+ tiedostoja/file2 | 0
+ tiedostoja/file3 | 0
+ 3 files changed, 0 insertions(+), 0 deletions(-)
+
+commit 38599a7f8dcd256c896e5ff889745c9ce7b1e40a
+Author: Vlle Syrjäläinen <ville.syrjalainen@gmail.com>
+Date:   Wed Mar 15 20:20:56 2023 +0200
+
+    muokattiin kolmas.txt tiedostoa
+
+ kolmas.txt | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit a106e5f3e5f3e0890d0caa16f704a6f3b1f3e12a
+Author: Vlle Syrjäläinen <ville.syrjalainen@gmail.com>
+Date:   Wed Mar 15 20:18:14 2023 +0200
+
+    git add -p komennon testausta
+
+ eka.txt | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
+
+commit b3123f646f5911490e78e37860ab82fe0bd5e787
+Author: Vlle Syrjäläinen <ville.syrjalainen@gmail.com>
+Date:   Wed Mar 15 18:50:20 2023 +0200
+
+    muutettiin tiedoston niemä
+
+ tiedosto.txt => eka.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 8a62bdcce26d2efce6ac1a771209d7f408ec2606
+Author: Vlle Syrjäläinen <ville.syrjalainen@gmail.com>
+Date:   Wed Mar 15 18:48:43 2023 +0200
+
+    poistettiin toinen.txt
+
+ toinen.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit c87b56c5ddad04543f3701ac5fbc1927c2b84017
+Author: Vlle Syrjäläinen <ville.syrjalainen@gmail.com>
+Date:   Wed Mar 15 18:44:09 2023 +0200
+
+    poisto ja lisäys
+
+ tiedosto.txt | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+commit 934bd4cec357b484602ebafb1bf03f474c28d500
+Author: Vlle Syrjäläinen <ville.syrjalainen@gmail.com>
+Date:   Wed Mar 15 18:39:32 2023 +0200
+
+    lisättiin tekstiä
+
+ tiedosto.txt | 2 ++
+ 1 file changed, 2 insertions(+)
+
+commit eb3d3fd47d43817468512a0005efca976843bbdd
+Author: Vlle Syrjäläinen <ville.syrjalainen@gmail.com>
+Date:   Wed Mar 15 18:25:17 2023 +0200
+
+    muutos ja lisäys
+
+ tiedosto.txt | 1 +
+ toinen.txt   | 0
+ 2 files changed, 1 insertion(+)
+
+commit 0fbae70870ff0a868ea7187ad851b78e8846b748
+Author: Vlle Syrjäläinen <ville.syrjalainen@gmail.com>
+Date:   Wed Mar 15 18:20:28 2023 +0200
+
+    tiedosto.txt luotu
+
+ tiedosto.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
