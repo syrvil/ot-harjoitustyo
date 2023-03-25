@@ -13,3 +13,9 @@ Tehtävät löytyvät alla olevista hakemistoista:
 [komentorivi.txt](https://github.com/syrvil/ot-harjoitustyo/tree/master/laskarit/viikko1/komentorivi.txt)
 
 ***Testataan repojen epäsynkkaa***
+
+## Harjoitustyö 
+
+## Dokumentaatio
+- [Vaatimusmäärittely](./dokumentaatio/vaatimusmaarittely.md)
+- [Työaikakirjanpito](./dokumentaatio/tuntikirjanpito.md)
