@@ -1,0 +1,25 @@
+[
+    {
+        "name": "cat.jpg",
+        "tags": [
+            "cat",
+            "animal",
+            "pet"
+        ]
+    },
+    {
+        "name": "dog.jpg",
+        "tags": [
+            "dog",
+            "animal",
+            "pet"
+        ]
+    },
+    {
+        "name": "woman.jpg",
+        "tags": [
+            "woman",
+            "people"
+        ]
+    }
+]
