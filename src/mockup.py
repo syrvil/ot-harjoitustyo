@@ -45,7 +45,7 @@ class ImageManagerApp:
         # 1. greate file handler object
         # 2. read the images from the file using file handler object
         # 3. add images to image manager object's image list to process them
-        self.file_handlerer = FileHandler("images.json")
+        self.file_handlerer = FileHandler("src/images.json")
         images = self.file_handlerer.read()
         for image in images:
             self.image_manager.add_image_to_image_list(image)
@@ -74,6 +74,8 @@ class ImageManagerApp:
             else:
                 print("Invalid choice")
 
-app = ImageManagerApp().run()
-#images = FileHandler("images.json").read()
-#print(images)
+
+if __name__ == "__main__":
+    app = ImageManagerApp().run()
+    #images = FileHandler("images.json").read()
+    #print(images)
