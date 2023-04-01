@@ -48,6 +48,16 @@ class ImageManager:
                 return image
         return None
 
+    def return_images_with_tag(self, tag):
+        # return list of image objects
+        image_list = []
+        for image in self.image_list:
+            if tag in image.tags:
+                image_list.append(image)
+        if image_list:
+            return image_list
+        return None
+
     def return_images(self):
         return self.image_list
 
@@ -66,14 +76,15 @@ class ImageManagerApp:
         for image in images:
             self.image_manager.add_image_to_image_list(image)
 
-    def print_image_list(self):
+    def print_image_list(self, images=None):
         # 1. get images from image manager object
         # 2. print images
-        images = self.image_manager.return_images()
+        if not images:
+            images = self.image_manager.return_images()
         for image in images:
             print(image)
 
-    def find_image(self):
+    def find_image_with_id(self):
         # 1. get id from user
         # 2. get image from image manager object
         # 3. print image
@@ -84,19 +95,33 @@ class ImageManagerApp:
         else:
             print("Image not found")
 
+    def find_images_with_tag(self):
+        # 1. get tag from user
+        # 2. get images from image manager object
+        # 3. print images
+        tag = input("Enter tag: ")
+        images = self.image_manager.return_images_with_tag(tag)
+        if images:
+            self.print_image_list(images)
+        else:
+            print("No images found")
+
     def run(self):
         self.load_images()
 
         while True:
             print("1. Print image list")
-            print("2. Find image")
-            print("3. Exit")
+            print("2. Find image with id")
+            print("3. Find images with tag")
+            print("4. Exit")
             choice = input("Enter your choice: ")
             if choice == "1":
                 self.print_image_list()
             elif choice == "2":
-                self.find_image()
+                self.find_image_with_id()
             elif choice == "3":
+                self.find_images_with_tag()
+            elif choice == "4":
                 break
             else:
                 print("Invalid choice")
