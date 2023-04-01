@@ -32,6 +32,20 @@ class FileHandler:
         except FileNotFoundError:
             print(f"File {self.filename} not found")
 
+    def write(self, data): 
+        imgs = []
+        image_dict = {}
+        # convert image objects to dictionary to be able to write 
+        # to json-file
+        for image in data: 
+            image_dict["name"] = image.name
+            image_dict["tags"] = image.tags
+            imgs.append(image_dict)
+        #print(imgs)        
+        
+        with open(self.filename, 'w') as f:
+            json.dump(imgs, f, indent=4)
+
 class ImageManager:
     def __init__(self):
         # list to store image objects
@@ -156,6 +170,18 @@ class ImageManagerApp:
         except Exception as e:
             print(e)
 
+    def quit(self):
+        # 1. get images from image manager object
+        # 2. write images to file using file handler object
+        save = input("Save changes? (y/n): ")
+        if save == "y":
+            images = self.image_manager.return_images()
+            self.file_handlerer.write(images)
+            print("Changes saved successfully!")
+        else:
+            print("Quitting without saving!")
+
+
     def run(self):
         self.load_images()
 
@@ -181,6 +207,7 @@ class ImageManagerApp:
             elif choice == "5":
                  self.delete_tag_from_image()    
             elif choice == "6":
+                self.quit()
                 break
             else:
                 print("Invalid choice")
