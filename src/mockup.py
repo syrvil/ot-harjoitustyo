@@ -39,7 +39,10 @@ class ImageManager:
 
     def add_image_to_image_list(self, image: dict):
         # add imgage to image list as an Image object
-        self.image_list.append(Image(image["name"], image["tags"]))
+        image_name = image["name"]
+        # convert tags to lower case
+        image_tags = [tag.lower() for tag in image["tags"]]
+        self.image_list.append(Image(image_name, image_tags))
 
     def return_image(self, id):
         # return image object
@@ -100,7 +103,7 @@ class ImageManagerApp:
         # 2. get images from image manager object
         # 3. print images
         tag = input("Enter tag: ")
-        images = self.image_manager.return_images_with_tag(tag)
+        images = self.image_manager.return_images_with_tag(tag.lower())
         if images:
             self.print_image_list(images)
         else:
