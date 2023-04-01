@@ -60,6 +60,30 @@ class ImageManager:
         if image_list:
             return image_list
         return None
+    
+    def add_tag_to_image(self, id, tag):
+        # add tag to image
+        image = self.return_image(id)
+        if image:
+            if tag not in image.tags:
+                image.tags.append(tag)
+                return image
+            else:
+                raise Exception("Tag already exists!")
+        else:
+            raise Exception("Image not found!")
+
+    def delete_tag(self, id, tag):
+        # delete tag from image
+        image = self.return_image(id)
+        if image:
+            if tag in image.tags:
+                image.tags.remove(tag)
+                return image
+            else:
+                raise Exception("Tag does not exist!")
+        else:
+            raise Exception("Image not found!")
 
     def return_images(self):
         return self.image_list
@@ -96,7 +120,7 @@ class ImageManagerApp:
         if image:
             print(image)
         else:
-            print("Image not found")
+            print("Image not found!")
 
     def find_images_with_tag(self):
         # 1. get tag from user
@@ -107,16 +131,44 @@ class ImageManagerApp:
         if images:
             self.print_image_list(images)
         else:
-            print("No images found")
+            print("No images found!")
+
+    def add_tag_to_image(self):
+        # 1. get id from user
+        # 2. get image from image manager object
+        # 3. get tag from user
+        # 4. add tag to image
+        # 5. print image
+        id = int(input("Enter image id: "))
+        tag = input("Enter tag: ")
+        try:
+            self.image_manager.add_tag_to_image(id, tag.lower())
+            print(f"Tag \"{tag}\" added successfully!")
+        except Exception as e:
+            print(e)
+
+    def delete_tag_from_image(self):
+        id = int(input("Enter image id: "))
+        tag = input("Enter tag: ")
+        try:
+            self.image_manager.delete_tag(id, tag.lower())
+            print(f"Tag \"{tag}\" DELETED successfully!")
+        except Exception as e:
+            print(e)
 
     def run(self):
         self.load_images()
 
         while True:
+            print("---------------------")
+            print("Image Manager App 0.1")
+            print("---------------------")
             print("1. Print image list")
             print("2. Find image with id")
             print("3. Find images with tag")
-            print("4. Exit")
+            print("4. Add tag to image")
+            print("5. Delete tag from image")
+            print("6. Exit")
             choice = input("Enter your choice: ")
             if choice == "1":
                 self.print_image_list()
@@ -125,6 +177,10 @@ class ImageManagerApp:
             elif choice == "3":
                 self.find_images_with_tag()
             elif choice == "4":
+                self.add_tag_to_image()
+            elif choice == "5":
+                 self.delete_tag_from_image()    
+            elif choice == "6":
                 break
             else:
                 print("Invalid choice")
