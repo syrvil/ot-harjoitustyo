@@ -33,18 +33,11 @@ class FileHandler:
             print(f"File {self.filename} not found")
 
     def write(self, data): 
-        imgs = []
-        image_dict = {}
-        # convert image objects to dictionary to be able to write 
-        # to json-file
-        for image in data: 
-            image_dict["name"] = image.name
-            image_dict["tags"] = image.tags
-            imgs.append(image_dict)
-        #print(imgs)        
-        
+        # convert image objects to list of dictionaries
+        dicts = [{"name":image.name, "tags":image.tags} for image in data]   
+        #dicts = [image.__dict__ for image in data]
         with open(self.filename, 'w') as f:
-            json.dump(imgs, f, indent=4)
+            json.dump(dicts, f, indent=4)
 
 class ImageManager:
     def __init__(self):
