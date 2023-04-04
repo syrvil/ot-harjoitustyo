@@ -16,7 +16,7 @@ class Image:
         self.id = Id.id
 
     def __str__(self):
-        return f"[{self.id}] name: {self.name} tags: {self.tags}"
+        return f"[{self.id}] name: {self.name}, tags: {self.tags}"
 
 class Tags:
     pass
@@ -209,5 +209,5 @@ class ImageManagerApp:
 
 if __name__ == "__main__":
     app = ImageManagerApp().run()
-    #images = FileHandler("images.json").read()
+    #images = FileHandler("images.json").read_file()
     #print(images)
