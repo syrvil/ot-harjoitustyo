@@ -25,14 +25,14 @@ class FileHandler:
     def __init__(self, filename):
         self.filename = filename
 
-    def read(self):
+    def read_file(self):
         try:
             with open(self.filename, 'r') as f:
                 return json.load(f)
         except FileNotFoundError:
             print(f"File {self.filename} not found")
 
-    def write(self, data): 
+    def write_file(self, data): 
         # convert image objects to list of dictionaries
         dicts = [{"name":image.name, "tags":image.tags} for image in data]   
         #dicts = [image.__dict__ for image in data]
@@ -44,7 +44,7 @@ class ImageManager:
         # list to store image objects
         self.image_list = []
 
-    def add_image_to_image_list(self, image: dict):
+    def add_image_to_list(self, image: dict):
         # add imgage to image list as an Image object
         image_name = image["name"]
         # convert tags to lower case
@@ -57,8 +57,11 @@ class ImageManager:
             if image.id == id:
                 return image
         return None
+    
+    def return_all_images(self):
+        return self.image_list
 
-    def return_images_with_tag(self, tag):
+    def images_with_tag(self, tag):
         # return list of image objects
         image_list = []
         for image in self.image_list:
@@ -68,7 +71,7 @@ class ImageManager:
             return image_list
         return None
     
-    def add_tag_to_image(self, id, tag):
+    def add_tag(self, id, tag):
         # add tag to image
         image = self.return_image(id)
         if image:
@@ -92,8 +95,6 @@ class ImageManager:
         else:
             raise Exception("Image not found!")
 
-    def return_images(self):
-        return self.image_list
 
 class ImageManagerApp:
     def __init__(self):
@@ -105,16 +106,16 @@ class ImageManagerApp:
         # 1. greate file handler object
         # 2. read the images from the file using file handler object
         # 3. add images to image manager object's image list to process them
-        self.file_handlerer = FileHandler("images.json")
-        images = self.file_handlerer.read()
+        self.file_handlerer = FileHandler("src/images.json")
+        images = self.file_handlerer.read_file()
         for image in images:
-            self.image_manager.add_image_to_image_list(image)
+            self.image_manager.add_image_to_list(image)
 
     def print_image_list(self, images=None):
         # 1. get images from image manager object
         # 2. print images
         if not images:
-            images = self.image_manager.return_images()
+            images = self.image_manager.return_all_images()
         for image in images:
             print(image)
 
@@ -134,7 +135,7 @@ class ImageManagerApp:
         # 2. get images from image manager object
         # 3. print images
         tag = input("Enter tag: ")
-        images = self.image_manager.return_images_with_tag(tag.lower())
+        images = self.image_manager.images_with_tag(tag.lower())
         if images:
             self.print_image_list(images)
         else:
@@ -149,7 +150,7 @@ class ImageManagerApp:
         id = int(input("Enter image id: "))
         tag = input("Enter tag: ")
         try:
-            self.image_manager.add_tag_to_image(id, tag.lower())
+            self.image_manager.add_tag(id, tag.lower())
             print(f"Tag \"{tag}\" added successfully!")
         except Exception as e:
             print(e)
@@ -168,8 +169,8 @@ class ImageManagerApp:
         # 2. write images to file using file handler object
         save = input("Save changes? (y/n): ")
         if save == "y":
-            images = self.image_manager.return_images()
-            self.file_handlerer.write(images)
+            images = self.image_manager.return_all_images()
+            self.file_handlerer.write_file(images)
             print("Changes saved successfully!")
         else:
             print("Quitting without saving!")
