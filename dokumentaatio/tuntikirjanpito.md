@@ -6,6 +6,7 @@
 | 30.3. | 1    | Ensimmäisten testien ja Invoke-tehtävien luonti|
 |  1.4. | 4    | Lisätoiminnallisuuksia mockup-versioon ja taitselua json.dump-funktion kanssa|
 |  4.4  | 2    | Testien kirjoitusta ja pientä funktioden nimien muokkausta|
+|  4.4  | 1    | Säätöä Cubbli Linux VDI-ympäristön kanssa ja testaamista, että ohjelma toimii siinä|
 |       |      | |
 |       |      | |
 |       |      | |
@@ -14,5 +15,4 @@
 |       |      | |
 |       |      | |
 |       |      | |
-|       |      | |
-| yht   | 9    | | 
+| yht   | 10   | | 
