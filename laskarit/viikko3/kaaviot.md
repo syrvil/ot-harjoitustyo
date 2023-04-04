@@ -70,6 +70,7 @@ sequenceDiagram
     engine -->> machine: True
     machine ->> engine: use_energy()
     engine ->> tank: consume(10)
+    tank -->> engine: fuel_contents(25)
     engine -->> main: 
 
 ```
