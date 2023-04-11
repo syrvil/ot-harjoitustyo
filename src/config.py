@@ -1,6 +1,7 @@
 import os
 from dotenv import load_dotenv
 
+# __file__ is directory of this file
 dirname = os.path.dirname(__file__)
 
 try:
