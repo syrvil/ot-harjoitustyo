@@ -1,6 +1,4 @@
 import json
-import sys
-import os
 from config import IMAGE_FILE_PATH, IMAGE_FILENAME
 
 class Id:
@@ -25,8 +23,6 @@ class Tags:
 
 class FileHandler:
     def __init__(self, filename):
-        #self.dirname = os.path.dirname(__file__) # __file__ is directory of this file
-        #self.filename = os.path.join(IMAGE_FILE_PATH, filename)
         self.filename = filename
 
     def read_file(self):
@@ -36,9 +32,9 @@ class FileHandler:
         except FileNotFoundError:
             print(f"File {self.filename} not found")
 
-    def write_file(self, data): 
+    def write_file(self, data):
         # convert image objects to list of dictionaries
-        dicts = [{"name":image.name, "tags":image.tags} for image in data]   
+        dicts = [{"name":image.name, "tags":image.tags} for image in data]
         #dicts = [image.__dict__ for image in data]
         with open(self.filename, 'w') as f:
             json.dump(dicts, f, indent=4)
@@ -61,7 +57,7 @@ class ImageManager:
             if image.id == id:
                 return image
         return None
-    
+
     def return_all_images(self):
         return self.image_list
 
@@ -74,7 +70,7 @@ class ImageManager:
         if image_list:
             return image_list
         return None
-    
+  
     def add_tag(self, id, tag):
         # add tag to image
         image = self.return_image(id)
@@ -111,10 +107,10 @@ class ImageManagerApp:
         # 2. read the images from the file using file handler object
         # 3. add images to image manager object's image list to process them
         self.file_handlerer = FileHandler(IMAGE_FILE_PATH)
-       
-        print(f"Loading files from FILE:", IMAGE_FILENAME)
-        print(f"Loading files from DIR:", IMAGE_FILE_PATH)
-        
+     
+        print("Loading files from FILE:", IMAGE_FILENAME)
+        print("Loading files from DIR:", IMAGE_FILE_PATH)
+     
         images = self.file_handlerer.read_file()
         for image in images:
             self.image_manager.add_image_to_list(image)
@@ -207,7 +203,7 @@ class ImageManagerApp:
             elif choice == "4":
                 self.add_tag_to_image()
             elif choice == "5":
-                 self.delete_tag_from_image()    
+                self.delete_tag_from_image()
             elif choice == "6":
                 self.quit()
                 break
