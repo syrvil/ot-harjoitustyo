@@ -7,12 +7,12 @@
 |  1.4. | 4    | Lisätoiminnallisuuksia mockup-versioon ja taitselua json.dump-funktion kanssa|
 |  4.4  | 2    | Testien kirjoitusta ja pientä funktioden nimien muokkausta|
 |  4.4  | 1    | Säätöä Cubbli Linux VDI-ympäristön kanssa ja testaamista, että ohjelma toimii siinä|
+| 11.4  | 3    | Tutustumista Tkinteriin|
+| 11.4  | 1    | Testausta ja virittelyä, että ei tarvitse käyttää kovakoodattuja tiedostojen nimiä|
 |       |      | |
 |       |      | |
 |       |      | |
 |       |      | |
 |       |      | |
 |       |      | |
-|       |      | |
-|       |      | |
-| yht   | 10   | | 
+| yht   | 14   | | 
