@@ -1,6 +1,7 @@
 import json
 import sys
 import os
+from config import IMAGE_FILE_PATH, IMAGE_FILENAME
 
 class Id:
     id = 0
@@ -24,8 +25,9 @@ class Tags:
 
 class FileHandler:
     def __init__(self, filename):
-        self.dirname = os.path.dirname(__file__) # __file__ is directory of this file
-        self.filename = os.path.join(self.dirname, filename)
+        #self.dirname = os.path.dirname(__file__) # __file__ is directory of this file
+        #self.filename = os.path.join(IMAGE_FILE_PATH, filename)
+        self.filename = filename
 
     def read_file(self):
         try:
@@ -108,10 +110,11 @@ class ImageManagerApp:
         # 1. greate file handler object
         # 2. read the images from the file using file handler object
         # 3. add images to image manager object's image list to process them
-        self.file_handlerer = FileHandler("images.json")
-        print(f"Loading files from DIR:", self.file_handlerer.dirname)
-        print(f"Loading files from FILE:", self.file_handlerer.filename)
-
+        self.file_handlerer = FileHandler(IMAGE_FILE_PATH)
+       
+        print(f"Loading files from FILE:", IMAGE_FILENAME)
+        print(f"Loading files from DIR:", IMAGE_FILE_PATH)
+        
         images = self.file_handlerer.read_file()
         for image in images:
             self.image_manager.add_image_to_list(image)
