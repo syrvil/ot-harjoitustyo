@@ -1,12 +1,15 @@
 import json
 from config import IMAGE_FILE_PATH, IMAGE_FILENAME
 
+
 class Id:
     id = 0
+
     @classmethod
     def next_id(cls):
-        cls.id += 1 # or Id.id += 1
-        return cls.id # return Id.id
+        cls.id += 1  # or Id.id += 1
+        return cls.id  # return Id.id
+
 
 class Image:
     def __init__(self, name, tags):
@@ -18,8 +21,10 @@ class Image:
     def __str__(self):
         return f"[{self.id}] name: {self.name}, tags: {self.tags}"
 
+
 class Tags:
     pass
+
 
 class FileHandler:
     def __init__(self, filename):
@@ -34,10 +39,11 @@ class FileHandler:
 
     def write_file(self, data):
         # convert image objects to list of dictionaries
-        dicts = [{"name":image.name, "tags":image.tags} for image in data]
-        #dicts = [image.__dict__ for image in data]
+        dicts = [{"name": image.name, "tags": image.tags} for image in data]
+        # dicts = [image.__dict__ for image in data]
         with open(self.filename, 'w') as f:
             json.dump(dicts, f, indent=4)
+
 
 class ImageManager:
     def __init__(self):
@@ -70,7 +76,7 @@ class ImageManager:
         if image_list:
             return image_list
         return None
-  
+
     def add_tag(self, id, tag):
         # add tag to image
         image = self.return_image(id)
@@ -107,10 +113,10 @@ class ImageManagerApp:
         # 2. read the images from the file using file handler object
         # 3. add images to image manager object's image list to process them
         self.file_handlerer = FileHandler(IMAGE_FILE_PATH)
-     
+
         print("Loading files from FILE:", IMAGE_FILENAME)
         print("Loading files from DIR:", IMAGE_FILE_PATH)
-     
+
         images = self.file_handlerer.read_file()
         for image in images:
             self.image_manager.add_image_to_list(image)
@@ -179,7 +185,6 @@ class ImageManagerApp:
         else:
             print("Quitting without saving!")
 
-
     def run(self):
         self.load_images()
 
@@ -213,5 +218,5 @@ class ImageManagerApp:
 
 if __name__ == "__main__":
     app = ImageManagerApp().run()
-    #images = FileHandler("images.json").read_file()
-    #print(images)
+    # images = FileHandler("images.json").read_file()
+    # print(images)
