@@ -9,10 +9,10 @@
 |  4.4  | 1    | Säätöä Cubbli Linux VDI-ympäristön kanssa ja testaamista, että ohjelma toimii siinä|
 | 11.4  | 3    | Tutustumista Tkinteriin|
 | 11.4  | 1    | Testausta ja virittelyä, että ei tarvitse käyttää kovakoodattuja tiedostojen nimiä|
+| 12.4  | 4    | Ohjelman arkkitehtuurin pohdintaa ja 1. protyyppi GUI:sta|
 |       |      | |
 |       |      | |
 |       |      | |
 |       |      | |
 |       |      | |
-|       |      | |
-| yht   | 14   | | 
+| yht   | 18   | | 
