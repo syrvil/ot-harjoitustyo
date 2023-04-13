@@ -14,7 +14,7 @@ def coverage_report(ctx):
 
 @task
 def lint(ctx):
-    ctx.run("pylint src", pty=True)
+    ctx.run("pylint src --ignore=playground", pty=True)
 
 @task
 def format(ctx):

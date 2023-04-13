@@ -1,4 +1,4 @@
-from tkinter import *
+from tkinter import Label, Button
 from PIL import ImageTk, Image
 from repositories.file_repository import FileRepository
 from config import IMAGE_FILES_PATH
