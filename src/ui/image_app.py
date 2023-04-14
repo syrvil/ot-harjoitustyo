@@ -14,12 +14,13 @@ class ImageApp:
         self.create_widgets()
 
     def load_images(self):
-    # Get the images from the image manager Object 
-    # and add them to the list of images"""
+        # Get the images from the image manager Object
+        # and add them to the list of images"""
 
         imgs = image_manager.return_all_images()
         for image in imgs:
-            self.images.append((Image.open(IMAGE_FILES_PATH+image.name), image.tags))
+            self.images.append(
+                (Image.open(IMAGE_FILES_PATH+image.name), image.tags))
 
     def create_widgets(self):
         self.image_label = Label(self.master)

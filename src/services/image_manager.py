@@ -1,6 +1,7 @@
 from entities.image_object import ImageObject
 from repositories.file_repository import FileRepository
 
+
 class ImageManager:
     def __init__(self):
         # list to store image objects
@@ -63,5 +64,6 @@ class ImageManager:
                 raise Exception("Tag does not exist!")
         else:
             raise Exception("Image not found!")
-        
+
+
 image_manager = ImageManager()
