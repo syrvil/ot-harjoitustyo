@@ -72,10 +72,10 @@ class ImageApp:
         tag_label.pack()
         tag_entry = Entry(tag_window)
         tag_entry.pack()
-        ok_button = Button(tag_window, text="OK", command=lambda: self.add_tag_to_image(tag_entry.get(), tag_window))
+        ok_button = Button(tag_window, text="OK", command=lambda: self.add_tag_to_image(
+            tag_entry.get(), tag_window))
         ok_button.pack()
 
-    
     def add_tag_to_image(self, tag, tag_window):
         if not tag:
             messagebox.showwarning("Invalid tag", "Tag cannot be empty!")
@@ -87,7 +87,8 @@ class ImageApp:
             self.update_image_tags()
             messagebox.showinfo("Success", f"Tag '{tag}' added to image!")
         else:
-            messagebox.showwarning("Tag exists", f"Tag '{tag}' already exists for this image.")
+            messagebox.showwarning(
+                "Tag exists", f"Tag '{tag}' already exists for this image.")
             tag_window.destroy()
 
     def delete_tag(self):
@@ -102,9 +103,11 @@ class ImageApp:
             tag_label.pack()
             tag_options = image_tags
             tag_var = StringVar(value=tag_options)
-            tag_listbox = Listbox(tag_window, listvariable=tag_var, selectmode=SINGLE)
+            tag_listbox = Listbox(
+                tag_window, listvariable=tag_var, selectmode=SINGLE)
             tag_listbox.pack()
-            ok_button = Button(tag_window, text="OK", command=lambda: self.delete_tag_from_image(tag_listbox.get(ACTIVE), tag_window))
+            ok_button = Button(tag_window, text="OK", command=lambda: self.delete_tag_from_image(
+                tag_listbox.get(ACTIVE), tag_window))
             ok_button.pack()
 
     def delete_tag_from_image(self, tag, tag_window):
@@ -125,7 +128,8 @@ class ImageApp:
         tag_label.pack()
         tag_entry = Entry(tag_window)
         tag_entry.pack()
-        ok_button = Button(tag_window, text="OK", command=lambda: self.search_for_tag(tag_entry.get(), tag_window))
+        ok_button = Button(tag_window, text="OK", command=lambda: self.search_for_tag(
+            tag_entry.get(), tag_window))
         ok_button.pack()
 
     def search_for_tag(self, tag, tag_window):
@@ -137,12 +141,14 @@ class ImageApp:
                 if tag in image[1]:
                     image_indices.append(i)
             if not image_indices:
-                messagebox.showinfo("No matches", f"No images found with tag '{tag}'")
+                messagebox.showinfo(
+                    "No matches", f"No images found with tag '{tag}'")
             else:
                 self.searched_tag = tag
                 self.current_image_index = image_indices[0]
                 self.update_image()
-                self.image_order_label.config(text=f"Image {self.current_image_index+1} of {len(image_indices)}")
+                self.image_order_label.config(
+                    text=f"Image {self.current_image_index+1} of {len(image_indices)}")
         tag_window.destroy()
 
     def update_image_tags(self):
@@ -152,12 +158,14 @@ class ImageApp:
         self.image_tags.config(text=tag_text)
 
     def update_image(self):
-        image = self.images[self.current_image_index]
-        img = ImageTk.PhotoImage(image[0])
-        self.image_label.config(image=img)
-        self.image_label.image = img
+        image = self.images[self.current_image_index][0]
+        image = image.resize((400, 400), Image.LANCZOS)
+        photo = ImageTk.PhotoImage(image)
+        self.image_label.config(image=photo)
+        self.image_label.image = photo
         self.update_image_tags()
-        self.image_order_label.config(text=f"Image {self.current_image_index+1} of {len(self.images)}")
+        self.image_order_label.config(
+            text=f"Image {self.current_image_index+1} of {len(self.images)}")
 
 # if __name__ == "__main__":
 #    root = Tk() # window = Tk()
