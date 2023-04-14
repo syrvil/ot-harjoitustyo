@@ -11,8 +11,8 @@ class FileRepository:
     def read_file(self):
         """Reads image data from file"""
         try:
-            with open(self.filename, 'r') as f:
-                return json.load(f)
+            with open(self.filename, 'r', encoding='utf8') as file:
+                return json.load(file)
         except FileNotFoundError:
             print(f"File {self.filename} not found")
 
@@ -21,8 +21,8 @@ class FileRepository:
         # convert image objects to list of dictionaries
         dicts = [{"name": image.name, "tags": image.tags} for image in data]
         # dicts = [image.__dict__ for image in data]
-        with open(self.filename, 'w') as f:
-            json.dump(dicts, f, indent=4)
+        with open(self.filename, 'w', encoding='utf8') as file:
+            json.dump(dicts, file, indent=4)
 
     def read_images(self):
         """Reads image data from file and returns list of Image objects"""
