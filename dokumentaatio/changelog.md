@@ -7,4 +7,4 @@
 - luotu ja päivitetty konfiguraatiotiedostoja, jotka tukevat uutta arkkitehtuuria
 - Lisätty GUI:hin toiminnallisuudet tagien lisäämiseksi, poistamiseksi ja kuvien etsiminen tagien avulla
 - Luotu uusi ImageManager luokka ja eriytetty siihen toiminnallisuuksia GUI:sta ja tiedostojenkäsittelyluokasta (FileRepository)
- 
+- Nimetty Image luokka ImageObject luokaksi, jotta nimeäminen erottuu Pillow:in (PIL) Image luokasta 
