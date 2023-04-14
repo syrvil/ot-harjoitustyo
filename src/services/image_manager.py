@@ -1,9 +1,17 @@
 from entities.image_object import ImageObject
+from repositories.file_repository import FileRepository
 
 class ImageManager:
     def __init__(self):
         # list to store image objects
         self.image_list = []
+        self.load_images()
+
+    def load_images(self):
+        # load images from file
+        imgs = FileRepository().read_file()
+        for image in imgs:
+            self.add_image_to_list(image)
 
     def add_image_to_list(self, image: dict):
         # add imgage to image list as an Image object
@@ -55,3 +63,5 @@ class ImageManager:
                 raise Exception("Tag does not exist!")
         else:
             raise Exception("Image not found!")
+        
+image_manager = ImageManager()
