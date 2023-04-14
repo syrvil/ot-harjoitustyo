@@ -2,15 +2,15 @@
     {
         "name": "im65.jpg",
         "tags": [
-            "cat",
-            "animal",
-            "pet"
+            "butterfly",
+            "nature"
         ]
     },
     {
         "name": "im94.jpg",
         "tags": [
-            "dog",
+            "lion",
+            "cat",
             "animal",
             "pet"
         ]
@@ -18,8 +18,38 @@
     {
         "name": "im112.jpg",
         "tags": [
-            "woman",
-            "people"
+            "flower",
+            "nature"
+        ]
+    },
+    {
+        "name": "im781.jpg",
+        "tags": [
+            "bird",
+            "animal"
+        ]
+    },
+    {
+        "name": "im866.jpg",
+        "tags": [
+            "tree",
+            "nature"
+        ]
+    },
+    {
+        "name": "im1083.jpg",
+        "tags": [
+            "man",
+            "people",
+            "guitar"
+        ]
+    },
+    {
+        "name": "im6190.jpg",
+        "tags": [
+            "dog",
+            "animal",
+            "pet"
         ]
     }
 ]
