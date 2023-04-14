@@ -5,4 +5,6 @@
 - Luovuttu mockup-versiosta ja tehty 1. GUI-versio
 - Luotu alustava lopullinen arkkitehtuuri, joka eriyttää toimintalogiikan käyttöliittymsätä ja noudattaa repository-mallia
 - luotu ja päivitetty konfiguraatiotiedostoja, jotka tukevat uutta arkkitehtuuria
-
+- Lisätty GUI:hin toiminnallisuudet tagien lisäämiseksi, poistamiseksi ja kuvien etsiminen tagien avulla
+- Luotu uusi ImageManager luokka ja eriytetty siihen toiminnallisuuksia GUI:sta ja tiedostojenkäsittelyluokasta (FileRepository)
+ 

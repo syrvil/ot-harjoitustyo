@@ -11,8 +11,8 @@
 | 11.4. | 1    | Testausta ja virittelyä, että ei tarvitse käyttää kovakoodattuja tiedostojen nimiä|
 | 12.4. | 4    | Ohjelman arkkitehtuurin pohdintaa ja 1. protyyppi GUI:sta|
 | 13.4. | 6    | Uuden arkkitehtuurin luominen, toiminnallisuuksien eriyttäminen omiksi luokikseen, modulien välisten importtien ja konfiguraatitieodostojen säätöä|
+| 14.4. | 6    | Lisätty GUI:hin toiminnallisuuksia ja eriytetty toiminnallisuuksia luokkien välillä|
 |       |      | |
 |       |      | |
 |       |      | |
-|       |      | |
-| yht   | 24   | | 
+| yht   | 30   | | 
