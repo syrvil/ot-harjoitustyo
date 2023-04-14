@@ -1,7 +1,7 @@
 from tkinter import Label, Button, Toplevel, Entry, messagebox, StringVar, Listbox, ACTIVE, SINGLE
 from PIL import ImageTk, Image
-from repositories.file_repository import FileRepository
 from config import IMAGE_FILES_PATH
+from services.image_manager import image_manager
 
 
 class ImageApp:
@@ -14,10 +14,12 @@ class ImageApp:
         self.create_widgets()
 
     def load_images(self):
-        imgs = FileRepository()
-        for image in imgs.read_images():
-            self.images.append(
-                (Image.open(IMAGE_FILES_PATH+image.name), image.tags))
+    # Get the images from the image manager Object 
+    # and add them to the list of images"""
+
+        imgs = image_manager.return_all_images()
+        for image in imgs:
+            self.images.append((Image.open(IMAGE_FILES_PATH+image.name), image.tags))
 
     def create_widgets(self):
         self.image_label = Label(self.master)
