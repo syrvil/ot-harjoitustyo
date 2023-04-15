@@ -12,7 +12,7 @@
 | 12.4. | 4    | Ohjelman arkkitehtuurin pohdintaa ja 1. protyyppi GUI:sta|
 | 13.4. | 6    | Uuden arkkitehtuurin luominen, toiminnallisuuksien eriyttäminen omiksi luokikseen, modulien välisten importtien ja konfiguraatitieodostojen säätöä|
 | 14.4. | 6    | Lisätty GUI:hin toiminnallisuuksia ja eriytetty toiminnallisuuksia luokkien välillä|
+| 15.4. | 3    | Refaktorointia |
 |       |      | |
 |       |      | |
-|       |      | |
-| yht   | 30   | | 
+| yht   | 33   | | 
