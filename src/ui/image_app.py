@@ -80,17 +80,6 @@ class ImageApp:
     def add_tag_to_image(self, tag, tag_window):
         if not tag:
             messagebox.showwarning("Invalid tag", "Tag cannot be empty!")
-        #else:
-        #    image = self.images[self.current_image_index]
-        #    image_tags = image[1]
-        #if tag not in image_tags:
-        #    image_tags.append(tag)
-        #    self.update_image_tags()
-        #    messagebox.showinfo("Success", f"Tag '{tag}' added to image!")
-        #else:
-        #    messagebox.showwarning(
-        #        "Tag exists", f"Tag '{tag}' already exists for this image.")
-        #    tag_window.destroy()
         else:
             image = self.images[self.current_image_index]
             if image_manager.add_tag(image, tag):
@@ -121,8 +110,6 @@ class ImageApp:
             ok_button.pack()
 
     def delete_tag_from_image(self, tag, tag_window, image):
-        #image = self.images[self.current_image_index]
-        #image_tags = image[1]
         if image_manager.delete_tag(image, tag):
             self.update_image_tags()
             messagebox.showinfo("Success", f"Tag '{tag}' deleted from image!")
@@ -145,31 +132,15 @@ class ImageApp:
     def search_for_tag(self, tag, tag_window):
         if not tag:
             messagebox.showwarning("Invalid tag", "Tag cannot be empty!")
-        #else:
-        #    image_indices = []
-        #    for i, image in enumerate(self.images):
-        #        if tag in image[1]:
-        #            image_indices.append(i)
-        #    if not image_indices:
-        #        messagebox.showinfo(
-        #            "No matches", f"No images found with tag '{tag}'")
-        #    else:
-        #        self.searched_tag = tag
-        #        self.current_image_index = image_indices[0]
-        #        self.update_image()
-        #        self.image_order_label.config(
-        #            text=f"Image {self.current_image_index+1} of {len(image_indices)}")
-        
-        search_results = image_manager.search_for_tag(tag)
-        if not search_results:
-            messagebox.showinfo(
-                "No matches", f"No images found with tag '{tag}'")
         else:
-            self.images = search_results
-            self.current_image_index = 0
-            self.update_image()
-            self.image_order_label.config(
-                text=f"Image {self.current_image_index+1} of {len(self.images)}")
+            search_results = image_manager.search_for_tag(tag)
+            if not search_results:
+                messagebox.showinfo(
+                    "No matches", f"No images found with tag '{tag}'")
+            else:
+                self.images = search_results
+                self.current_image_index = 0
+                self.update_image()
         tag_window.destroy()
 
     def update_image_tags(self):
@@ -179,7 +150,9 @@ class ImageApp:
         self.image_tags.config(text=tag_text)
 
     def restore_defaults(self):
-        pass
+        self.load_images()
+        self.current_image_index = 0
+        self.update_image()
 
     def update_image(self):
         image = self.images[self.current_image_index].picture
