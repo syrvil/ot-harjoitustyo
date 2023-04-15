@@ -1,5 +1,7 @@
 from entities.image_object import ImageObject
 from repositories.file_repository import FileRepository
+from config import IMAGE_FILES_PATH
+from PIL import Image
 
 
 class ImageManager:
@@ -9,7 +11,8 @@ class ImageManager:
         self.load_images()
 
     def load_images(self):
-        # load images from file
+        # load image metadata from json-file:
+        # file-name and tags
         imgs = FileRepository().read_file()
         for image in imgs:
             self.add_image_to_list(image)
@@ -19,7 +22,8 @@ class ImageManager:
         image_name = image["name"]
         # convert tags to lower case
         image_tags = [tag.lower() for tag in image["tags"]]
-        self.image_list.append(ImageObject(image_name, image_tags))
+        image_picture = Image.open(IMAGE_FILES_PATH + image_name)
+        self.image_list.append(ImageObject(image_name, image_tags, image_picture))
 
     def return_image(self, id):
         # return image object
@@ -31,39 +35,33 @@ class ImageManager:
     def return_all_images(self):
         return self.image_list
 
-    def images_with_tag(self, tag):
+    def search_for_tag(self, tag):
         # return list of image objects
+        # change to use list comprehension ect
         image_list = []
         for image in self.image_list:
             if tag in image.tags:
                 image_list.append(image)
         if image_list:
             return image_list
-        return None
+        else:
+            return None
 
-    def add_tag(self, id, tag):
+    def add_tag(self, image, tag):
         # add tag to image
-        image = self.return_image(id)
-        if image:
-            if tag not in image.tags:
-                image.tags.append(tag)
-                return image
-            else:
-                raise Exception("Tag already exists!")
+        if tag not in image.tags:
+            image.tags.append(tag)
+            return True
         else:
-            raise Exception("Image not found!")
+            return False
 
-    def delete_tag(self, id, tag):
+    def delete_tag(self, image, tag):
         # delete tag from image
-        image = self.return_image(id)
-        if image:
-            if tag in image.tags:
-                image.tags.remove(tag)
-                return image
-            else:
-                raise Exception("Tag does not exist!")
+        if tag in image.tags:
+            image.tags.remove(tag)
+            return True
         else:
-            raise Exception("Image not found!")
+            return False
 
 
 image_manager = ImageManager()
