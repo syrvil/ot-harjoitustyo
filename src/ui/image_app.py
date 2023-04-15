@@ -1,26 +1,20 @@
 from tkinter import Label, Button, Toplevel, Entry, messagebox, StringVar, Listbox, ACTIVE, SINGLE
 from PIL import ImageTk, Image
-from config import IMAGE_FILES_PATH
 from services.image_manager import image_manager
 
 
 class ImageApp:
     def __init__(self, master):
         self.master = master
-        self.images = []
+        self.images = None
         self.current_image_index = 0
         self.searched_tag = None
         self.load_images()
         self.create_widgets()
 
     def load_images(self):
-        # Get the images from the image manager Object
-        # and add them to the list of images"""
-
-        imgs = image_manager.return_all_images()
-        for image in imgs:
-            self.images.append(
-                (Image.open(IMAGE_FILES_PATH+image.name), image.tags))
+        # A list of Image objects
+        self.images = image_manager.return_all_images()
 
     def create_widgets(self):
         self.image_label = Label(self.master)
@@ -86,21 +80,30 @@ class ImageApp:
     def add_tag_to_image(self, tag, tag_window):
         if not tag:
             messagebox.showwarning("Invalid tag", "Tag cannot be empty!")
+        #else:
+        #    image = self.images[self.current_image_index]
+        #    image_tags = image[1]
+        #if tag not in image_tags:
+        #    image_tags.append(tag)
+        #    self.update_image_tags()
+        #    messagebox.showinfo("Success", f"Tag '{tag}' added to image!")
+        #else:
+        #    messagebox.showwarning(
+        #        "Tag exists", f"Tag '{tag}' already exists for this image.")
+        #    tag_window.destroy()
         else:
             image = self.images[self.current_image_index]
-            image_tags = image[1]
-        if tag not in image_tags:
-            image_tags.append(tag)
-            self.update_image_tags()
-            messagebox.showinfo("Success", f"Tag '{tag}' added to image!")
-        else:
-            messagebox.showwarning(
-                "Tag exists", f"Tag '{tag}' already exists for this image.")
-            tag_window.destroy()
+            if image_manager.add_tag(image, tag):
+                messagebox.showinfo("Success", f"Tag '{tag}' added to image!")
+                self.update_image_tags()
+            else:
+                messagebox.showwarning(
+                    "Tag exists", f"Tag '{tag}' already exists for this image.")
+                tag_window.destroy()
 
     def delete_tag(self):
         image = self.images[self.current_image_index]
-        image_tags = image[1]
+        image_tags = image.tags
         if not image_tags:
             messagebox.showwarning("No tags", "This image has no tags.")
         else:
@@ -114,18 +117,18 @@ class ImageApp:
                 tag_window, listvariable=tag_var, selectmode=SINGLE)
             tag_listbox.pack()
             ok_button = Button(tag_window, text="OK", command=lambda: self.delete_tag_from_image(
-                tag_listbox.get(ACTIVE), tag_window))
+                tag_listbox.get(ACTIVE), tag_window, image))
             ok_button.pack()
 
-    def delete_tag_from_image(self, tag, tag_window):
-        image = self.images[self.current_image_index]
-        image_tags = image[1]
-        if not image_tags:
-            messagebox.showwarning("No tags", "This image has no tags.")
-        else:
-            image_tags.remove(tag)
+    def delete_tag_from_image(self, tag, tag_window, image):
+        #image = self.images[self.current_image_index]
+        #image_tags = image[1]
+        if image_manager.delete_tag(image, tag):
             self.update_image_tags()
             messagebox.showinfo("Success", f"Tag '{tag}' deleted from image!")
+        else:
+            # this is unneccesaary because tag are selected from a list
+            messagebox.showwarning("No tags", "This image has no tags.")
         tag_window.destroy()
 
     def search_image(self):
@@ -142,25 +145,36 @@ class ImageApp:
     def search_for_tag(self, tag, tag_window):
         if not tag:
             messagebox.showwarning("Invalid tag", "Tag cannot be empty!")
+        #else:
+        #    image_indices = []
+        #    for i, image in enumerate(self.images):
+        #        if tag in image[1]:
+        #            image_indices.append(i)
+        #    if not image_indices:
+        #        messagebox.showinfo(
+        #            "No matches", f"No images found with tag '{tag}'")
+        #    else:
+        #        self.searched_tag = tag
+        #        self.current_image_index = image_indices[0]
+        #        self.update_image()
+        #        self.image_order_label.config(
+        #            text=f"Image {self.current_image_index+1} of {len(image_indices)}")
+        
+        search_results = image_manager.search_for_tag(tag)
+        if not search_results:
+            messagebox.showinfo(
+                "No matches", f"No images found with tag '{tag}'")
         else:
-            image_indices = []
-            for i, image in enumerate(self.images):
-                if tag in image[1]:
-                    image_indices.append(i)
-            if not image_indices:
-                messagebox.showinfo(
-                    "No matches", f"No images found with tag '{tag}'")
-            else:
-                self.searched_tag = tag
-                self.current_image_index = image_indices[0]
-                self.update_image()
-                self.image_order_label.config(
-                    text=f"Image {self.current_image_index+1} of {len(image_indices)}")
+            self.images = search_results
+            self.current_image_index = 0
+            self.update_image()
+            self.image_order_label.config(
+                text=f"Image {self.current_image_index+1} of {len(self.images)}")
         tag_window.destroy()
 
     def update_image_tags(self):
         image = self.images[self.current_image_index]
-        tags = image[1]
+        tags = image.tags
         tag_text = "Tags: " + ", ".join(tags)
         self.image_tags.config(text=tag_text)
 
@@ -168,7 +182,7 @@ class ImageApp:
         pass
 
     def update_image(self):
-        image = self.images[self.current_image_index][0]
+        image = self.images[self.current_image_index].picture
         image = image.resize((400, 400), Image.LANCZOS)
         photo = ImageTk.PhotoImage(image)
         self.image_label.config(image=photo)
