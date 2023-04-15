@@ -8,9 +8,10 @@ class Id:
 
 
 class ImageObject:
-    def __init__(self, name, tags):
+    def __init__(self, name, tags, picture):
         self.name = name
         self.tags = tags
+        self.picture = picture
         Id.next_id()
         self.id = Id.id
 
