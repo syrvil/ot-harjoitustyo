@@ -1,8 +1,7 @@
+from PIL import Image
 from entities.image_object import ImageObject
 from repositories.file_repository import FileRepository
 from config import IMAGE_FILES_PATH
-from PIL import Image
-
 
 class ImageManager:
     def __init__(self):
@@ -25,12 +24,12 @@ class ImageManager:
         image_picture = Image.open(IMAGE_FILES_PATH + image_name)
         self.image_list.append(ImageObject(image_name, image_tags, image_picture))
 
-    def return_image(self, id):
-        # return image object
-        for image in self.image_list:
-            if image.id == id:
-                return image
-        return None
+    #def return_image(self, id):
+    #    # return image object
+    #    for image in self.image_list:
+    #        if image.id == id:
+    #            return image
+    #    return None
 
     def return_all_images(self):
         return self.image_list
