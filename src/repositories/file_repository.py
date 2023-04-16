@@ -1,12 +1,12 @@
 import json
 # from entities.image_object import ImageObject
-from config import IMAGE_MEDATA_PATH
+from config import IMAGE_METADATA_PATH
 
 
 class FileRepository:
     """Class handling image file operations"""
 
-    def __init__(self, filename=IMAGE_MEDATA_PATH):
+    def __init__(self, filename=IMAGE_METADATA_PATH):
         self.filename = filename
 
     def read_file(self):
