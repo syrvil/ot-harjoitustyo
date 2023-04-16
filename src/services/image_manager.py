@@ -15,12 +15,12 @@ class ImageManager:
         for image in imgs:
             self.add_image_to_list(image)
 
-    def add_image_to_list(self, image: dict):
+    def add_image_to_list(self, image_data, image_path=IMAGE_FILES_PATH):
         # add imgage to image list as an Image object
-        image_name = image["name"]
+        image_name = image_data["name"]
         # convert tags to lower case
-        image_tags = [tag.lower() for tag in image["tags"]]
-        image_picture = Image.open(IMAGE_FILES_PATH + image_name)
+        image_tags = [tag.lower() for tag in image_data["tags"]]
+        image_picture = Image.open(image_path + image_name)
         self.image_list.append(ImageObject(image_name, image_tags, image_picture))
 
     def get_all_images(self):
