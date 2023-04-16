@@ -15,15 +15,15 @@ Käyttöliittymässä on näkymä yhdelle kuvalle ja toiminnallisuuksia, joilla 
 ## Perusversion tarjoama toiminnallisuus
 
 ### Kuvien lataaminen katseltvaksi ja muokattavaksi
-- Käyttäjä voi ladata tiedostoon tai tietokotaan tallennettuja vanhoja katseltavaksi tai muokattavaksi
+- Käyttäjä voi ladata tiedostoon tai tietokotaan tallennettuja vanhoja katseltavaksi tai muokattavaksi - OSITTAIN VALMIS
 - Käyttäjä voi ladata uusia kuvia käsittelyä varten koneen paikallisesta hakemistosta
-- Käyttäjä voi selata kuvia kuvanäkymässä kuva kerrallaan
+- Käyttäjä voi selata kuvia kuvanäkymässä kuva kerrallaan - VALMIS
 
 ### Kuvien tunnisteiden muokkaaminen
-- Käyttäjä voi lisätä tai poistaa kuvilla olevia tunnisteita
+- Käyttäjä voi lisätä tai poistaa kuvilla olevia tunnisteita - VALMIS
 
 ### Kuvien hakeminen tunnisteiden perusteella
-- Käyttäjä voi hakea tunnisteiden nimillä kuvia selailtavaksi tai muokattavaski
+- Käyttäjä voi hakea tunnisteiden nimillä kuvia selailtavaksi tai muokattavaski -VALMIS
 
 ### Tunnisteiden tilastotietojen katselu
 - Käyttäjä voi katsoa statistiikkaa tunnisteiden määristä ja jakaumista
@@ -40,11 +40,11 @@ Perusversion jälkeen järjestelmää täydennetään ajan salliessa esim. seura
 - Tekoäly ehdottaa automaattisesti kuville sopivia tunnisteita
 
 ## Alustava toteutussuunnitelma
-1. versio:
+1. versio (VALMIS):
 - Kuvien tietorakenne esimerkiksi JSON-tiedostossa, joka sisältää kuvan nimen ja tunnisteet
 - Toimintalogiikka, jonka avulla kuvien tietorakennetta voi muokata perustoiminnallisuuksien avulla
 - Yksinkertainen tekstikäyttöliittymä toimintoja varten
-2. versio: 
+2. versio (VALMIS): 
 - Kuvien lisääminen tietorakenteeseen esimerkiksi polkuna kuvien sijaintiin
 - Tekstipohjaisen käyttöliittymän korvaaminen yksinkertaislella graafisella käyttöliittymällä
 3. Versio
