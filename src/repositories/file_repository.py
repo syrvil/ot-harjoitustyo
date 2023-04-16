@@ -1,6 +1,7 @@
 import json
-#from entities.image_object import ImageObject
+# from entities.image_object import ImageObject
 from config import IMAGE_MEDATA_PATH
+
 
 class FileRepository:
     """Class handling image file operations"""
@@ -23,13 +24,3 @@ class FileRepository:
         # add: write imgage-file to disk
         with open(self.filename, 'w', encoding='utf8') as file:
             json.dump(dicts, file, indent=4)
-
-    #def read_images(self):
-    #    """Reads image data from file and returns list of Image objects"""
-    #    image_list = []
-    #    for image in self.read_file():
-    #        image_name = image["name"]
-    #        # convert tags to lower case
-    #        image_tags = [tag.lower() for tag in image["tags"]]
-    #        image_list.append(ImageObject(image_name, image_tags))
-    #    return image_list
