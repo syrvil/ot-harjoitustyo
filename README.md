@@ -2,7 +2,7 @@
 
 ## Dokumentaatio
 - [Vaatimusmäärittely](./dokumentaatio/vaatimusmaarittely.md)
-- [Arkkitehtuurikuvaus](./dokumentaatio/.md)
+- [Arkkitehtuurikuvaus](./dokumentaatio/arkkitehtuuri.md)
 - [Työaikakirjanpito](./dokumentaatio/arkkitehtuuri.md)
 - [Muutosloki](./dokumentaatio/changelog.md)
 
