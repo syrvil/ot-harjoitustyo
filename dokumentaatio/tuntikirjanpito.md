@@ -13,6 +13,6 @@
 | 13.4. | 6    | Uuden arkkitehtuurin luominen, toiminnallisuuksien eriyttäminen omiksi luokikseen, modulien välisten importtien ja konfiguraatitieodostojen säätöä|
 | 14.4. | 6    | Lisätty GUI:hin toiminnallisuuksia ja eriytetty toiminnallisuuksia luokkien välillä|
 | 15.4. | 3    | Refaktorointia |
+| 16.4. | 5    | Testiarkkitehtuurin konfigurointia ja testaamista sekä nysväämistä arkkitehtuurikuvan piirtämisen kanssa|
 |       |      | |
-|       |      | |
-| yht   | 33   | | 
+| yht   | 38   | | 
