@@ -1,15 +1,15 @@
 import unittest
-from PIL import Image
 import io
-from io import BytesIO 
+from io import BytesIO
+from PIL import Image
 from entities.image_object import ImageObject
-from repositories.file_repository import FileRepository
 from services.image_manager import ImageManager
 
 TEST_IMAGE = Image.new('RGB', (128, 128))
 with io.BytesIO() as buffer:
     TEST_IMAGE.save(buffer, format='JPEG')
     IMAGE_DATA = buffer.getvalue()
+
 
 class TestImageManager(unittest.TestCase):
     def setUp(self):
@@ -25,7 +25,7 @@ class TestImageManager(unittest.TestCase):
         self.image_manager = ImageManager()
         # add the test data to the image manager
         self.image_manager.image_list = self.test_list
-    
+
     def test_add_image_to_list(self):
         test_image = Image.open(BytesIO(IMAGE_DATA))
         self.image_manager.add_image_to_list(
@@ -40,7 +40,8 @@ class TestImageManager(unittest.TestCase):
 
     def test_get_all_images_correct_image(self):
         # check if the correct images were loaded
-        self.assertEqual(self.image_manager.get_all_images()[1].name, "image2.jpg")
+        self.assertEqual(self.image_manager.get_all_images()
+                         [1].name, "image2.jpg")
 
     def test_search_for_tag_found(self):
         # search for images with tag "tag2"
