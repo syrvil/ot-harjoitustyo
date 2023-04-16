@@ -15,15 +15,15 @@ Käyttöliittymässä on näkymä yhdelle kuvalle ja toiminnallisuuksia, joilla 
 ## Perusversion tarjoama toiminnallisuus
 
 ### Kuvien lataaminen katseltvaksi ja muokattavaksi
-- Käyttäjä voi ladata tiedostoon tai tietokotaan tallennettuja vanhoja katseltavaksi tai muokattavaksi - OSITTAIN VALMIS
+- Käyttäjä voi ladata tiedostoon tai tietokotaan tallennettuja vanhoja katseltavaksi tai muokattavaksi - TEHTY(lataus tiedostosta)
 - Käyttäjä voi ladata uusia kuvia käsittelyä varten koneen paikallisesta hakemistosta
-- Käyttäjä voi selata kuvia kuvanäkymässä kuva kerrallaan - VALMIS
+- Käyttäjä voi selata kuvia kuvanäkymässä kuva kerrallaan - TEHTY
 
 ### Kuvien tunnisteiden muokkaaminen
-- Käyttäjä voi lisätä tai poistaa kuvilla olevia tunnisteita - VALMIS
+- Käyttäjä voi lisätä tai poistaa kuvilla olevia tunnisteita - TEHTY
 
 ### Kuvien hakeminen tunnisteiden perusteella
-- Käyttäjä voi hakea tunnisteiden nimillä kuvia selailtavaksi tai muokattavaski -VALMIS
+- Käyttäjä voi hakea tunnisteiden nimillä kuvia selailtavaksi tai muokattavaski -TEHTY
 
 ### Tunnisteiden tilastotietojen katselu
 - Käyttäjä voi katsoa statistiikkaa tunnisteiden määristä ja jakaumista
