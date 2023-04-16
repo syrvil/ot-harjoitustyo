@@ -43,24 +43,21 @@ class ImageManager:
                 image_list.append(image)
         if image_list:
             return image_list
-        else:
-            return None
+        return None
 
     def add_tag(self, image, tag):
         # add tag to image
         if tag not in image.tags:
             image.tags.append(tag)
             return True
-        else:
-            return False
+        return False
 
     def delete_tag(self, image, tag):
         # delete tag from image
         if tag in image.tags:
             image.tags.remove(tag)
             return True
-        else:
-            return False
+        return False
 
 
 image_manager = ImageManager()
