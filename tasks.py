@@ -6,8 +6,8 @@ def start(ctx):
 
 @task
 def test(ctx):
-    ctx.run("coverage run --branch -m pytest src", pty=True)
-
+    #ctx.run("coverage run --branch -m pytest src", pty=True)
+    ctx.run("coverage run --branch -m pytest --ignore=src/playground src", pty=True)
 @task(test)
 def coverage_report(ctx):
     ctx.run("coverage html", pty=True)
