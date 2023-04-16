@@ -15,12 +15,18 @@ class ImageManager:
         for image in imgs:
             self.add_image_to_list(image)
 
-    def add_image_to_list(self, image_data, image_path=IMAGE_FILES_PATH):
+    def __open_image(self, image_path):
+        # open image from disk
+        return Image.open(image_path)
+
+    def add_image_to_list(self, image_data, image_picture=None):
         # add imgage to image list as an Image object
         image_name = image_data["name"]
         # convert tags to lower case
         image_tags = [tag.lower() for tag in image_data["tags"]]
-        image_picture = Image.open(image_path + image_name)
+        if not image_picture:
+            image_path = IMAGE_FILES_PATH + image_name
+            image_picture = self.__open_image(image_path)
         self.image_list.append(ImageObject(image_name, image_tags, image_picture))
 
     def get_all_images(self):
