@@ -7,9 +7,8 @@ class ImageManager:
     def __init__(self):
         # list to store image objects
         self.image_list = []
-        self.load_images()
 
-    def load_images(self):
+    def load_images_from_file(self):
         # load image metadata from json-file:
         # file-name and tags
         imgs = FileRepository().read_file()
@@ -24,27 +23,17 @@ class ImageManager:
         image_picture = Image.open(IMAGE_FILES_PATH + image_name)
         self.image_list.append(ImageObject(image_name, image_tags, image_picture))
 
-    #def return_image(self, id):
-    #    # return image object
-    #    for image in self.image_list:
-    #        if image.id == id:
-    #            return image
-    #    return None
-
-    def return_all_images(self):
+    def get_all_images(self):
         return self.image_list
 
     def search_for_tag(self, tag):
         # return list of image objects
-        # change to use list comprehension ect
-        image_list = []
-        for image in self.image_list:
-            if tag in image.tags:
-                image_list.append(image)
+        image_list = [image for image in self.image_list if tag in image.tags]
+ 
         if image_list:
             return image_list
         return None
-
+        
     def add_tag(self, image, tag):
         # add tag to image
         if tag not in image.tags:

@@ -14,8 +14,9 @@ class ImageApp:
         self.create_widgets()
 
     def load_images(self):
+        image_manager.load_images_from_file()
         # A list of Image objects
-        self.images = image_manager.return_all_images()
+        self.images = image_manager.get_all_images()
 
     def create_widgets(self):
         self.image_label = Label(self.master)
@@ -48,7 +49,7 @@ class ImageApp:
         self.search_button.grid(row=3, column=3, padx=10, pady=5)
 
         self.restore_defaults_button = Button(
-            self.master, text="Restore Default", command=self.restore_defaults)
+            self.master, text="Restore Defaults", command=self.restore_defaults)
         self.restore_defaults_button.grid(row=4, column=0, columnspan=5, pady=5)
 
         self.update_image()
