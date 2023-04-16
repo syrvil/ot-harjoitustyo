@@ -26,7 +26,6 @@ Testit suoritetaan komennolla:
 ```bash
 poetry run invoke test
 ```
-Sovelluksen tekstikäyttöliittymässä ei tehdä syötteiden tyyppien tarkastuksia, koska käyttöliittymä on tarkoitus korvata graafisella käyttöliittymällä mahdollisimman pian. On turhaa kirjoittaa koodia, joka kohta heitetään pois.
 
 ### Testikattavuus
 
