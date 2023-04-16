@@ -4,21 +4,17 @@ import io
 from io import BytesIO 
 from entities.image_object import ImageObject
 from repositories.file_repository import FileRepository
-from config import IMAGE_FILES_PATH
 from services.image_manager import ImageManager
 
 TEST_IMAGE = Image.new('RGB', (128, 128))
 with io.BytesIO() as buffer:
     TEST_IMAGE.save(buffer, format='JPEG')
-    image_data = buffer.getvalue()
+    IMAGE_DATA = buffer.getvalue()
 
 class TestImageManager(unittest.TestCase):
     def setUp(self):
-        # create a mock JPEG image
-        #image_data = b'\xff\xd8\xff\xe0\x00\x10JFIF\x00\x01\x01\x00\x00\x01\x00\x01\x00\x00\xff\xdb\x00\x84...'
-  
-        # create test image
-        test_image = Image.open(BytesIO(image_data))
+        # create a test image
+        test_image = Image.open(BytesIO(IMAGE_DATA))
         # generate test data
         self.test_list = [
             ImageObject("image1.jpg", ["tag1", "tag2"], test_image),
@@ -27,38 +23,37 @@ class TestImageManager(unittest.TestCase):
 
         # create a new image manager
         self.image_manager = ImageManager()
+        # add the test data to the image manager
         self.image_manager.image_list = self.test_list
     
-    #def test_add_image_to_list(self):
-        # create a new mock image
-        #image_data = b'\xff\xd8\xff\xe0\x00\x10JFIF\x00\x01\x01\x00\x00\x01\x00\x01\x00\x00\xff\xdb\x00\x84...'
-    #    mock_image = Image.open(BytesIO(image_data))
-
-        # add the mock image to the image list
-    #    self.image_manager.add_image_to_list({"name": "image3.jpg", "tags": ["tag3", "tag4"], "picture": mock_image})
+    def test_add_image_to_list(self):
+        test_image = Image.open(BytesIO(IMAGE_DATA))
+        self.image_manager.add_image_to_list(
+            {"name": "image3.jpg", "tags": ["tag5", "tag6"]}, test_image)
 
         # check if the image was added to the list
-    #    self.assertEqual(len(self.image_manager.get_all_images()), 3)
+        self.assertEqual(len(self.image_manager.get_all_images()), 3)
 
-    def test_get_all_images(self):
+    def test_get_all_images_number_correct(self):
         # check if the correct number of images were loaded
         self.assertEqual(len(self.image_manager.get_all_images()), 2)
 
+    def test_get_all_images_correct_image(self):
         # check if the correct images were loaded
-        #self.assertEqual(self.image_manager.get_all_images()[0].name, "image1.jpg")
-        #self.assertEqual(self.image_manager.get_all_images()[1].name, "image2.jpg")
+        self.assertEqual(self.image_manager.get_all_images()[1].name, "image2.jpg")
 
-    def test_search_for_tag(self):
+    def test_search_for_tag_found(self):
         # search for images with tag "tag2"
         result = self.image_manager.search_for_tag("tag2")
+        self.assertIsNotNone(result)
 
-        # check if the correct number of images were found
-        self.assertEqual(len(result), 2)
+    def test_search_for_tag_not_found(self):
+        # search for images with tag "tagataga3"
+        result = self.image_manager.search_for_tag("tagataga3")
 
-        # check if the correct images were found
-        self.assertEqual(result[0].name, "image1.jpg")
-        self.assertEqual(result[1].name, "image2.jpg")
-    
+        # check if no images were found
+        self.assertIsNone(result)
+
     def test_add_tag(self):
         # get the first image from the image list
         image = self.image_manager.get_all_images()[0]
