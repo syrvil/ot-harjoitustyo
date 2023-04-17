@@ -8,6 +8,8 @@
 
 ⚠️ **Huom! Ajettaessa Pytest-testejä laitoksen Cubbli Linux -virtuaalityöasemassa tuli vastaavanlainen tietokantavirheilmoitus kuin tässä [ohjeessa](https://ohjelmistotekniikka-hy.github.io/python/toteutus#sqlite-tietokanta-lukkiutuminen-virtuaality%C3%B6asemalla), vaikka minkäänlaista tietokantaa ei edes ollut käytössä. Ohjeessa esitetty ratkaisu toimi myös tässä tapauksessa.**
 
+⚠️ **Huom2! VMWare Horizon Clientillä edellä mainittua ongelmaan ei tullut testien ajamisen yhteydessä.**
+
 ## Asennus
 1. Asenna riippuvuudet komennolla:
 
