@@ -140,6 +140,7 @@ class ImageApp:
                 messagebox.showinfo(
                     "No matches", f"No images found with tag '{tag}'")
             else:
+                self.images.clear()
                 self.images = search_results
                 self.current_image_index = 0
                 self.update_image()
@@ -152,8 +153,9 @@ class ImageApp:
         self.image_tags.config(text=tag_text)
 
     def restore_defaults(self):
-        self.load_images()
+        self.images.clear()
         self.current_image_index = 0
+        self.load_images()
         self.update_image()
 
     def update_image(self):
