@@ -12,11 +12,21 @@ class ImageManager:
     def load_images_from_file(self):
         # load image metadata from json-file:
         # file-name and tags
-        imgs = FileRepository().read_file()
+        imgs = FileRepository().read_conf_file()
         for image in imgs:
             self.add_image_to_list(image)
 
-    def __open_image(self, image_path):
+    def load_image(self, image_path):
+        # load image from disk
+        image = self.open_image(image_path)
+        # get image name from path
+        image_name = image_path.split("/")[-1]
+        # create image object
+        image_object = ImageObject(image_name, [], image)
+        # return image object
+        return image_object
+
+    def open_image(self, image_path):
         # open image from disk
         return Image.open(image_path)
 
@@ -27,7 +37,7 @@ class ImageManager:
         image_tags = [tag.lower() for tag in image_data["tags"]]
         if not image_picture:
             image_path = IMAGE_FILES_PATH + image_name
-            image_picture = self.__open_image(image_path)
+            image_picture = self.open_image(image_path)
         self.image_list.append(ImageObject(
             image_name, image_tags, image_picture))
 
