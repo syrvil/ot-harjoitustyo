@@ -19,38 +19,49 @@ class ImageApp:
         self.images = image_manager.get_all_images()
 
     def create_widgets(self):
-        self.image_label = Label(self.master)
-        self.image_label.grid(row=0, column=1, columnspan=4, padx=10, pady=10)
-
-        self.image_tags = Label(self.master, text="Tags: ")
-        self.image_tags.grid(row=1, column=0, columnspan=5, pady=5)
-
-        self.prev_button = Button(
-            self.master, text="Previous", command=self.prev_image)
-        self.prev_button.grid(row=2, column=1, padx=10, pady=5)
-
-        self.image_order_label = Label(self.master, text="Image 1")
-        self.image_order_label.grid(row=2, column=2, padx=10, pady=5)
-
-        self.next_button = Button(
-            self.master, text="Next", command=self.next_image)
-        self.next_button.grid(row=2, column=3, padx=10, pady=5)
-
-        self.add_tag_button = Button(
-            self.master, text="Add Tag", command=self.add_tag)
-        self.add_tag_button.grid(row=3, column=1, padx=10, pady=5)
-
-        self.delete_tag_button = Button(
-            self.master, text="Delete Tag", command=self.delete_tag)
-        self.delete_tag_button.grid(row=3, column=2, padx=10, pady=5)
-
-        self.search_button = Button(
-            self.master, text="Search", command=self.search_image)
-        self.search_button.grid(row=3, column=3, padx=10, pady=5)
+        # Upper menu
+        self.load_button = Button(
+            self.master, text="Load New", command=self.load_image)
+        self.load_button.grid(row=0, column=1, padx=5, pady=5)
 
         self.restore_defaults_button = Button(
             self.master, text="Restore Defaults", command=self.restore_defaults)
-        self.restore_defaults_button.grid(row=4, column=0, columnspan=5, pady=5)
+        self.restore_defaults_button.grid(row=0, column=2, padx=5, pady=5)
+
+        self.exit_button = Button(
+            self.master, text="Save & Exit", command=self.save_image)
+        self.exit_button.grid(row=0, column=3, padx=5, pady=5)
+        
+        # Image
+        self.image_label = Label(self.master)
+        self.image_label.grid(row=1, column=1, columnspan=4, padx=10, pady=10)
+
+        # Lower menu    
+        self.image_tags = Label(self.master, text="Tags: ")
+        self.image_tags.grid(row=2, column=0, columnspan=5, pady=5)
+
+        self.prev_button = Button(
+            self.master, text="Previous", command=self.prev_image)
+        self.prev_button.grid(row=3, column=1, padx=10, pady=5)
+
+        self.image_order_label = Label(self.master, text="Image 1")
+        self.image_order_label.grid(row=3, column=2, padx=10, pady=5)
+
+        self.next_button = Button(
+            self.master, text="Next", command=self.next_image)
+        self.next_button.grid(row=3, column=3, padx=10, pady=5)
+
+        self.add_tag_button = Button(
+            self.master, text="Add Tag", command=self.add_tag)
+        self.add_tag_button.grid(row=4, column=1, padx=10, pady=5)
+
+        self.delete_tag_button = Button(
+            self.master, text="Delete Tag", command=self.delete_tag)
+        self.delete_tag_button.grid(row=4, column=2, padx=10, pady=5)
+
+        self.search_button = Button(
+            self.master, text="Search", command=self.search_image)
+        self.search_button.grid(row=4, column=3, padx=10, pady=5)
 
         self.update_image()
 
@@ -157,6 +168,12 @@ class ImageApp:
         self.current_image_index = 0
         self.load_images()
         self.update_image()
+
+    def load_image(self):
+        pass
+
+    def save_image(self):
+        pass
 
     def update_image(self):
         image = self.images[self.current_image_index].picture
