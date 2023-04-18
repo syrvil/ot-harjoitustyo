@@ -1,4 +1,4 @@
-from tkinter import Label, Button, Toplevel, Entry, messagebox, StringVar, Listbox, ACTIVE, SINGLE
+from tkinter import Label, Button, Toplevel, Entry, messagebox, StringVar, Listbox, ACTIVE, SINGLE, filedialog
 #from tkinter import *
 from PIL import ImageTk, Image
 from services.image_manager import image_manager
@@ -10,6 +10,7 @@ class ImageApp:
         self.images = None
         self.current_image_index = 0
         self.searched_tag = None
+        self.filename = None
         self.load_images()
         self.create_widgets()
 
@@ -170,7 +171,15 @@ class ImageApp:
         self.update_image()
 
     def load_image(self):
-        pass
+        file = filedialog.askopenfilename(initialdir="./src/entities/images/samples", 
+                                          title="Select file", 
+                                          filetypes=(("jpg files", "*.jpg"), ("all files", "*.*")))
+        
+        this_image = image_manager.load_image(file)
+        self.images.append(this_image)  
+        messagebox.showinfo("Image Loaded", f"Image '{file}' loaded!")
+        self.update_image()
+
 
     def save_image(self):
         pass
