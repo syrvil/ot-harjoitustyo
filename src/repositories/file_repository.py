@@ -9,7 +9,7 @@ class FileRepository:
     def __init__(self, filename=IMAGE_METADATA_PATH):
         self.filename = filename
 
-    def read_file(self):
+    def read_conf_file(self):
         """Reads image data from file"""
         try:
             with open(self.filename, 'r', encoding='utf8') as file:
