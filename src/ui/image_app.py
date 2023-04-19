@@ -21,17 +21,17 @@ class ImageApp:
 
     def create_widgets(self):
         # Upper menu
-        self.load_button = Button(
-            self.master, text="Load New", command=self.load_image)
-        self.load_button.grid(row=0, column=1, padx=5, pady=5)
+        self.add_new_button = Button(
+            self.master, text="Add New", command=self.add_images)
+        self.add_new_button.grid(row=0, column=1, padx=5, pady=5)
 
-        self.restore_defaults_button = Button(
-            self.master, text="Restore Defaults", command=self.restore_defaults)
-        self.restore_defaults_button.grid(row=0, column=2, padx=5, pady=5)
+        self.show_all_button = Button(
+            self.master, text="Show All", command=self.show_all)
+        self.show_all_button.grid(row=0, column=2, padx=5, pady=5)
 
-        self.exit_button = Button(
-            self.master, text="Save & Exit", command=self.save_image)
-        self.exit_button.grid(row=0, column=3, padx=5, pady=5)
+        self.save_button = Button(
+            self.master, text="Save", command=self.save_image)
+        self.save_button.grid(row=0, column=3, padx=5, pady=5)
         
         # Image
         self.image_label = Label(self.master)
@@ -164,21 +164,20 @@ class ImageApp:
         tag_text = "Tags: " + ", ".join(tags)
         self.image_tags.config(text=tag_text)
 
-    def restore_defaults(self):
+    def show_all(self):
         self.images.clear()
         self.current_image_index = 0
         self.load_images()
         self.update_image()
 
-    def load_image(self):
-        file = filedialog.askopenfilename(initialdir="./src/entities/images/samples", 
-                                          title="Select file", 
+    def add_images(self):
+        files = filedialog.askopenfilenames(initialdir="./src/entities/images/samples", 
+                                          title="Select file(s)", 
                                           filetypes=(("jpg files", "*.jpg"), ("all files", "*.*")))
-        
-        this_image = image_manager.load_image(file)
-        self.images.append(this_image)  
-        messagebox.showinfo("Image Loaded", f"Image '{file}' loaded!")
-        self.update_image()
+        if files:
+            self.images = image_manager.load_images(files) 
+            messagebox.showinfo("Image Loaded", f"Image '{files}' loaded!")
+            self.update_image()
 
 
     def save_image(self):
