@@ -16,15 +16,18 @@ class ImageManager:
         for image in imgs:
             self.add_image_to_list(image)
 
-    def load_image(self, image_path):
+    def load_images(self, image_paths):
+        """gets a list of image paths and returns a list of image objects"""
+        image_objects = []
         # load image from disk
-        image = self.open_image(image_path)
-        # get image name from path
-        image_name = image_path.split("/")[-1]
-        # create image object
-        image_object = ImageObject(image_name, [], image)
+        for path in image_paths:
+            image = self.open_image(path)
+            # get image name from path
+            image_name = path.split("/")[-1]
+            # create image object
+            image_objects.append(ImageObject(image_name, [], image))
         # return image object
-        return image_object
+        return image_objects
 
     def open_image(self, image_path):
         # open image from disk
