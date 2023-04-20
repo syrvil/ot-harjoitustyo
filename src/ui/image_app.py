@@ -19,7 +19,7 @@ class ImageApp:
         self.create_widgets()
 
     def load_images(self):
-        image_manager.load_images_from_file()
+        image_manager.load_image_json_file()
         # A list of Image objects
         self.all_images = image_manager.get_all_images()
         self.current_view = "All Images"
