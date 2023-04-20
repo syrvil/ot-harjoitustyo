@@ -9,12 +9,12 @@ class ImageManager:
         # list to store image objects
         self.image_list = []
 
-    def load_images_from_file(self):
+    def load_image_json_file(self):
         # load image metadata from json-file:
         # file-name and tags
         imgs = FileRepository().read_conf_file()
         for image in imgs:
-            self.add_image_to_list(image)
+            self.add_image_from_json(image)
 
     def load_images(self, image_paths):
         """gets a list of image paths and returns a list of image objects"""
@@ -33,7 +33,7 @@ class ImageManager:
         # open image from disk
         return Image.open(image_path)
 
-    def add_image_to_list(self, image_data, image_picture=None):
+    def add_image_from_json(self, image_data, image_picture=None):
         # add imgage to image list as an Image object
         image_name = image_data["name"]
         # convert tags to lower case
