@@ -30,13 +30,13 @@ class ImageApp:
             self.master, text="Add New", command=self.add_images)
         self.add_new_button.grid(row=0, column=1, padx=5, pady=5)
 
+        self.search_button = Button(
+            self.master, text="Search", command=self.search_image)
+        self.search_button.grid(row=0, column=2, padx=10, pady=5)
+        
         self.show_all_button = Button(
             self.master, text="Show All", command=self.show_all)
-        self.show_all_button.grid(row=0, column=2, padx=5, pady=5)
-
-        self.save_button = Button(
-            self.master, text="Save", command=self.save_image)
-        self.save_button.grid(row=0, column=3, padx=5, pady=5)
+        self.show_all_button.grid(row=0, column=3, padx=5, pady=5)
         
         # View
         self.image_view = Label(self.master, text="All Images")
@@ -69,9 +69,10 @@ class ImageApp:
             self.master, text="Delete Tag", command=self.delete_tag)
         self.delete_tag_button.grid(row=5, column=2, padx=10, pady=5)
 
-        self.search_button = Button(
-            self.master, text="Search", command=self.search_image)
-        self.search_button.grid(row=5, column=3, padx=10, pady=5)
+        self.save_button = Button(
+            self.master, text="Save", command=self.save_image)
+        self.save_button.grid(row=5, column=3, padx=5, pady=5)
+
 
         self.update_image()
 
@@ -195,10 +196,15 @@ class ImageApp:
 
     def save_image(self):
         if self.current_view == "Load Images":
-            self.all_images.extend(self.loaded_images)
+            self.all_images.extend(self.loaded_images) # logc to ImageManager?
             messagebox.showinfo("New Images Added!", "New images added to database!")
+            # add all images to database
         elif self.current_view == "Search Results":
             messagebox.showinfo("Changes saved!", "Changes saved to database!")
+            # update database with new tags
+        elif self.current_view == "All Images":
+            messagebox.showinfo("Changes saved!", "Changes saved to database!")
+            # update database with new tags
 
     def update_image(self):
         if self.current_view == "All Images":
