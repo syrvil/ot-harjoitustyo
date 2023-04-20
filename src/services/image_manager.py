@@ -68,6 +68,12 @@ class ImageManager:
             image.tags.remove(tag)
             return True
         return False
+    
+    def save_changes(self, image_list):
+        pass
+
+    def save_image(self, image_list):
+        pass
 
 
 image_manager = ImageManager()
