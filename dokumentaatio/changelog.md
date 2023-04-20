@@ -9,3 +9,9 @@
 - Luotu uusi ImageManager luokka ja eriytetty siihen toiminnallisuuksia GUI:sta ja tiedostojenkäsittelyluokasta (FileRepository)
 - Nimetty Image luokka ImageObject luokaksi, jotta nimeäminen erottuu Pillow:in (PIL) Image luokasta 
 - Muokattu testit toimimaan arkkitehtuurin luokkarakenetene mukaisesti
+## Viikko 5
+- Lisätty toiminnallisuus, jonka avulla sovellukeen voi lisätä uusia kuvatiedostoja käsiteltäväksi.
+- Lisätty tallennustoiminnallisuus (Save) jolla uudet kuvat tai muutokset tageihin voidaan tallentaa.
+- Muokattu käyttöliittymän toimintalogiikkaa siten, että uusille kuville, etsityille kuville ja kaikille kuville on oma muuttuja sekä tilamuuttuja, joka seuraa missä tilanäkymässä ollaan.
+- Muutettu "Restore Defaults" napin nimi "Show All", jotta uusien kuvien lisäys-, haetut kuvat ja kaikki kuvat näkymät muodostaisivat loogisen kokonaisuuden käytettävyyden ja muutosten tallentamisen näkökulmasta.
+- Muutettu hieman painikkeiden sijainteja, jotta käyttökokemus olisi looginen. 
