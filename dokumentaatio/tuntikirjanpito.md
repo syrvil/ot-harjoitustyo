@@ -14,5 +14,5 @@
 | 14.4. | 6    | Lisätty GUI:hin toiminnallisuuksia ja eriytetty toiminnallisuuksia luokkien välillä|
 | 15.4. | 3    | Refaktorointia |
 | 16.4. | 5    | Testiarkkitehtuurin konfigurointia ja testaamista sekä nysväämistä arkkitehtuurikuvan piirtämisen kanssa|
-|       |      | |
-| yht   | 38   | | 
+| 19.4. | 5    | Uusien kuvien lataus- sekä tallennustoiminallisuudet, tagimuutosten talennus ja niiden edellyttämät käyttöliittymämuutokset.
+| yht   | 43   | | 
