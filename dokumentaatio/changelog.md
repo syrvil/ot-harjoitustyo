@@ -15,3 +15,6 @@
 - Muokattu käyttöliittymän toimintalogiikkaa siten, että uusille kuville, etsityille kuville ja kaikille kuville on oma muuttuja sekä tilamuuttuja, joka seuraa missä tilanäkymässä ollaan.
 - Muutettu "Restore Defaults" napin nimi "Show All", jotta uusien kuvien lisäys-, haetut kuvat ja kaikki kuvat näkymät muodostaisivat loogisen kokonaisuuden käytettävyyden ja muutosten tallentamisen näkökulmasta.
 - Muutettu hieman painikkeiden sijainteja, jotta käyttökokemus olisi looginen. 
+- Sqliten käyttöönotto ja sitä varten uusi luokka DatabaseRepository
+- Tietojen tallentaminen oikeasti tietokantaan ohjelman ajoaikaisten muuttujien lisäksi
+- Kovakoodattujen tiedostopolkujen siirtoja muuttujiksi config.py -tiedostoon 
