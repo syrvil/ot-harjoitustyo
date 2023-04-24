@@ -6,9 +6,10 @@ from config import IMAGE_FILES_PATH
 
 # The metadata and imge files are loaded from the disk and database and
 # returned as an ImageObject, which are stored in a list.
-# The manipulation of the ImageObjects are done in the ImageManager class and 
+# The manipulation of the ImageObjects are done in the ImageManager class and
 # the changes are stored to disk/database only when the user saves the changes.
 # Thats why it not necessary to for examplme excetute searches from the database.
+
 
 class ImageManager:
     def __init__(self):
@@ -23,7 +24,7 @@ class ImageManager:
         # TO FILE REPOSITORY?
         # open image from disk
         return Image.open(image_path)
-          
+
     def load_image_data_from_database(self):
         # THIS TO DATABASE REPOSITORY
         # load image data from database
@@ -36,7 +37,6 @@ class ImageManager:
             image_picture = self.open_image(image_path)
             self.image_list.append(ImageObject(
                 image_id, image_name, image_tags, image_picture))
-            
 
     def get_all_images(self):
         return self.image_list
@@ -62,7 +62,7 @@ class ImageManager:
             image.tags.remove(tag)
             return True
         return False
-    
+
     def save_tag_changes(self, image_list):
         # saves the tag updates to the database if the user has
         # pressed the save button in the GUI's search or all images view
@@ -90,5 +90,6 @@ class ImageManager:
             image_objects.append(ImageObject(None, image_name, [], image))
         # return image object
         return image_objects
+
 
 image_manager = ImageManager()

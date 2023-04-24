@@ -1,9 +1,8 @@
 from tkinter import Label, Button, Toplevel, Entry, messagebox, StringVar, Listbox, ACTIVE, SINGLE, filedialog
-#from tkinter import *
+# from tkinter import *
 from PIL import ImageTk, Image
 from services.image_manager import image_manager
 from config import SAMPLE_FILE_PATH
-
 
 
 class ImageApp:
@@ -18,8 +17,8 @@ class ImageApp:
         self.searched_tag = None
 
     def start(self):
-        image_manager.test_db_load() # init db from json
-        self.load_images() # loads images from db
+        image_manager.test_db_load()  # init db from json
+        self.load_images()  # loads images from db
         self.create_widgets()
 
     def load_images(self):
@@ -37,11 +36,11 @@ class ImageApp:
         self.search_button = Button(
             self.master, text="Search", command=self.search_image)
         self.search_button.grid(row=0, column=2, padx=10, pady=5)
-        
+
         self.show_all_button = Button(
             self.master, text="Show All", command=self.show_all)
         self.show_all_button.grid(row=0, column=3, padx=5, pady=5)
-        
+
         # View
         self.image_view = Label(self.master, text="All Images")
         self.image_view.grid(row=1, column=0, columnspan=5, pady=5)
@@ -50,7 +49,7 @@ class ImageApp:
         self.image_label = Label(self.master)
         self.image_label.grid(row=2, column=1, columnspan=4, padx=10, pady=10)
 
-        # Lower menu    
+        # Lower menu
         self.image_tags = Label(self.master, text="Tags: ")
         self.image_tags.grid(row=3, column=0, columnspan=5, pady=5)
 
@@ -76,7 +75,6 @@ class ImageApp:
         self.save_button = Button(
             self.master, text="Save", command=self.save_image)
         self.save_button.grid(row=5, column=3, padx=5, pady=5)
-
 
         self.update_image()
 
@@ -187,12 +185,12 @@ class ImageApp:
         self.update_image()
 
     def add_images(self):
-        files = filedialog.askopenfilenames(initialdir=SAMPLE_FILE_PATH, 
-                                          title="Select file(s)", 
-                                          filetypes=(("jpg files", "*.jpg"), ("all files", "*.*")))
+        files = filedialog.askopenfilenames(initialdir=SAMPLE_FILE_PATH,
+                                            title="Select file(s)",
+                                            filetypes=(("jpg files", "*.jpg"), ("all files", "*.*")))
         if files:
             self.images.clear()
-            self.loaded_images = image_manager.load_images(files) 
+            self.loaded_images = image_manager.load_images(files)
             messagebox.showinfo("Image Loaded", f"Image '{files}' loaded!")
             self.current_view = "Load Images"
             self.current_image_index = 0
@@ -201,7 +199,8 @@ class ImageApp:
     def save_image(self):
         if self.current_view == "Load Images":
             image_manager.save_image(self.loaded_images)
-            messagebox.showinfo("New Images Added!", "New images added to database!")
+            messagebox.showinfo("New Images Added!",
+                                "New images added to database!")
             # add all images to database
         elif self.current_view == "Search Results":
             # update database with new tags

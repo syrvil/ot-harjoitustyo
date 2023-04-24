@@ -10,7 +10,7 @@ def get_database_connection():
     return connection
 
 
-### database initialization functions
+# database initialization functions
 def drop_tables(connection):
     cursor = connection.cursor()
 
@@ -73,7 +73,7 @@ class DatabaseRepository:
             select * from images
         """)
         return cursor.fetchall()
-    
+
     def update_image_tags(self, image):
         cursor = self.connection.cursor()
         cursor.execute("""
