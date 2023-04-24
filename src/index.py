@@ -5,7 +5,7 @@ from ui.image_app import ImageApp
 def main():
     window = Tk()
     window.title("Image Tagging App")
-    ImageApp(window)
+    ImageApp(window).start()
     window.mainloop()
 
 

@@ -12,4 +12,10 @@ except FileNotFoundError:
 IMAGE_METADATA_FILE = os.getenv(
     "IMAGE_METADATA_FILE") or "images_metadata.json"
 IMAGE_METADATA_PATH = os.path.join(dirname, "entities", IMAGE_METADATA_FILE)
-IMAGE_FILES_PATH = os.path.join(dirname, "entities", "images/")
+
+IMAGE_FILES_PATH = os.path.join(dirname, "entities/images/")
+SAMPLE_FILE_PATH = os.path.join(dirname, "entities/images/samples/")
+
+DATABASE_FILE = os.getenv(
+    "DATABASE_FILE") or "image_data.db"
+DATABASE_FILE_PATH = os.path.join(dirname, "entities", DATABASE_FILE)

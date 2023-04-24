@@ -2,6 +2,7 @@ from tkinter import Label, Button, Toplevel, Entry, messagebox, StringVar, Listb
 #from tkinter import *
 from PIL import ImageTk, Image
 from services.image_manager import image_manager
+from config import SAMPLE_FILE_PATH
 
 
 
@@ -15,12 +16,15 @@ class ImageApp:
         self.searched_images = None
         self.loaded_images = None
         self.searched_tag = None
-        self.load_images()
+
+    def start(self):
+        image_manager.test_db_load() # init db from json
+        self.load_images() # loads images from db
         self.create_widgets()
 
     def load_images(self):
-        image_manager.load_image_json_file()
         # A list of Image objects
+        image_manager.load_image_data_from_database()
         self.all_images = image_manager.get_all_images()
         self.current_view = "All Images"
 
@@ -176,14 +180,14 @@ class ImageApp:
         self.image_tags.config(text=tag_text)
 
     def show_all(self):
-        self.current_view = "all"
         self.images.clear()
-        self.current_image_index = 0
         self.load_images()
+        self.current_image_index = 0
+        self.current_view = "All Images"
         self.update_image()
 
     def add_images(self):
-        files = filedialog.askopenfilenames(initialdir="./src/entities/images/samples", 
+        files = filedialog.askopenfilenames(initialdir=SAMPLE_FILE_PATH, 
                                           title="Select file(s)", 
                                           filetypes=(("jpg files", "*.jpg"), ("all files", "*.*")))
         if files:
@@ -196,15 +200,17 @@ class ImageApp:
 
     def save_image(self):
         if self.current_view == "Load Images":
-            self.all_images.extend(self.loaded_images) # logc to ImageManager?
+            image_manager.save_image(self.loaded_images)
             messagebox.showinfo("New Images Added!", "New images added to database!")
             # add all images to database
         elif self.current_view == "Search Results":
-            messagebox.showinfo("Changes saved!", "Changes saved to database!")
             # update database with new tags
+            image_manager.save_tag_changes(self.searched_images)
+            messagebox.showinfo("Changes saved!", "Changes saved to database!")
         elif self.current_view == "All Images":
-            messagebox.showinfo("Changes saved!", "Changes saved to database!")
             # update database with new tags
+            image_manager.save_tag_changes(self.all_images)
+            messagebox.showinfo("Changes saved!", "Changes saved to database!")
 
     def update_image(self):
         if self.current_view == "All Images":
@@ -224,9 +230,3 @@ class ImageApp:
         self.update_image_tags()
         self.image_order_label.config(
             text=f"Image {self.current_image_index+1} of {len(self.images)}")
-
-# if __name__ == "__main__":
-#    root = Tk() # window = Tk()
-#    root.title("Image App") # window.title("Image Tagging App")
-#    app = ImageApp(root) # ui = ImageApp(window); ui.start()
-#    root.mainloop() # window.mainloop()
