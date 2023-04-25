@@ -193,7 +193,7 @@ class ImageApp:
                                                        ("all files", "*.*")))
         if files:
             self.images.clear()
-            self.loaded_images = image_manager.load_images(files)
+            self.loaded_images = image_manager.load_image_from_file(files)
             messagebox.showinfo("Image Loaded", f"Image '{files}' loaded!")
             self.current_view = "Load Images"
             self.current_image_index = 0

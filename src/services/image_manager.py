@@ -23,7 +23,7 @@ class ImageManager:
         # open image from disk
         return Image.open(image_path)
 
-    def load_images(self, image_paths):
+    def load_image_from_file(self, image_paths):
         """gets a list of image paths and returns a list of image objects"""
         image_objects = []
         # load image from disk
