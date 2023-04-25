@@ -47,8 +47,8 @@ class DatabaseRepository:
         initialize_database()
         self.connection = get_database_connection()
 
-    def _list_to_string(self, list):
-        return ','.join(list)
+    def _list_to_string(self, tag_list):
+        return ','.join(tag_list)
 
     def init_db_from_json(self):
         # loads image metadata from json-file and stores it to database
