@@ -60,6 +60,7 @@ class ImageManager:
         return None
 
     def add_tag(self, image, tag):
+        tag = tag.lower()
         # add tag to image
         if tag not in image.tags:
             image.tags.append(tag)
