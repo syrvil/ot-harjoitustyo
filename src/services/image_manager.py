@@ -1,6 +1,5 @@
 from PIL import Image
 from entities.image_object import ImageObject
-from repositories.file_repository import FileRepository
 from repositories.database_repository import DatabaseRepository
 from config import IMAGE_FILES_PATH
 
