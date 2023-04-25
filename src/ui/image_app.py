@@ -15,11 +15,12 @@ class ImageApp:
         self.searched_images = None
         self.loaded_images = None
         self.searched_tag = None
+        self.init_data()
+        self.create_widgets()
 
-    def start(self):
+    def init_data(self):
         image_manager.test_db_load()  # init db from json
         self.load_images()  # loads images from db
-        self.create_widgets()
 
     def load_images(self):
         # A list of Image objects
