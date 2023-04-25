@@ -2,6 +2,7 @@ import sqlite3
 from repositories.file_repository import FileRepository
 from config import DATABASE_FILE_PATH
 
+
 class DatabaseInitFunctions:
     """This static class is just temproray to reduce linting errors"""
     connection = sqlite3.connect(DATABASE_FILE_PATH)
