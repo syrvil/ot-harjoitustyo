@@ -1,4 +1,4 @@
-from tkinter import ttk 
+from tkinter import ttk
 from tkinter import Toplevel, Entry, messagebox, StringVar, Listbox, ACTIVE, SINGLE, filedialog
 from PIL import ImageTk, Image
 from services.image_manager import image_manager
@@ -131,8 +131,9 @@ class ImageApp:
             tag_listbox = Listbox(
                 tag_window, listvariable=tag_var, selectmode=SINGLE)
             tag_listbox.pack()
-            ok_button = ttk.Button(tag_window, text="OK", command=lambda: self.delete_tag_from_image(
-                tag_listbox.get(ACTIVE), tag_window, image))
+            ok_button = ttk.Button(tag_window, text="OK",
+                                   command=lambda: self.delete_tag_from_image(
+                                       tag_listbox.get(ACTIVE), tag_window, image))
             ok_button.pack()
 
     def delete_tag_from_image(self, tag, tag_window, image):
@@ -187,7 +188,8 @@ class ImageApp:
     def add_images(self):
         files = filedialog.askopenfilenames(initialdir=SAMPLE_FILE_PATH,
                                             title="Select file(s)",
-                                            filetypes=(("jpg files", "*.jpg"), ("all files", "*.*")))
+                                            filetypes=(("jpg files", "*.jpg"),
+                                                       ("all files", "*.*")))
         if files:
             self.images.clear()
             self.loaded_images = image_manager.load_images(files)
