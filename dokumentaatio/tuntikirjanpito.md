@@ -14,6 +14,7 @@
 | 14.4. | 6    | Lisätty GUI:hin toiminnallisuuksia ja eriytetty toiminnallisuuksia luokkien välillä|
 | 15.4. | 3    | Refaktorointia |
 | 16.4. | 5    | Testiarkkitehtuurin konfigurointia ja testaamista sekä nysväämistä arkkitehtuurikuvan piirtämisen kanssa|
-| 19.4. | 5    | Uusien kuvien lataus- sekä tallennustoiminallisuudet, tagimuutosten talennus ja niiden edellyttämät käyttöliittymämuutokset.
+| 19.4. | 5    | Uusien kuvien lataus- sekä tallennustoiminallisuudet, tagimuutosten talennus ja niiden edellyttämät käyttöliittymämuutokset|
 | 24.4. | 6    | Sqliten käyttöönotto tietojen tallennusta ja latausta varten sekä siitä aiheutunutta refaktorointia|
-| yht   | 49   | | 
+| 25.5. | 8    | Koodin siistmistä pylint-raportin perusteella, funktioiden nimien muokkausta, pientä refaktorointia ja julkaisun viimeistelyä| 
+| yht   | 57   | | 
