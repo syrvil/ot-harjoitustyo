@@ -2,7 +2,7 @@
 
 ## Sovelluksen tarkoitus
 
-Sovelluksen avulla käyttäjän on mahdollista selata, lisätä tai muokata kuvilla olevia tunnisteita tai _tageja_. Tunnisteita voidaan käyttää kuvien luokittelmiseen esimerkiksi erillisiin tietostokansioihin tai hyödytää koneoppimisessa esineiden ja asioiden tunnistamiseen kuvista.
+Sovelluksen avulla käyttäjän on mahdollista selata, lisätä tai muokata kuvilla olevia tunnisteita tai _tageja_. Tunnisteita voidaan käyttää kuvien luokittelmiseen tai opetusmateriaalina koneoppmisessa, jonka avulla on tarkoitus luokietella uusia kuvia tai tunnistaa niissä olevia asioita automaattisesti.
 
 ## Käyttäjät
 
@@ -15,8 +15,8 @@ Käyttöliittymässä on näkymä yhdelle kuvalle ja toiminnallisuuksia, joilla 
 ## Perusversion tarjoama toiminnallisuus
 
 ### Kuvien lataaminen katseltvaksi ja muokattavaksi
-- Käyttäjä voi ladata tiedostoon tai tietokotaan tallennettuja vanhoja katseltavaksi tai muokattavaksi - TEHTY(lataus tiedostosta)
-- Käyttäjä voi ladata uusia kuvia käsittelyä varten koneen paikallisesta hakemistosta
+- Käyttäjä voi ladata tiedostoon tai tietokotaan tallennettuja kuvia katseltavaksi tai muokattavaksi - TEHTY
+- Käyttäjä voi ladata uusia kuvia käsittelyä varten koneen paikallisesta hakemistosta - TEHTY
 - Käyttäjä voi selata kuvia kuvanäkymässä kuva kerrallaan - TEHTY
 
 ### Kuvien tunnisteiden muokkaaminen
@@ -29,7 +29,7 @@ Käyttöliittymässä on näkymä yhdelle kuvalle ja toiminnallisuuksia, joilla 
 - Käyttäjä voi katsoa statistiikkaa tunnisteiden määristä ja jakaumista
 
 ### Kuvien ja tunnisteiden tallentaminen
-- Käyttäjä voi tallentaa kuvat, joiden tunnisteita on muokatuu 
+- Käyttäjä voi tallentaa kuvat, joiden tunnisteita on muokatuu - TEHTY
 
 ## Jatkokehitysideoita
 
@@ -48,5 +48,5 @@ Perusversion jälkeen järjestelmää täydennetään ajan salliessa esim. seura
 - Kuvien lisääminen tietorakenteeseen esimerkiksi polkuna kuvien sijaintiin
 - Tekstipohjaisen käyttöliittymän korvaaminen yksinkertaislella graafisella käyttöliittymällä
 3. Versio
-- Tietojen tallanneus JSON:in sijaan tietokantaan
+- Tietojen tallanneus JSON:in sijaan tietokantaan (VALMIS)
 - Käyttöliittymän muokkausta ja toiminnallisuuksien lisäämistä
