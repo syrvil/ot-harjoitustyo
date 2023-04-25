@@ -16,11 +16,15 @@ class FileRepository:
                 return json.load(file)
         except FileNotFoundError:
             print(f"File {self.filename} not found")
+            return None
 
     def write_file(self, data):
         """Writes image data to file"""
-        # convert image objects to list of dictionaries
-        dicts = [{"name": image.name, "tags": image.tags} for image in data]
-        # add: write imgage-file to disk
-        with open(self.filename, 'w', encoding='utf8') as file:
-            json.dump(dicts, file, indent=4)
+        try:
+            # convert image objects to list of dictionaries
+            dicts = [{"name": image.name, "tags": image.tags} for image in data]
+            # add: write imgage-file to disk
+            with open(self.filename, 'w', encoding='utf8') as file:
+                json.dump(dicts, file, indent=4)
+        except FileNotFoundError:
+            print(f"File {self.filename} not found")
