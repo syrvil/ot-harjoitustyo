@@ -19,3 +19,4 @@
 - Tietojen tallentaminen oikeasti tietokantaan ohjelman ajoaikaisten muuttujien lisäksi, jos käyttäjä painaa "Save" nappia
 - Kovakoodattujen tiedostopolkujen siirtoja muuttujiksi config.py -tiedostoon 
 - Koottu staattisia tietokantafunktioita(tietokannan alustus, yhteyden luonti) samaan luokkaan
+- ImageManager luokan testin muokkausta tietokannan käyttöönoto seurauskena ja muutamia lisätestejä
