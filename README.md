@@ -40,3 +40,11 @@ poetry run invoke coverage-report
 ```
 
 Raportti generoituu _htmlcov_-hakemistoon.
+
+## Koodin laatu
+
+Pylint-tarkistuksen voi suorittaa komennolla:
+
+```bash
+poetry run invoke lint
+```
