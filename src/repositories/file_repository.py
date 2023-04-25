@@ -22,7 +22,8 @@ class FileRepository:
         """Writes image data to file"""
         try:
             # convert image objects to list of dictionaries
-            dicts = [{"name": image.name, "tags": image.tags} for image in data]
+            dicts = [{"name": image.name, "tags": image.tags}
+                     for image in data]
             # add: write imgage-file to disk
             with open(self.filename, 'w', encoding='utf8') as file:
                 json.dump(dicts, file, indent=4)
