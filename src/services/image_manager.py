@@ -14,20 +14,31 @@ class ImageManager:
     def __init__(self):
         # list to store image objects
         self.image_list = []
-        self.db = DatabaseRepository()
+        self.data_base = DatabaseRepository()
 
     def test_db_load(self):
-        self.db.init_db_from_json()
+        self.data_base.init_db_from_json()
 
     def open_image(self, image_path):
-        # TO FILE REPOSITORY?
         # open image from disk
         return Image.open(image_path)
+    
+    def load_images(self, image_paths):
+        """gets a list of image paths and returns a list of image objects"""
+        image_objects = []
+        # load image from disk
+        for path in image_paths:
+            image = self.open_image(path)
+            # get image name from path
+            image_name = path.split("/")[-1]
+            # create image object
+            image_objects.append(ImageObject(None, image_name, [], image))
+        # return image object
+        return image_objects
 
     def load_image_data_from_database(self):
-        # THIS TO DATABASE REPOSITORY
         # load image data from database
-        image_data = self.db.get_all_image_data()
+        image_data = self.data_base.get_all_image_data()
         for image in image_data:
             image_id = image["id"]
             image_name = image["file_name"]
@@ -66,29 +77,15 @@ class ImageManager:
         # saves the tag updates to the database if the user has
         # pressed the save button in the GUI's search or all images view
         for image in image_list:
-            self.db.update_image_tags(image)
+            self.data_base.update_image_tags(image)
 
     def save_image(self, image_list):
         # new image metadata (name and tags) are saved to the database
         # and the image file is saved to disk, if the user has
         # pressed the save button in the GUI's add image view
         for image in image_list:
-            self.db.add_image(image.name, ','.join(image.tags))
+            self.data_base.add_image(image.name, ','.join(image.tags))
             image.picture.save(IMAGE_FILES_PATH + image.name)
-
-    def load_images(self, image_paths):
-        # TO FILE REPOSITORY?
-        """gets a list of image paths and returns a list of image objects"""
-        image_objects = []
-        # load image from disk
-        for path in image_paths:
-            image = self.open_image(path)
-            # get image name from path
-            image_name = path.split("/")[-1]
-            # create image object
-            image_objects.append(ImageObject(None, image_name, [], image))
-        # return image object
-        return image_objects
 
 
 image_manager = ImageManager()
