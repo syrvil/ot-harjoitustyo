@@ -23,7 +23,6 @@ class ImageApp:
         self.load_images()  # loads images from db
 
     def load_images(self):
-        # A list of Image objects
         image_manager.load_image_data_from_database()
         self.all_images = image_manager.get_all_images()
         self.current_view = "All Images"
@@ -110,7 +109,8 @@ class ImageApp:
         else:
             image = self.images[self.current_image_index]
             if image_manager.add_tag(image, tag):
-                messagebox.showinfo("Success", f"Tag '{tag}' added to image!")
+                messagebox.showinfo(
+                    "Success", f"Tag '{tag}' added to image! Remeber to save!")
                 self.update_image_tags()
             else:
                 messagebox.showwarning(
@@ -140,7 +140,8 @@ class ImageApp:
     def delete_tag_from_image(self, tag, tag_window, image):
         if image_manager.delete_tag(image, tag):
             self.update_image_tags()
-            messagebox.showinfo("Success", f"Tag '{tag}' deleted from image!")
+            messagebox.showinfo(
+                "Success", f"Tag '{tag}' deleted from image! Remember to save!")
         else:
             # this is unneccesaary because tag are selected from a list
             messagebox.showwarning("No tags", "This image has no tags.")
@@ -194,7 +195,8 @@ class ImageApp:
         if files:
             self.images.clear()
             self.loaded_images = image_manager.load_image_from_file(files)
-            messagebox.showinfo("Image Loaded", f"Image '{files}' loaded!")
+            messagebox.showinfo("Image Loaded",
+                                f"Image '{files}' loaded!\n Press 'Save' to add to database.")
             self.current_view = "Load Images"
             self.current_image_index = 0
             self.update_view()
@@ -203,16 +205,16 @@ class ImageApp:
         if self.current_view == "Load Images":
             image_manager.save_image(self.loaded_images)
             messagebox.showinfo("New Images Added!",
-                                "New images added to database!")
+                                "Press 'Show All' to see all images!")
             # add all images to database
         elif self.current_view == "Search Results":
             # update database with new tags
             image_manager.save_tag_changes(self.searched_images)
-            messagebox.showinfo("Changes saved!", "Changes saved to database!")
+            messagebox.showinfo("Success", "Changes saved to database!")
         elif self.current_view == "All Images":
             # update database with new tags
             image_manager.save_tag_changes(self.all_images)
-            messagebox.showinfo("Changes saved!", "Changes saved to database!")
+            messagebox.showinfo("Success", "Changes saved to database!")
 
     def update_view(self):
         if self.current_view == "All Images":
