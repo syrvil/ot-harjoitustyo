@@ -1,5 +1,5 @@
-from tkinter import Label, Button, Toplevel, Entry, messagebox, StringVar, Listbox, ACTIVE, SINGLE, filedialog
-# from tkinter import *
+from tkinter import ttk 
+from tkinter import Toplevel, Entry, messagebox, StringVar, Listbox, ACTIVE, SINGLE, filedialog
 from PIL import ImageTk, Image
 from services.image_manager import image_manager
 from config import SAMPLE_FILE_PATH
@@ -29,50 +29,50 @@ class ImageApp:
 
     def create_widgets(self):
         # Upper menu
-        self.add_new_button = Button(
+        self.add_new_button = ttk.Button(
             self.master, text="Add New", command=self.add_images)
         self.add_new_button.grid(row=0, column=1, padx=5, pady=5)
 
-        self.search_button = Button(
+        self.search_button = ttk.Button(
             self.master, text="Search", command=self.search_image)
         self.search_button.grid(row=0, column=2, padx=10, pady=5)
 
-        self.show_all_button = Button(
+        self.show_all_button = ttk.Button(
             self.master, text="Show All", command=self.show_all)
         self.show_all_button.grid(row=0, column=3, padx=5, pady=5)
 
         # View
-        self.image_view = Label(self.master, text="All Images")
+        self.image_view = ttk.Label(self.master, text="All Images")
         self.image_view.grid(row=1, column=0, columnspan=5, pady=5)
 
         # Image
-        self.image_label = Label(self.master)
+        self.image_label = ttk.Label(self.master)
         self.image_label.grid(row=2, column=1, columnspan=4, padx=10, pady=10)
 
         # Lower menu
-        self.image_tags = Label(self.master, text="Tags: ")
+        self.image_tags = ttk.Label(self.master, text="Tags: ")
         self.image_tags.grid(row=3, column=0, columnspan=5, pady=5)
 
-        self.prev_button = Button(
+        self.prev_button = ttk.Button(
             self.master, text="Previous", command=self.prev_image)
         self.prev_button.grid(row=4, column=1, padx=10, pady=5)
 
-        self.image_order_label = Label(self.master, text="Image 1")
+        self.image_order_label = ttk.Label(self.master, text="Image 1")
         self.image_order_label.grid(row=4, column=2, padx=10, pady=5)
 
-        self.next_button = Button(
+        self.next_button = ttk.Button(
             self.master, text="Next", command=self.next_image)
         self.next_button.grid(row=4, column=3, padx=10, pady=5)
 
-        self.add_tag_button = Button(
+        self.add_tag_button = ttk.Button(
             self.master, text="Add Tag", command=self.add_tag)
         self.add_tag_button.grid(row=5, column=1, padx=10, pady=5)
 
-        self.delete_tag_button = Button(
+        self.delete_tag_button = ttk.Button(
             self.master, text="Delete Tag", command=self.delete_tag)
         self.delete_tag_button.grid(row=5, column=2, padx=10, pady=5)
 
-        self.save_button = Button(
+        self.save_button = ttk.Button(
             self.master, text="Save", command=self.save_image)
         self.save_button.grid(row=5, column=3, padx=5, pady=5)
 
@@ -95,11 +95,11 @@ class ImageApp:
     def add_tag(self):
         tag_window = Toplevel(self.master)
         tag_window.title("Add Tag")
-        tag_label = Label(tag_window, text="Enter tag:")
+        tag_label = ttk.Label(tag_window, text="Enter tag:")
         tag_label.pack()
         tag_entry = Entry(tag_window)
         tag_entry.pack()
-        ok_button = Button(tag_window, text="OK", command=lambda: self.add_tag_to_image(
+        ok_button = ttk.Button(tag_window, text="OK", command=lambda: self.add_tag_to_image(
             tag_entry.get(), tag_window))
         ok_button.pack()
 
@@ -124,14 +124,14 @@ class ImageApp:
         else:
             tag_window = Toplevel(self.master)
             tag_window.title("Delete Tag")
-            tag_label = Label(tag_window, text="Select tag to delete:")
+            tag_label = ttk.Label(tag_window, text="Select tag to delete:")
             tag_label.pack()
             tag_options = image_tags
             tag_var = StringVar(value=tag_options)
             tag_listbox = Listbox(
                 tag_window, listvariable=tag_var, selectmode=SINGLE)
             tag_listbox.pack()
-            ok_button = Button(tag_window, text="OK", command=lambda: self.delete_tag_from_image(
+            ok_button = ttk.Button(tag_window, text="OK", command=lambda: self.delete_tag_from_image(
                 tag_listbox.get(ACTIVE), tag_window, image))
             ok_button.pack()
 
@@ -147,11 +147,11 @@ class ImageApp:
     def search_image(self):
         tag_window = Toplevel(self.master)
         tag_window.title("Search Image")
-        tag_label = Label(tag_window, text="Enter tag to search:")
+        tag_label = ttk.Label(tag_window, text="Enter tag to search:")
         tag_label.pack()
         tag_entry = Entry(tag_window)
         tag_entry.pack()
-        ok_button = Button(tag_window, text="OK", command=lambda: self.search_for_tag(
+        ok_button = ttk.Button(tag_window, text="OK", command=lambda: self.search_for_tag(
             tag_entry.get(), tag_window))
         ok_button.pack()
 
