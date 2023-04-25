@@ -2,50 +2,52 @@ import sqlite3
 from repositories.file_repository import FileRepository
 from config import DATABASE_FILE_PATH
 
-connection = sqlite3.connect(DATABASE_FILE_PATH)
-connection.row_factory = sqlite3.Row
+class DatabaseInitFunctions:
+    """This static class is just temproray to reduce linting errors"""
+    connection = sqlite3.connect(DATABASE_FILE_PATH)
+    connection.row_factory = sqlite3.Row
 
+    @staticmethod
+    def get_database_connection():
+        return DatabaseInitFunctions.connection
 
-def get_database_connection():
-    return connection
+    # database initialization functions
+    @staticmethod
+    def drop_tables(connection):
+        cursor = connection.cursor()
 
+        cursor.execute("""
+            drop table if exists images;
+        """)
 
-# database initialization functions
-def drop_tables(connection):
-    cursor = connection.cursor()
+        DatabaseInitFunctions.connection.commit()
 
-    cursor.execute("""
-        drop table if exists images;
-    """)
+    @staticmethod
+    def create_tables(connection):
+        cursor = connection.cursor()
 
-    connection.commit()
+        cursor.execute("""
+            create table images (
+                id integer primary key autoincrement,
+                file_name text,
+                tags text
+            );
+        """)
 
+        DatabaseInitFunctions.connection.commit()
 
-def create_tables(connection):
-    cursor = connection.cursor()
+    @staticmethod
+    def initialize_database():
+        connection = DatabaseInitFunctions.get_database_connection()
 
-    cursor.execute("""
-        create table images (
-            id integer primary key autoincrement,
-            file_name text,
-            tags text
-        );
-    """)
-
-    connection.commit()
-
-
-def initialize_database():
-    connection = get_database_connection()
-
-    drop_tables(connection)
-    create_tables(connection)
+        DatabaseInitFunctions.drop_tables(connection)
+        DatabaseInitFunctions.create_tables(connection)
 
 
 class DatabaseRepository:
     def __init__(self):
-        initialize_database()
-        self.connection = get_database_connection()
+        DatabaseInitFunctions.initialize_database()
+        self.connection = DatabaseInitFunctions.get_database_connection()
 
     def _list_to_string(self, tag_list):
         return ','.join(tag_list)
