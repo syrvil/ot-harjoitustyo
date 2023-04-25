@@ -77,21 +77,21 @@ class ImageApp:
             self.master, text="Save", command=self.save_image)
         self.save_button.grid(row=5, column=3, padx=5, pady=5)
 
-        self.update_image()
+        self.update_view()
 
     def prev_image(self):
         if self.current_image_index == 0:
             self.current_image_index = len(self.images) - 1
         else:
             self.current_image_index -= 1
-        self.update_image()
+        self.update_view()
 
     def next_image(self):
         if self.current_image_index == len(self.images) - 1:
             self.current_image_index = 0
         else:
             self.current_image_index += 1
-        self.update_image()
+        self.update_view()
 
     def add_tag(self):
         tag_window = Toplevel(self.master)
@@ -170,7 +170,7 @@ class ImageApp:
                 self.searched_images = search_results
                 self.current_image_index = 0
                 self.current_view = "Search Results"
-                self.update_image()
+                self.update_view()
         tag_window.destroy()
 
     def update_image_tags(self):
@@ -184,7 +184,7 @@ class ImageApp:
         self.load_images()
         self.current_image_index = 0
         self.current_view = "All Images"
-        self.update_image()
+        self.update_view()
 
     def add_images(self):
         files = filedialog.askopenfilenames(initialdir=SAMPLE_FILE_PATH,
@@ -197,7 +197,7 @@ class ImageApp:
             messagebox.showinfo("Image Loaded", f"Image '{files}' loaded!")
             self.current_view = "Load Images"
             self.current_image_index = 0
-            self.update_image()
+            self.update_view()
 
     def save_image(self):
         if self.current_view == "Load Images":
@@ -214,7 +214,7 @@ class ImageApp:
             image_manager.save_tag_changes(self.all_images)
             messagebox.showinfo("Changes saved!", "Changes saved to database!")
 
-    def update_image(self):
+    def update_view(self):
         if self.current_view == "All Images":
             self.images = self.all_images
         elif self.current_view == "Search Results":
