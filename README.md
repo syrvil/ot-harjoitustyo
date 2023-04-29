@@ -1,4 +1,6 @@
-# Ohjelmistotekniikka 2023, harjoitustyö
+# Imaage Tagging App
+
+Sovelluksen avulla käyttäjän on mahdollista selata, lisätä tai muokata kuvilla olevia tunnisteita tai tageja. Tunnisteita voidaan käyttää kuvien luokittelmiseen tai opetusmateriaalina koneoppmisessa, jonka avulla on tarkoitus luokietella uusia kuvia tai tunnistaa niissä olevia asioita automaattisesti.
 
 ## Dokumentaatio
 - [Vaatimusmäärittely](./dokumentaatio/vaatimusmaarittely.md)
