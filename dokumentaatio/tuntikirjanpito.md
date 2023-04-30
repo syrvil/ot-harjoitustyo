@@ -16,5 +16,6 @@
 | 16.4. | 5    | Testiarkkitehtuurin konfigurointia ja testaamista sekä nysväämistä arkkitehtuurikuvan piirtämisen kanssa|
 | 19.4. | 5    | Uusien kuvien lataus- sekä tallennustoiminallisuudet, tagimuutosten talennus ja niiden edellyttämät käyttöliittymämuutokset|
 | 24.4. | 6    | Sqliten käyttöönotto tietojen tallennusta ja latausta varten sekä siitä aiheutunutta refaktorointia|
-| 25.5. | 8    | Koodin siistmistä pylint-raportin perusteella, funktioiden nimien muokkausta, pientä refaktorointia ja julkaisun viimeistelyä| 
-| yht   | 57   | | 
+| 25.4. | 8    | Koodin siistmistä pylint-raportin perusteella, funktioiden nimien muokkausta, pientä refaktorointia ja julkaisun viimeistelyä| 
+| 30.4. | 3    | Nappula ja toiminnallisuus tag-lkm tilastoja ja visualisointia varten|
+| yht   | 60   | | 

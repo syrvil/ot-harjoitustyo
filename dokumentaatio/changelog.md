@@ -20,3 +20,6 @@
 - Kovakoodattujen tiedostopolkujen siirtoja muuttujiksi config.py -tiedostoon 
 - Koottu staattisia tietokantafunktioita(tietokannan alustus, yhteyden luonti) samaan luokkaan
 - ImageManager luokan testin muokkausta tietokannan käyttöönoto seurauskena ja muutamia lisätestejä
+## Viikko 6
+- Lisätty toiminallisuus (Stats) joka laskee tagien määrän ja tekee niistä pylväsdiagrammin matplotlib-kirjastoa käyttäen
+
