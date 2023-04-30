@@ -84,3 +84,10 @@ class DatabaseRepository:
             where id = ?
         """, (self._list_to_string(image.tags), image.id))
         self.connection.commit()
+
+    def get_all_tags(self):
+        cursor = self.connection.cursor()
+        cursor.execute("""
+            select tags from images
+        """)
+        return cursor.fetchall()

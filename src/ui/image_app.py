@@ -1,9 +1,9 @@
 from tkinter import ttk
 from tkinter import Toplevel, Entry, messagebox, StringVar, Listbox, ACTIVE, SINGLE, filedialog
 from PIL import ImageTk, Image
+from matplotlib import pyplot as plt
 from services.image_manager import image_manager
 from config import SAMPLE_FILE_PATH
-
 
 class ImageApp:
     def __init__(self, master):
@@ -41,6 +41,10 @@ class ImageApp:
             self.master, text="Show All", command=self.show_all)
         self.show_all_button.grid(row=0, column=3, padx=5, pady=5)
 
+        self.stats_button = ttk.Button(
+            self.master, text="Stats", command=self.show_stats)
+        self.stats_button.grid(row=0, column=4, padx=5, pady=5)
+
         # View
         self.image_view = ttk.Label(self.master, text="All Images")
         self.image_view.grid(row=1, column=0, columnspan=5, pady=5)
@@ -57,12 +61,12 @@ class ImageApp:
             self.master, text="Previous", command=self.prev_image)
         self.prev_button.grid(row=4, column=1, padx=10, pady=5)
 
-        self.image_order_label = ttk.Label(self.master, text="Image 1")
-        self.image_order_label.grid(row=4, column=2, padx=10, pady=5)
+        self.image_order_label = ttk.Label(self.master, text="")
+        self.image_order_label.grid(row=4, column=2, columnspan=2, padx=10, pady=5)
 
         self.next_button = ttk.Button(
             self.master, text="Next", command=self.next_image)
-        self.next_button.grid(row=4, column=3, padx=10, pady=5)
+        self.next_button.grid(row=4, column=4, padx=10, pady=5)
 
         self.add_tag_button = ttk.Button(
             self.master, text="Add Tag", command=self.add_tag)
@@ -70,13 +74,23 @@ class ImageApp:
 
         self.delete_tag_button = ttk.Button(
             self.master, text="Delete Tag", command=self.delete_tag)
-        self.delete_tag_button.grid(row=5, column=2, padx=10, pady=5)
+        self.delete_tag_button.grid(row=5, column=2, columnspan=2 ,padx=10, pady=5)
 
         self.save_button = ttk.Button(
             self.master, text="Save", command=self.save_image)
-        self.save_button.grid(row=5, column=3, padx=5, pady=5)
+        self.save_button.grid(row=5, column=4, padx=5, pady=5)
 
         self.update_view()
+
+    def show_stats(self):
+        data = image_manager.tag_statistics()
+        tags = list(data.keys())
+        counts = list(data.values())
+        plt.barh(tags, counts)
+        plt.xlabel("Count")
+        plt.title("Count of Tags")
+        plt.xticks(range(0, max(counts) + 1))
+        plt.show()
 
     def prev_image(self):
         if self.current_image_index == 0:

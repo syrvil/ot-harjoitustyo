@@ -73,6 +73,21 @@ class ImageManager:
             image.tags.remove(tag)
             return True
         return False
+    
+    def tag_statistics(self):
+        # returns a dictionary with all tags and their count
+        tag_statistics = {}
+        tag_data = [row["tags"].split(',') for row in self.data_base.get_all_tags()]
+        
+        for tag_row in tag_data:
+            for tag in tag_row:
+                if tag in tag_statistics:
+                    tag_statistics[tag] += 1
+                else:
+                    tag_statistics[tag] = 1
+
+        # sort the dictionary by tag count
+        return dict(sorted(tag_statistics.items(), key=lambda x: x[1]))
 
     def save_tag_changes(self, image_list):
         # saves the tag updates to the database if the user has
