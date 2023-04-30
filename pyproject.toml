@@ -11,6 +11,7 @@ python = "^3.8"
 invoke = "^2.0.0"
 python-dotenv = "^1.0.0"
 pillow = "^9.5.0"
+matplotlib = "^3.7.1"
 
 
 [tool.poetry.group.dev.dependencies]
