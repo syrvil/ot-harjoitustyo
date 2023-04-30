@@ -5,6 +5,7 @@ from matplotlib import pyplot as plt
 from services.image_manager import image_manager
 from config import SAMPLE_FILE_PATH
 
+
 class ImageApp:
     def __init__(self, master):
         self.master = master
@@ -62,7 +63,8 @@ class ImageApp:
         self.prev_button.grid(row=4, column=1, padx=10, pady=5)
 
         self.image_order_label = ttk.Label(self.master, text="")
-        self.image_order_label.grid(row=4, column=2, columnspan=2, padx=10, pady=5)
+        self.image_order_label.grid(
+            row=4, column=2, columnspan=2, padx=10, pady=5)
 
         self.next_button = ttk.Button(
             self.master, text="Next", command=self.next_image)
@@ -74,7 +76,8 @@ class ImageApp:
 
         self.delete_tag_button = ttk.Button(
             self.master, text="Delete Tag", command=self.delete_tag)
-        self.delete_tag_button.grid(row=5, column=2, columnspan=2 ,padx=10, pady=5)
+        self.delete_tag_button.grid(
+            row=5, column=2, columnspan=2, padx=10, pady=5)
 
         self.save_button = ttk.Button(
             self.master, text="Save", command=self.save_image)

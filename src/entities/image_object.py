@@ -9,6 +9,5 @@ class ImageObject:
     def __tags_to_lowercase(self):
         self.tags = [tag.lower() for tag in self.tags]
 
-
     def __str__(self):
         return f"id: {self.id}, name: {self.name}, tags: {self.tags}"
