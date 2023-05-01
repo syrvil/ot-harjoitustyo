@@ -1,7 +1,7 @@
 from tkinter import ttk
 from tkinter import Toplevel, Entry, messagebox, StringVar, Listbox, ACTIVE, SINGLE, filedialog
 from PIL import ImageTk, Image
-from matplotlib import pyplot as plt
+from ui.plot_stats import PlotStats
 from services.image_manager import image_manager
 from config import SAMPLE_FILE_PATH
 
@@ -87,13 +87,7 @@ class ImageApp:
 
     def show_stats(self):
         data = image_manager.tag_statistics()
-        tags = list(data.keys())
-        counts = list(data.values())
-        plt.barh(tags, counts)
-        plt.xlabel("Count")
-        plt.title("Count of Tags")
-        plt.xticks(range(0, max(counts) + 1))
-        plt.show()
+        PlotStats(data).plot_hbar()
 
     def prev_image(self):
         if self.current_image_index == 0:
