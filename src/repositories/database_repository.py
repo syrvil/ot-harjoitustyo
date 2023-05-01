@@ -50,7 +50,7 @@ class DatabaseRepository:
         DatabaseInitFunctions.initialize_database()
         self.connection = DatabaseInitFunctions.get_database_connection()
 
-    def _list_to_string(self, tag_list):
+    def __list_to_string(self, tag_list):
         return ','.join(tag_list)
 
     def init_db_from_json(self):
@@ -59,7 +59,7 @@ class DatabaseRepository:
         for image_data in json_data:
             image_name = image_data["name"]
             # make a string of of a list of tags
-            image_tags = self._list_to_string(image_data["tags"])
+            image_tags = self.__list_to_string(image_data["tags"])
             self.add_image(image_name, image_tags)
 
     def add_image(self, name, tags):

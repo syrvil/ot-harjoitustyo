@@ -19,7 +19,7 @@ class ImageManager:
     def test_db_load(self):
         self.data_base.init_db_from_json()
 
-    def open_image(self, image_path):
+    def __open_image(self, image_path):
         # open image from disk
         return Image.open(image_path)
 
@@ -28,7 +28,7 @@ class ImageManager:
         image_objects = []
         # load image from disk
         for path in image_paths:
-            image = self.open_image(path)
+            image = self.__open_image(path)
             # get image name from path
             image_name = path.split("/")[-1]
             # create image object
@@ -44,7 +44,7 @@ class ImageManager:
             image_name = image["file_name"]
             image_tags = image["tags"].split(",")
             image_path = IMAGE_FILES_PATH + image_name
-            image_picture = self.open_image(image_path)
+            image_picture = self.__open_image(image_path)
             self.image_list.append(ImageObject(
                 image_id, image_name, image_tags, image_picture))
 
