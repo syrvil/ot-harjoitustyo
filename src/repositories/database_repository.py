@@ -82,7 +82,7 @@ class DatabaseRepository:
         cursor.execute("""
             update images set tags = ?
             where id = ?
-        """, (self._list_to_string(image.tags), image.id))
+        """, (self.__list_to_string(image.tags), image.id))
         self.connection.commit()
 
     def get_all_tags(self):
