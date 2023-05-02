@@ -23,10 +23,10 @@ Käyttöliittymässä on näkymä yhdelle kuvalle ja toiminnallisuuksia, joilla 
 - Käyttäjä voi lisätä tai poistaa kuvilla olevia tunnisteita - TEHTY
 
 ### Kuvien hakeminen tunnisteiden perusteella
-- Käyttäjä voi hakea tunnisteiden nimillä kuvia selailtavaksi tai muokattavaski -TEHTY
+- Käyttäjä voi hakea tunnisteiden nimillä kuvia selailtavaksi tai muokattavaski - TEHTY
 
 ### Tunnisteiden tilastotietojen katselu
-- Käyttäjä voi katsoa statistiikkaa tunnisteiden määristä ja jakaumista
+- Käyttäjä voi katsoa statistiikkaa tunnisteiden määristä ja jakaumista - TEHTY
 
 ### Kuvien ja tunnisteiden tallentaminen
 - Käyttäjä voi tallentaa kuvat, joiden tunnisteita on muokatuu - TEHTY
@@ -47,6 +47,9 @@ Perusversion jälkeen järjestelmää täydennetään ajan salliessa esim. seura
 2. versio (VALMIS): 
 - Kuvien lisääminen tietorakenteeseen esimerkiksi polkuna kuvien sijaintiin
 - Tekstipohjaisen käyttöliittymän korvaaminen yksinkertaislella graafisella käyttöliittymällä
-3. Versio
-- Tietojen tallanneus JSON:in sijaan tietokantaan (VALMIS)
+3. Versio (VALMIS)
+- Tietojen tallanneus JSON:in sijaan tietokantaan
 - Käyttöliittymän muokkausta ja toiminnallisuuksien lisäämistä
+4. Versio
+- Koodin refaktorointia ja arkkitehtuurin hiomista
+- Lopullinen julkaisu  
