@@ -18,5 +18,5 @@
 | 24.4. | 6    | Sqliten käyttöönotto tietojen tallennusta ja latausta varten sekä siitä aiheutunutta refaktorointia|
 | 25.4. | 8    | Koodin siistmistä pylint-raportin perusteella, funktioiden nimien muokkausta, pientä refaktorointia ja julkaisun viimeistelyä| 
 | 30.4. | 3    | Nappula ja toiminnallisuus tag-lkm tilastoja ja visualisointia varten|
-|  2.5. | 8    | Docstring ja muuta dokumentointia, hakemistoraketeen muokkausta| 
-| yht   | 68   | | 
+|  2.5. | 10   | Docstring ja muuta dokumentointia, hakemistoraketeen muokkausta| 
+| yht   | 70   | | 
