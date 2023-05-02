@@ -155,7 +155,7 @@ class ImageManager:
             image_list (List): Lista olioista.
         """
         for image in image_list:
-            self.data_base.add_image(image.name, ','.join(image.tags))
+            self.data_base.add_image_data(image.name, ','.join(image.tags))
             image.picture.save(IMAGE_FILES_PATH + image.name)
 
 

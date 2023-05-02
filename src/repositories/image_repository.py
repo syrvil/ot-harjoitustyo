@@ -4,23 +4,38 @@ from repositories.file_repository import FileRepository
 
 
 class ImageRepository:
+    """Luokka ImageObject datan tietokantaoperaatioita varten
+    """
     def __init__(self, connection):
+        """Konstruktori, joka alustaa tietokannan ja muodostaa tietokantayhteyden.
+
+        Args:
+            connection (Connection): Tietokannan yhteysolio.
+        """
         initialize_database()
         self.connection = connection
 
     def __list_to_string(self, tag_list):
+        """Apufunktio, joka muodostaa listasta merkkijonon tietokantatannusta varten.
+
+        Args:
+            tag_list (List): Lista tageista.
+
+        Returns:
+            String: Merkkijono, jossa tagit on eroteltu pilkulla.
+        """
         return ','.join(tag_list)
 
     def init_db_from_json(self):
-        # loads image metadata from json-file and stores it to database
+        """Lukee json-muodossa olevan datan ja tallentaa sen tietokantaan.
+        """
         json_data = FileRepository().read_conf_file()
         for image_data in json_data:
             image_name = image_data["name"]
-            # make a string of of a list of tags
             image_tags = self.__list_to_string(image_data["tags"])
-            self.add_image(image_name, image_tags)
+            self.add_image_data(image_name, image_tags)
 
-    def add_image(self, name, tags):
+    def add_image_data(self, name, tags):
         cursor = self.connection.cursor()
         cursor.execute("""
             insert into images (file_name, tags)
@@ -29,6 +44,7 @@ class ImageRepository:
         self.connection.commit()
 
     def get_all_image_data(self):
+
         cursor = self.connection.cursor()
         cursor.execute("""
             select * from images
@@ -49,6 +65,5 @@ class ImageRepository:
             select tags from images
         """)
         return cursor.fetchall()
-
 
 image_repository = ImageRepository(get_database_connection())
