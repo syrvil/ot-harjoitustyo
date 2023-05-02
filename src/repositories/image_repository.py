@@ -6,6 +6,7 @@ from repositories.file_repository import FileRepository
 class ImageRepository:
     """Luokka ImageObject datan tietokantaoperaatioita varten
     """
+
     def __init__(self, connection):
         """Konstruktori, joka alustaa tietokannan ja muodostaa tietokantayhteyden.
 
@@ -65,5 +66,6 @@ class ImageRepository:
             select tags from images
         """)
         return cursor.fetchall()
+
 
 image_repository = ImageRepository(get_database_connection())
