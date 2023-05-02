@@ -1,14 +1,28 @@
 ## Käyttöohje
-Kun ohjelma käynnistetään komennolla "poetry run invoke start", ladataan automaattisesti tietokantaan julkaisun mukana tulleita testikuvia. 
-Samoin jos halutaan ladata uusia kuvia työaseman paikalliselta levyltä "Add New" nappia painamalla, niin oletusarvoisesti ehdotetaan hakemistoa,
-jossa on kolme valmista testikuvaa.
 
-Käyttöliittymässä on kolme eri näkymää: 
+Kun ohjelma käynnistetään komennolla "poetry run invoke start", ladataan automaattisesti tietokantaan julkaisun mukana tulleita testikuvia. 
+
+![Pakkausrakenne](kuvat/tagging_app.png)
+
+Käyttöliittymässä on kolme eri näkymää kuvien selausta ja tagien muokkausta varten: 
 - Show All: näyttää kaikki tietokannassa olevat kuvat
-- serach: tag-haun avulla löytyneet kuvat
+- Serach: tag-haun avulla löytyneet kuvat
 - Add New: paikallisesti lisätyty uude kuvat.
 
-Kaikissa eri näkymissä voi selata niiden kuvia ja muokata tageja.
+### Add New
 
-Jos haluaa tallentaa tehdyt muutokset tietokantaan (uusien kuvien lisäys, tagien muokkaus), täytyy painaa "Save" nappia. Muuten muutokset eivät
-tallennu, jos siirrtytään näkymästä toiseen.
+Uusien kuvien lisäys pakallisesta hakemistosta tapahtuu **Add New** painikkeen avulla. Oletusravoisesti avautuu hakemisto, jossa on valmiiksi kolme testikuvaa, joita ei ole lisätty tietokantaan. Kerralla voi lisätä yhden tai useammaan kuvan.
+
+Näkymässä voi selata kuvia ja muokata (lisätä tai poistaa) niiden tageja. Jos kuvat ja mahdolliset tagit haluaa tallentaa tietokantaan, täytyy painaa **Save** painiketta. Jos tallenusta ei tee ja siirtyy toiseen näkumään (Search/Show All), uudet kuvat menetetään.
+
+### Search
+
+Kuvia voi hakea tageilla **Searh** painikkeen avulle. Tällöin näkymään tulevat hakua vastaavat kuvat, joita voi selailla ja muokata tageja. Jos haluaa, säilyttää tageihin tehdyt muutokset, täytyy muutokset tallentaa **Save** painikkeen avulla.
+
+### Show All
+
+**Show All** painike näyttää kaikki talletetut kuvat. Jos kuvien tageihin tehdään muutoksia ja muutokset haluaa säilyttää, täytyy painaa **Save** painiketta.
+
+### Stats
+
+**Stats** nappia painamalla avautuu uusi ikkuna, joka näyttää pylväsdiagrammin eri tagien lukumääristä.
