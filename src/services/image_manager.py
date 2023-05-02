@@ -1,6 +1,6 @@
 from PIL import Image
 from entities.image_object import ImageObject
-from repositories.database_repository import DatabaseRepository
+from repositories.database_repository import image_repository
 from config import IMAGE_FILES_PATH
 
 class ImageManager:
@@ -12,7 +12,7 @@ class ImageManager:
         dataa voidaan käsitellä tietotokannassa. 
         """
         self.image_list = []
-        self.data_base = DatabaseRepository()
+        self.data_base = image_repository
 
     def test_db_load(self):
         """Lataa JSON-muodossa olevan metadatatiedon tietokantaan.

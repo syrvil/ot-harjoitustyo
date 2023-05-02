@@ -1,54 +1,11 @@
-import sqlite3
+from database_connection import get_database_connection
+from initialize_database import initialize_database
 from repositories.file_repository import FileRepository
-from config import DATABASE_FILE_PATH
-
-
-class DatabaseInitFunctions:
-    """This static class is just temproray to reduce linting errors"""
-    connection = sqlite3.connect(DATABASE_FILE_PATH)
-    connection.row_factory = sqlite3.Row
-
-    @staticmethod
-    def get_database_connection():
-        return DatabaseInitFunctions.connection
-
-    # database initialization functions
-    @staticmethod
-    def drop_tables(connection):
-        cursor = connection.cursor()
-
-        cursor.execute("""
-            drop table if exists images;
-        """)
-
-        DatabaseInitFunctions.connection.commit()
-
-    @staticmethod
-    def create_tables(connection):
-        cursor = connection.cursor()
-
-        cursor.execute("""
-            create table images (
-                id integer primary key autoincrement,
-                file_name text,
-                tags text
-            );
-        """)
-
-        DatabaseInitFunctions.connection.commit()
-
-    @staticmethod
-    def initialize_database():
-        connection = DatabaseInitFunctions.get_database_connection()
-
-        DatabaseInitFunctions.drop_tables(connection)
-        DatabaseInitFunctions.create_tables(connection)
-
 
 class DatabaseRepository:
-    def __init__(self):
-        DatabaseInitFunctions.initialize_database()
-        self.connection = DatabaseInitFunctions.get_database_connection()
+    def __init__(self, connection):
+        initialize_database()
+        self.connection = connection
 
     def __list_to_string(self, tag_list):
         return ','.join(tag_list)
@@ -91,3 +48,5 @@ class DatabaseRepository:
             select tags from images
         """)
         return cursor.fetchall()
+
+image_repository = DatabaseRepository(get_database_connection())
