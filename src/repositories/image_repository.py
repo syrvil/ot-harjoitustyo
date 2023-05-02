@@ -3,7 +3,7 @@ from initialize_database import initialize_database
 from repositories.file_repository import FileRepository
 
 
-class DatabaseRepository:
+class ImageRepository:
     def __init__(self, connection):
         initialize_database()
         self.connection = connection
@@ -51,4 +51,4 @@ class DatabaseRepository:
         return cursor.fetchall()
 
 
-image_repository = DatabaseRepository(get_database_connection())
+image_repository = ImageRepository(get_database_connection())
