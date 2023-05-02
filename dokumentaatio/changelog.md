@@ -22,4 +22,8 @@
 - ImageManager luokan testin muokkausta tietokannan käyttöönoto seurauskena ja muutamia lisätestejä
 ## Viikko 6
 - Lisätty toiminallisuus (Stats) joka laskee tagien määrän ja tekee niistä pylväsdiagrammin matplotlib-kirjastoa käyttäen
+- Muokattu tiedostojen ja hakemistojen nimi, sekä muutettu hakemistorakennetta:
+  - tietokannalle ja tietokannan populointiin käytettävälle JSON-tiedestostolle tehty src:n alle oma hakemisto "data"
+  - entities hakemiston alahakemisto, "images", nimetty uusiksi "image_files", mikä kuvaa paremmin että hakemistossa on kuvatiedostot
+  - muutettu kofiguraatiotiedostoja vastaamaan uusittua hakemistorakennetta ja nimeämistä
 
