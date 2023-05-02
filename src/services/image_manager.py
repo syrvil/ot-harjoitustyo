@@ -3,9 +3,11 @@ from entities.image_object import ImageObject
 from repositories.database_repository import image_repository
 from config import IMAGE_FILES_PATH
 
+
 class ImageManager:
     """Luokka, joka vastaa kuvien käsittelystä.
     """
+
     def __init__(self):
         """Konstruktori, joka luo käsittelystä vastvaan olion jossa ImangeObject-oliot
         tallennetaan listaan käsittelyä varten sekä olion, jolla ImageObect olioiden 
@@ -19,7 +21,7 @@ class ImageManager:
         """
         self.data_base.init_db_from_json()
 
-    def __open_image(self, image_path):
+    def open_image(self, image_path):
         """Avaa kuvatieodoston.
 
         Args:
@@ -42,7 +44,7 @@ class ImageManager:
         """
         image_objects = []
         for path in image_paths:
-            image = self.__open_image(path)
+            image = self.open_image(path)
             image_name = path.split("/")[-1]
             image_objects.append(ImageObject(None, image_name, [], image))
         return image_objects
@@ -58,7 +60,7 @@ class ImageManager:
             image_name = image["file_name"]
             image_tags = image["tags"].split(",")
             image_path = IMAGE_FILES_PATH + image_name
-            image_picture = self.__open_image(image_path)
+            image_picture = self.open_image(image_path)
             self.image_list.append(ImageObject(
                 image_id, image_name, image_tags, image_picture))
 

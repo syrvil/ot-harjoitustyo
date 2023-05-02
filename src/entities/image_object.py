@@ -1,6 +1,7 @@
 class ImageObject:
     """Luokka, joka kuvaa yksittäistä kuvaoliota
     """
+
     def __init__(self, image_id, name, tags, picture):
         """Luokan konstruktori, joka luo kuva-olion
 

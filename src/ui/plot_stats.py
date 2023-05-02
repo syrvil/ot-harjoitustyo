@@ -1,7 +1,9 @@
 from matplotlib import pyplot as plt
 
+
 class PlotStats:
     """Luokka joka visualisoi saaamansa datan."""
+
     def __init__(self, data):
         """Luokan konstruktori, joka luo uuden PlotStats-olion.
 

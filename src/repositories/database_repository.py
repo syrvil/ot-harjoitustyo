@@ -2,6 +2,7 @@ from database_connection import get_database_connection
 from initialize_database import initialize_database
 from repositories.file_repository import FileRepository
 
+
 class DatabaseRepository:
     def __init__(self, connection):
         initialize_database()
@@ -48,5 +49,6 @@ class DatabaseRepository:
             select tags from images
         """)
         return cursor.fetchall()
+
 
 image_repository = DatabaseRepository(get_database_connection())
