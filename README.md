@@ -7,7 +7,7 @@ Sovelluksen avulla käyttäjän on mahdollista selata, lisätä tai muokata kuvi
 - [Arkkitehtuurikuvaus](./dokumentaatio/arkkitehtuuri.md)
 - [Työaikakirjanpito](./dokumentaatio/tuntikirjanpito.md)
 - [Muutosloki](./dokumentaatio/changelog.md)
-- [Viikon 5 julkaisu (Release)](https://github.com/syrvil/ot-harjoitustyo/releases/tag/viikko5)
+- [Viikon 6 julkaisu (Release)](https://github.com/syrvil/ot-harjoitustyo/releases/tag/viikko6)
 - [Käyttöohje](./dokumentaatio/kayttoohje.md)
 
 ⚠️ **Huom! Ajettaessa Pytest-testejä laitoksen Cubbli Linux -virtuaalityöasemassa www-selaimen kautta tuli vastaavanlainen tietokantavirheilmoitus kuin tässä [ohjeessa](https://ohjelmistotekniikka-hy.github.io/python/toteutus#sqlite-tietokanta-lukkiutuminen-virtuaality%C3%B6asemalla), vaikka minkäänlaista tietokantaa ei edes ollut käytössä. Ohjeessa esitetty ratkaisu toimi myös tässä tapauksessa.**
