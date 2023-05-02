@@ -27,4 +27,4 @@
   - entities hakemiston alahakemisto, "images", nimetty uusiksi "image_files", mikä kuvaa paremmin että hakemistossa on kuvatiedostot
   - muutettu kofiguraatiotiedostoja vastaamaan uusittua hakemistorakennetta ja nimeämistä
 - Siirretty tietonkannan yhteydenmuodostus- ja alustusfunktion omiin tiedostoihin database_connection.py ja initialize_database.py src:n alle.
-
+- Muutetty DababaseRepository luokka ehkä paremmin luokan toimintaa kuvaavaksi ImageRepositoryksi.
