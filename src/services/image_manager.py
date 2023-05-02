@@ -81,7 +81,7 @@ class ImageManager:
         Returns:
             List: Lista ImageObject olioita, joilla annettu tagi. 
         """
-        image_list = [image for image in self.image_list if tag in image.tags]
+        image_list = [image for image in self.image_list if tag.lower() in image.tags]
 
         if image_list:
             return image_list
@@ -98,8 +98,7 @@ class ImageManager:
         Returns:
             Boolean: True, jos oliolle ei ollut entuudestaan kyseistä tagia. 
         """
-        tag = tag.lower()
-        if tag not in image.tags:
+        if tag.lower() not in image.tags:
             image.tags.append(tag)
             return True
         return False
@@ -114,7 +113,7 @@ class ImageManager:
         Returns:
             Boolean: True, jos oliolla oli kyseinen tagi.
         """
-        if tag in image.tags:
+        if tag.lower() in image.tags:
             image.tags.remove(tag)
             return True
         return False
