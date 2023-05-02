@@ -14,7 +14,6 @@ with io.BytesIO() as buffer:
 
 class TestImageManager(unittest.TestCase):
     def setUp(self):
-        # create a test image
         test_image = Image.open(BytesIO(IMAGE_DATA))
         # generate test data
         self.test_list = [
@@ -22,9 +21,7 @@ class TestImageManager(unittest.TestCase):
             ImageObject(2, "image2.jpg", ["tag2", "tag4"], test_image),
         ]
 
-        # create a new image manager
         self.image_manager = ImageManager()
-        # add the test data to the image manager
         self.image_manager.image_list = self.test_list
 
     def test_open_image(self):
