@@ -3,13 +3,6 @@ from entities.image_object import ImageObject
 from repositories.database_repository import DatabaseRepository
 from config import IMAGE_FILES_PATH
 
-# The metadata and imge files are loaded from the disk and database and
-# returned as an ImageObject, which are stored in a list.
-# The manipulation of the ImageObjects are done in the ImageManager class and
-# the changes are stored to disk/database only when the user saves the changes.
-# Thats why it not necessary to for examplme excetute searches from the database.
-
-
 class ImageManager:
     """Luokka, joka vastaa kuvien käsittelystä.
     """
