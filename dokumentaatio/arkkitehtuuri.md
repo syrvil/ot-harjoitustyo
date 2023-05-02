@@ -2,7 +2,7 @@
 
 ## Alustava luokka-/pakkauskaavio
 
-![Pakkausrakenne](pakkauskaavio.png)
+![Pakkausrakenne](kuvat/pakkauskaavio.png)
 
 ## Sekvenssikaavio: kuvien etsiminen tagilla
 
