@@ -71,3 +71,11 @@ class TestImageManager(unittest.TestCase):
         image = self.image_manager.get_all_images()[0]
         result = self.image_manager.delete_tag(image, "tagataga3")
         self.assertFalse(result)
+
+    def test_tag_statistics_correct(self):
+        result = self.image_manager.tag_statistics()
+        self.assertDictEqual(result, {"tag1": 1, "tag2": 2, "tag4": 1})
+
+    def test_tag_statistics_sortig_correct(self):
+        result = self.image_manager.tag_statistics()
+        self.assertEqual(max(result, key=result.get), "tag2")
