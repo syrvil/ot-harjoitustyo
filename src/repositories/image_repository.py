@@ -1,6 +1,6 @@
 from database_connection import get_database_connection
 from initialize_database import initialize_database
-from repositories.file_repository import FileRepository
+from repositories.file_repository import file_repository
 
 
 class ImageRepository:
@@ -30,7 +30,7 @@ class ImageRepository:
     def init_db_from_json(self):
         """Lukee json-muodossa olevan datan ja tallentaa sen tietokantaan.
         """
-        json_data = FileRepository().read_conf_file()
+        json_data = file_repository.read_conf_file()
         for image_data in json_data:
             image_name = image_data["name"]
             image_tags = self.__list_to_string(image_data["tags"])
