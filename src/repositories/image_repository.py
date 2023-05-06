@@ -22,7 +22,7 @@ class ImageRepository:
         json_data = file_repository.read_conf_file()
         for image_data in json_data:
             image_name = image_data["name"]
-            image_tags = image_data["tags"] 
+            image_tags = image_data["tags"]
             self.add_image_data(image_name, image_tags)
 
     def add_image_data(self, name, tags):
@@ -41,7 +41,7 @@ class ImageRepository:
 
     def get_all_image_data(self):
         """Hakee kaiken kuvadatan tietokannasta.
-        
+
         Returns:
             Cursor: Tietokannasta haettu data.
         """
@@ -77,5 +77,6 @@ class ImageRepository:
         """)
         rows = cursor.fetchall()
         return [row["tags"].split(',') for row in rows]
+
 
 image_repository = ImageRepository(get_database_connection())

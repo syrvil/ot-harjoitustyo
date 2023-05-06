@@ -8,7 +8,7 @@ class ImageManager:
     """Luokka, joka vastaa kuvien käsittelystä.
     """
 
-    def __init__(self, 
+    def __init__(self,
                  data_base=image_repository,
                  image_files=file_repository):
         """Konstruktori, joka luo käsittelystä vastvaan olion jossa ImangeObject-oliot
@@ -71,7 +71,8 @@ class ImageManager:
         Returns:
             List: Lista ImageObject olioita, joilla annettu tagi. 
         """
-        image_list = [image for image in self.image_list if tag.lower() in image.tags]
+        image_list = [
+            image for image in self.image_list if tag.lower() in image.tags]
 
         if image_list:
             return image_list
@@ -116,7 +117,7 @@ class ImageManager:
         """
         tag_statistics = {}
         tag_data = self.data_base.get_all_tags()
-      
+
         for tag_row in tag_data:
             for tag in tag_row:
                 if tag in tag_statistics:
@@ -145,5 +146,6 @@ class ImageManager:
         for image in image_list:
             self.data_base.add_image_data(image.name, image.tags)
             self.image_files.save_image(image.picture, image.name)
+
 
 image_manager = ImageManager()

@@ -19,11 +19,10 @@ class ImageApp:
         self.init_database()
         self.load_images()  # loads images from db to memory
         self.create_widgets()
-        
 
     def init_database(self):
         image_manager.load_json_to_db()  # init db from json
-        
+
     def load_images(self):
         image_manager.load_image_repository_data()
         self.all_images = image_manager.get_all_images()
