@@ -1,4 +1,5 @@
 import json
+from PIL import Image
 # from entities.image_object import ImageObject
 from config import IMAGE_FILES_PATH, IMAGE_METADATA_PATH
 
@@ -33,4 +34,42 @@ class FileRepository:
         except FileNotFoundError:
             print(f"File {self.conf_path} not found")
 
+
+    def open_image(self, image_path):
+        """Avaa kuvatieodoston.
+
+        Args:
+            image_path (string): Polku kuvan sijaintiin.
+
+        Returns:
+            Image: Avattu kuva
+        """
+        return Image.open(image_path)
+    
+    def save_image(self, image_file, image_name):
+        """Tallentaa kuvan levylle.
+
+        Args:
+            image_file (Image): Tallennettava kuva
+            image_path (String): Polku kuvan tallennuspaikkaan
+        """
+        image_file.save(IMAGE_FILES_PATH + image_name)
+
+    def get_list_of_images(self, image_paths):
+        """Avaa kuvat polun perusteella ja palauttaa listan kuvista.
+        
+        Args:
+            image_paths (list): Lista poluista kuvien sijaintiin.
+
+        Returns:
+            List: Lista Tupleja, joissa ensimmäinen alkio on kuvan nimi ja toinen kuva.
+        """
+        image_list = []
+        for path in image_paths:
+            image = self.open_image(path)
+            image_name = path.split("/")[-1]
+            image_list.append((image_name, image))
+        return image_list
+
+    
 file_repository = FileRepository()

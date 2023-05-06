@@ -1,6 +1,6 @@
-from PIL import Image
 from entities.image_object import ImageObject
 from repositories.image_repository import image_repository
+from repositories.file_repository import file_repository
 from config import IMAGE_FILES_PATH
 
 
@@ -8,32 +8,24 @@ class ImageManager:
     """Luokka, joka vastaa kuvien käsittelystä.
     """
 
-    def __init__(self):
+    def __init__(self, 
+                 data_base=image_repository,
+                 image_files=file_repository):
         """Konstruktori, joka luo käsittelystä vastvaan olion jossa ImangeObject-oliot
         tallennetaan listaan käsittelyä varten sekä olion, jolla ImageObect olioiden 
         dataa voidaan käsitellä tietotokannassa. 
         """
         self.image_list = []
-        self.data_base = image_repository
+        self.data_base = data_base
+        self.image_files = image_files
 
-    def test_db_load(self):
+    def load_json_to_db(self):
         """Lataa JSON-muodossa olevan metadatatiedon tietokantaan.
         """
         self.data_base.init_db_from_json()
 
-    def open_image(self, image_path):
-        """Avaa kuvatieodoston.
-
-        Args:
-            image_path (string): Polku kuvan sijaintiin.
-
-        Returns:
-            Image: Avattu kuva
-        """
-        return Image.open(image_path)
-
     def load_image_from_file(self, image_paths):
-        """Avaa kuvat jotka eivät ole tietokannassa ja luo niistä ImageObject oliot.
+        """Avaa kuvat anneutusta sijainnista ja luo niistä ImageObject oliot.
         Kuvilla ei vielä ole id:tä eikä tageja. Nimi on tiedoston nimi.
 
         Args:
@@ -43,16 +35,14 @@ class ImageManager:
             List: Lista ImageObject-oloista
         """
         image_objects = []
-        for path in image_paths:
-            image = self.open_image(path)
-            image_name = path.split("/")[-1]
-            image_objects.append(ImageObject(None, image_name, [], image))
+        for image in self.image_files.get_list_of_images(image_paths):
+            image_objects.append(ImageObject(None, image[0], [], image[1]))
         return image_objects
 
-    def load_image_data_from_database(self):
-        """Lataa tietokannassa olevan datan kaikista kuvista. Kuvan nimen sekä 
-        kuvahakemiston polun avulla avaa kuvan. Tietojen perusteella kuvista luodaan
-        lista ImageObejct-olioita jotka tallennetaan luokan muuttujaan.
+    def load_image_repository_data(self):
+        """Lataa image- ja filerepositorioissa olevan datan kaikista kuvista. 
+        Datan perusteella kuvista luodaan lista ImageObejct-olioita, 
+        jotka tallennetaan luokan muuttujaan.
         """
         image_data = self.data_base.get_all_image_data()
         for image in image_data:
@@ -60,7 +50,7 @@ class ImageManager:
             image_name = image["file_name"]
             image_tags = image["tags"].split(",")
             image_path = IMAGE_FILES_PATH + image_name
-            image_picture = self.open_image(image_path)
+            image_picture = self.image_files.open_image(image_path)
             self.image_list.append(ImageObject(
                 image_id, image_name, image_tags, image_picture))
 
@@ -99,7 +89,7 @@ class ImageManager:
             Boolean: True, jos oliolle ei ollut entuudestaan kyseistä tagia. 
         """
         if tag.lower() not in image.tags:
-            image.tags.append(tag)
+            image.tags.append(tag.lower())
             return True
         return False
 
@@ -114,7 +104,7 @@ class ImageManager:
             Boolean: True, jos oliolla oli kyseinen tagi.
         """
         if tag.lower() in image.tags:
-            image.tags.remove(tag)
+            image.tags.remove(tag.lower())
             return True
         return False
 
@@ -125,9 +115,8 @@ class ImageManager:
             Dictionary: Tagien määrän mukaan järjestetty sanakirja.
         """
         tag_statistics = {}
-        tag_data = [row["tags"].split(',')
-                    for row in self.data_base.get_all_tags()]
-
+        tag_data = self.data_base.get_all_tags()
+      
         for tag_row in tag_data:
             for tag in tag_row:
                 if tag in tag_statistics:
@@ -154,8 +143,7 @@ class ImageManager:
             image_list (List): Lista olioista.
         """
         for image in image_list:
-            self.data_base.add_image_data(image.name, ','.join(image.tags))
-            image.picture.save(IMAGE_FILES_PATH + image.name)
-
+            self.data_base.add_image_data(image.name, image.tags)
+            self.image_files.save_image(image.picture, image.name)
 
 image_manager = ImageManager()

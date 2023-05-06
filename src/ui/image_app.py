@@ -16,15 +16,16 @@ class ImageApp:
         self.searched_images = None
         self.loaded_images = None
         self.searched_tag = None
-        self.init_data()
+        self.init_database()
+        self.load_images()  # loads images from db to memory
         self.create_widgets()
+        
 
-    def init_data(self):
-        image_manager.test_db_load()  # init db from json
-        self.load_images()  # loads images from db
-
+    def init_database(self):
+        image_manager.load_json_to_db()  # init db from json
+        
     def load_images(self):
-        image_manager.load_image_data_from_database()
+        image_manager.load_image_repository_data()
         self.all_images = image_manager.get_all_images()
         self.current_view = "All Images"
 

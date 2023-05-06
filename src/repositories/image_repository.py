@@ -16,38 +16,27 @@ class ImageRepository:
         initialize_database()
         self.connection = connection
 
-    def __list_to_string(self, tag_list):
-        """Apufunktio, joka muodostaa listasta merkkijonon tietokantatannusta varten.
-
-        Args:
-            tag_list (List): Lista tageista.
-
-        Returns:
-            String: Merkkijono, jossa tagit on eroteltu pilkulla.
-        """
-        return ','.join(tag_list)
-
     def init_db_from_json(self):
         """Lukee json-muodossa olevan datan ja tallentaa sen tietokantaan.
         """
         json_data = file_repository.read_conf_file()
         for image_data in json_data:
             image_name = image_data["name"]
-            image_tags = self.__list_to_string(image_data["tags"])
+            image_tags = image_data["tags"] 
             self.add_image_data(image_name, image_tags)
 
     def add_image_data(self, name, tags):
-        """Lisää kuvan tiedot tietokantaan.
+        """Lisää kuvan tiedot tietokantaan pilkuilla eroteltuna merkkijonona.
 
         Args:
-            name (String): Kuvan tidostonimi
-            tags (String): Kuvan tagit pilkulla eroteltuna.
+            name (String): Kuvan tidostonimi.
+            tags (List): Kuvan tagit.
         """
         cursor = self.connection.cursor()
         cursor.execute("""
             insert into images (file_name, tags)
             values (?, ?)
-        """, (name, tags))
+        """, (name, ','.join(tags)))
         self.connection.commit()
 
     def get_all_image_data(self):
@@ -63,7 +52,8 @@ class ImageRepository:
         return cursor.fetchall()
 
     def update_image_tags(self, image):
-        """Päivittää kuvan tagit tietokantaan.
+        """Päivittää kuvan tagit tietokantaan merkkijonona, 
+        jossa tagit eroteltu pilkulla.
 
         Args:
             image (ImageObject): Kuva, jonka tagit päivitetään.
@@ -72,20 +62,20 @@ class ImageRepository:
         cursor.execute("""
             update images set tags = ?
             where id = ?
-        """, (self.__list_to_string(image.tags), image.id))
+        """, (','.join(image.tags), image.id))
         self.connection.commit()
 
     def get_all_tags(self):
         """Hakee kaikki tagit tietokannasta.
 
         Returns:
-            Cursor: Tietokannasta haettu data.
+            List: Lista, jossa lista jokaisen kuvan tageista.
         """
         cursor = self.connection.cursor()
         cursor.execute("""
             select tags from images
         """)
-        return cursor.fetchall()
-
+        rows = cursor.fetchall()
+        return [row["tags"].split(',') for row in rows]
 
 image_repository = ImageRepository(get_database_connection())
