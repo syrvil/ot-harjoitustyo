@@ -33,13 +33,16 @@ class DbFileStub:
                 {"id": 4, "file_name": "image4.jpg", "tags": "tag7,tag8"}]
 
     def open_image(self, image_path):
-        return self.image_data
+        if not image_path:
+            image = Image.open(BytesIO(IMAGE_DATA))
+        else:
+            image = self.image_data
+        return image
 
 
 class TestImageManager(unittest.TestCase):
     def setUp(self):
         test_image = Image.open(BytesIO(IMAGE_DATA))
-        # generate test data
         self.test_list = [
             ImageObject(1, "image1.jpg", ["tag1", "tag2"], test_image),
             ImageObject(2, "image2.jpg", ["tag2", "tag4"], test_image),
@@ -47,53 +50,12 @@ class TestImageManager(unittest.TestCase):
 
         self.image_manager = ImageManager()
         self.image_manager.image_list = self.test_list
-
         self.test_source_data = [('image1.jpg', test_image)]
-
         self.tag_test_list = [["tag1", "tag2"], ["tag2", "tag4"]]
 
-    def test_load_image_from_file_returns_objects(self):
-        image_manager = ImageManager(image_files=DbFileStub())
-        paths = ["path1", "path2"]
-        images = image_manager.load_image_from_file(paths)
-        self.assertIsInstance(images[0], ImageObject)
+        self.stub_image_manager = ImageManager(data_base=DbFileStub(),
+                                                  image_files=DbFileStub())
 
-    def test_load_image_from_file_returns_correct_number_of_objects(self):
-        image_manager = ImageManager(image_files=DbFileStub())
-        paths = ["path1", "path2"]
-        images = image_manager.load_image_from_file(paths)
-        self.assertEqual(len(images), 2)
-
-    def test_load_image_from_file_returns_correct_name(self):
-        image_manager = ImageManager(image_files=DbFileStub())
-        paths = ["path1", "path2"]
-        images = image_manager.load_image_from_file(paths)
-        self.assertEqual(images[0].name, "image1.jpg")
-
-    def test_load_image_from_file_returns_image_file(self):
-        image_manager = ImageManager(image_files=DbFileStub())
-        paths = ["path1", "path2"]
-        images = image_manager.load_image_from_file(paths)
-        self.assertEqual(images[0].picture.size, (128, 128))
-
-    def test_load_repository_data_returns_objects(self):
-        image_manager = ImageManager(
-            data_base=DbFileStub(), image_files=DbFileStub())
-        image_manager.load_repository_data()
-        self.assertIsInstance(image_manager.image_list[0], ImageObject)
-
-    def test_load_repository_data_returns_correct_file(self):
-        image_manager = ImageManager(
-            data_base=DbFileStub(), image_files=DbFileStub())
-        image_manager.load_repository_data()
-        self.assertEqual(image_manager.image_list[0].name, "image3.jpg")
-
-    def test_load_repository_data_returns_correct_tags(self):
-        image_manager = ImageManager(
-            data_base=DbFileStub(), image_files=DbFileStub())
-        image_manager.load_repository_data()
-        self.assertListEqual(
-            image_manager.image_list[1].tags, ["tag7", "tag8"])
 
     def test_get_all_images_number_correct(self):
         self.assertEqual(len(self.image_manager.get_all_images()), 2)
@@ -150,11 +112,42 @@ class TestImageManager(unittest.TestCase):
         self.assertEqual(image.tags, ["tag2"])
 
     def test_tag_statistics_correct(self):
-        image_manager = ImageManager(data_base=DbFileStub())
-        result = image_manager.tag_statistics()
+        result = self.stub_image_manager.tag_statistics()
         self.assertDictEqual(result, {"tag1": 1, "tag2": 2, "tag4": 1})
 
     def test_tag_statistics_max_key_correct(self):
-        image_manager = ImageManager(data_base=DbFileStub())
-        result = image_manager.tag_statistics()
+        result = self.stub_image_manager.tag_statistics()
         self.assertEqual(max(result, key=result.get), "tag2")
+
+    def test_load_image_from_file_returns_objects(self):
+        paths = ["path1", "path2"]
+        images = self.stub_image_manager.load_image_from_file(paths)
+        self.assertIsInstance(images[0], ImageObject)
+
+    def test_load_image_from_file_returns_correct_number_of_objects(self):
+        paths = ["path1", "path2"]
+        images = self.stub_image_manager.load_image_from_file(paths)
+        self.assertEqual(len(images), 2)
+
+    def test_load_image_from_file_returns_correct_name(self):
+        paths = ["path1", "path2"]
+        images = self.stub_image_manager.load_image_from_file(paths)
+        self.assertEqual(images[0].name, "image1.jpg")
+
+    def test_load_image_from_file_returns_image_file(self):
+        paths = ["path1", "path2"]
+        images = self.stub_image_manager.load_image_from_file(paths)
+        self.assertEqual(images[0].picture.size, (128, 128))
+
+    def test_load_repository_data_returns_objects(self):
+        self.stub_image_manager.load_repository_data()
+        self.assertIsInstance(self.stub_image_manager.image_list[0], ImageObject)
+
+    def test_load_repository_data_returns_correct_file(self):
+        self.stub_image_manager.load_repository_data()
+        self.assertEqual(self.stub_image_manager.image_list[0].name, "image3.jpg")
+
+    def test_load_repository_data_returns_correct_tags(self):
+        self.stub_image_manager.load_repository_data()
+        self.assertListEqual(
+            self.stub_image_manager.image_list[1].tags, ["tag7", "tag8"])
