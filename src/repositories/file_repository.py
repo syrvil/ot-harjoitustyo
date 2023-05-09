@@ -55,7 +55,7 @@ class FileRepository:
         image_file.save(IMAGE_FILES_PATH + image_name)
 
     def get_list_of_images(self, image_paths):
-        """Avaa kuvat polun perusteella ja palauttaa listan kuvista.
+        """Avaa kuvat polun perusteella ja palauttaa kuvan nimen ja kuvan.
 
         Args:
             image_paths (list): Lista poluista kuvien sijaintiin.

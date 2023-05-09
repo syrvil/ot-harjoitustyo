@@ -8,7 +8,7 @@ class ImageObject:
         Args:
             image_id (int): kuvan yksilöllinen id
             name (string): kuvatiedoston nimi
-            tags (list): lista taheista
+            tags (list): lista tageista
             picture (Image): kuvaobjekti
         """
         self.id = image_id
@@ -21,6 +21,3 @@ class ImageObject:
         """Luokan sisäinen apufunktio, joka muuntaa tagit pieniksi kirjaimiksi
         """
         self.tags = [tag.lower() for tag in self.tags]
-
-    def __str__(self):
-        return f"id: {self.id}, name: {self.name}, tags: {self.tags}"

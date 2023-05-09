@@ -34,12 +34,15 @@ class ImageManager:
         Returns:
             List: Lista ImageObject-oloista
         """
+
+        images = self.image_files.get_list_of_images(image_paths)
+
         image_objects = []
-        for image in self.image_files.get_list_of_images(image_paths):
+        for image in images:
             image_objects.append(ImageObject(None, image[0], [], image[1]))
         return image_objects
 
-    def load_image_repository_data(self):
+    def load_repository_data(self):
         """Lataa image- ja filerepositorioissa olevan datan kaikista kuvista. 
         Datan perusteella kuvista luodaan lista ImageObejct-olioita, 
         jotka tallennetaan luokan muuttujaan.
@@ -116,9 +119,8 @@ class ImageManager:
             Dictionary: Tagien määrän mukaan järjestetty sanakirja.
         """
         tag_statistics = {}
-        tag_data = self.data_base.get_all_tags()
 
-        for tag_row in tag_data:
+        for tag_row in self.data_base.get_all_tags():
             for tag in tag_row:
                 if tag in tag_statistics:
                     tag_statistics[tag] += 1

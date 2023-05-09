@@ -26,7 +26,7 @@ class ImageRepository:
             self.add_image_data(image_name, image_tags)
 
     def add_image_data(self, name, tags):
-        """Lisää kuvan tiedot tietokantaan pilkuilla eroteltuna merkkijonona.
+        """Lisää kuvan tiedostonimen ja tagit pilkuilla eroteltuna merkkijonona.
 
         Args:
             name (String): Kuvan tidostonimi.
@@ -43,7 +43,7 @@ class ImageRepository:
         """Hakee kaiken kuvadatan tietokannasta.
 
         Returns:
-            Cursor: Tietokannasta haettu data.
+            Cursor: Tietokannasta haettu dataolio.
         """
         cursor = self.connection.cursor()
         cursor.execute("""

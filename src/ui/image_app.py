@@ -12,13 +12,9 @@ class ImageApp:
         self.images = None
         self.current_image_index = 0
         self.current_view = None
-        #self.all_images = None
-        #self.searched_images = None
-        #self.loaded_images = None
         self.searched_tag = None
         self.init_database()
         self.load_images()  # loads images from db to memory
-        # self.create_widgets()
         self._upper_menu()
         self._image_view()
         self._lower_menu()
@@ -28,17 +24,9 @@ class ImageApp:
         image_manager.load_json_to_db()  # init db from json
 
     def load_images(self):
-        image_manager.load_image_repository_data()
-        #self.all_images = image_manager.get_all_images()
+        image_manager.load_repository_data()
         self.images = image_manager.get_all_images()
         self.current_view = "All Images"
-
-    # def create_widgets(self):
-    #    self.__upper_menu()
-    #    self.__image_view()
-    #    self.__lower_menu()
-    #    self.update_view()
-        # Upper menu
 
     def _upper_menu(self):
         self.add_new_button = ttk.Button(
@@ -190,7 +178,6 @@ class ImageApp:
                     "No matches", f"No images found with tag '{tag}'")
             else:
                 self.images.clear()
-                #self.searched_images = search_results
                 self.images = search_results
                 self.current_image_index = 0
                 self.current_view = "Search Results"
@@ -217,7 +204,6 @@ class ImageApp:
                                                        ("all files", "*.*")))
         if files:
             self.images.clear()
-            #self.loaded_images = image_manager.load_image_from_file(files)
             self.images = image_manager.load_image_from_file(files)
             messagebox.showinfo("Image Loaded",
                                 f"Image '{files}' loaded!\n Press 'Save' to add to database.")
@@ -227,32 +213,21 @@ class ImageApp:
 
     def save_image(self):
         if self.current_view == "Load Images":
-            #image_manager.save_image(self.loaded_images)
             image_manager.save_image(self.images)
             messagebox.showinfo("New Images Added!",
                                 "Press 'Show All' to see all images!")
             # add all images to database
         elif self.current_view == "Search Results":
             # update database with new tags
-            #image_manager.save_tag_changes(self.searched_images)
             image_manager.save_tag_changes(self.images)
             messagebox.showinfo("Success", "Changes saved to database!")
         elif self.current_view == "All Images":
             # update database with new tags
-            #image_manager.save_tag_changes(self.all_images)
             image_manager.save_tag_changes(self.images)
             messagebox.showinfo("Success", "Changes saved to database!")
 
     def update_view(self):
-        #if self.current_view == "All Images":
-        #    self.images = self.all_images
-        #elif self.current_view == "Search Results":
-        #    self.images = self.searched_images
-        #elif self.current_view == "Load Images":
-        #    self.images = self.loaded_images
-
         self.image_view.config(text=self.current_view.title())
-
         image = self.images[self.current_image_index].picture
         image = image.resize((400, 400), Image.LANCZOS)
         photo = ImageTk.PhotoImage(image)
