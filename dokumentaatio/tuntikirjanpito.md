@@ -19,4 +19,9 @@
 | 25.4. | 8    | Koodin siistmistä pylint-raportin perusteella, funktioiden nimien muokkausta, pientä refaktorointia ja julkaisun viimeistelyä| 
 | 30.4. | 3    | Nappula ja toiminnallisuus tag-lkm tilastoja ja visualisointia varten|
 |  2.5. | 10   | Docstring ja muuta dokumentointia, hakemistoraketeen muokkausta| 
-| yht   | 70   | | 
+|  7.5. | 6   | ImageManager ja ImageRepository (tietokanta) luokkien välisten rajapintojen ja kommunnikoinnin uudelleen suunnittelua ja tietokantafunktioiden testausta|
+|  8.5. | 2   | Docstring dokumentointia ja ImageApp luokan refaktoroinnin pohdintaa |
+|  8.5. | 4    | Valekomponentin toteutus ImageManager, ImageRepository ja FileRepositoryn testaamisessa|
+|  9.5. | 1.5  | Jatekttu testausta|
+
+| yht   | 84.5   | | 

@@ -28,3 +28,12 @@
   - muutettu kofiguraatiotiedostoja vastaamaan uusittua hakemistorakennetta ja nimeämistä
 - Siirretty tietonkannan yhteydenmuodostus- ja alustusfunktion omiin tiedostoihin database_connection.py ja initialize_database.py src:n alle.
 - Muutetty DababaseRepository luokka ehkä paremmin luokan toimintaa kuvaavaksi ImageRepositoryksi.
+## Viikko 7
+- Siirretty ImageManager luokasta tiedostonjoenkäsittelyfunktioita FileManager luokkaan
+- Poistettu ImageApp luokasta turhia luokkamuuttujia, joihin tallennettiin eri näkymien ImageObject olioita
+- Luotu valekomponetti, jonka avulla voidaan testata ImageManager luokan metodeja, jotka hakevat dataa ImageRepository ja FileRepository luokilta
+- Testattu luokat:
+  - ImageManager
+  - ImageRepository
+  - FileRepository
+  - ImageObject
