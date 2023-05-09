@@ -13,6 +13,7 @@ with io.BytesIO() as buffer:
 
 class DbFileStub:
     """Tynkäluokka (valekomponennti), joka simuloi tietokanta- ja tiedosto-operaatioita."""
+
     def __init__(self):
         self.image_name = "image1.jpg"
         self.image_data = Image.open(BytesIO(IMAGE_DATA))
@@ -23,14 +24,14 @@ class DbFileStub:
         for _ in image_paths:
             image_list.append((self.image_name, self.image_data))
         return image_list
-    
+
     def get_all_tags(self):
         return [["tag1", "tag2"], ["tag2", "tag4"]]
-    
+
     def get_all_image_data(self):
         return [{"id": 3, "file_name": "image3.jpg", "tags": "tag5,tag6"},
                 {"id": 4, "file_name": "image4.jpg", "tags": "tag7,tag8"}]
-    
+
     def open_image(self, image_path):
         return self.image_data
 
@@ -75,21 +76,24 @@ class TestImageManager(unittest.TestCase):
         images = image_manager.load_image_from_file(paths)
         self.assertEqual(images[0].picture.size, (128, 128))
 
-
     def test_load_repository_data_returns_objects(self):
-        image_manager = ImageManager(data_base=DbFileStub(), image_files=DbFileStub())
+        image_manager = ImageManager(
+            data_base=DbFileStub(), image_files=DbFileStub())
         image_manager.load_repository_data()
         self.assertIsInstance(image_manager.image_list[0], ImageObject)
 
     def test_load_repository_data_returns_correct_file(self):
-        image_manager = ImageManager(data_base=DbFileStub(), image_files=DbFileStub())
+        image_manager = ImageManager(
+            data_base=DbFileStub(), image_files=DbFileStub())
         image_manager.load_repository_data()
         self.assertEqual(image_manager.image_list[0].name, "image3.jpg")
 
     def test_load_repository_data_returns_correct_tags(self):
-        image_manager = ImageManager(data_base=DbFileStub(), image_files=DbFileStub())
+        image_manager = ImageManager(
+            data_base=DbFileStub(), image_files=DbFileStub())
         image_manager.load_repository_data()
-        self.assertListEqual(image_manager.image_list[1].tags, ["tag7", "tag8"])
+        self.assertListEqual(
+            image_manager.image_list[1].tags, ["tag7", "tag8"])
 
     def test_get_all_images_number_correct(self):
         self.assertEqual(len(self.image_manager.get_all_images()), 2)

@@ -5,22 +5,25 @@ from config import IMAGE_FILES_PATH
 
 
 class ImageManager:
-    """Luokka, joka vastaa kuvien käsittelystä.
+    """Luokka, joka vastaa sovelluslogiikasta ja ImageObejct olioiden käsittelystä.
     """
 
     def __init__(self,
                  data_base=image_repository,
                  image_files=file_repository):
-        """Konstruktori, joka luo käsittelystä vastvaan olion jossa ImangeObject-oliot
-        tallennetaan listaan käsittelyä varten sekä olion, jolla ImageObect olioiden 
-        dataa voidaan käsitellä tietotokannassa. 
+        """Konstruktori, joka luo listaolion ImangeObject-olioiden tallennusta ja käsittelyä varten.
+        Lisäksi luodaan olit tietokanta- ja tiedostokäsittelyä varten.
+
+        Args:
+            data_base (ImageRepository): Tietokantaoperaatioista vastaava olio.
+            image_files (FileRepository): Tiedosto-operaatioista vastaava olio. 
         """
         self.image_list = []
         self.data_base = data_base
         self.image_files = image_files
 
     def load_json_to_db(self):
-        """Lataa JSON-muodossa olevan metadatatiedon tietokantaan.
+        """Alustaa tietokannan ja lataa JSON-muodossa olevat kuvadatan tietokantaan.
         """
         self.data_base.init_db_from_json()
 
@@ -45,7 +48,7 @@ class ImageManager:
     def load_repository_data(self):
         """Lataa image- ja filerepositorioissa olevan datan kaikista kuvista. 
         Datan perusteella kuvista luodaan lista ImageObejct-olioita, 
-        jotka tallennetaan luokan muuttujaan.
+        jotka tallennetaan luokan kuvalistaan.
         """
         image_data = self.data_base.get_all_image_data()
         for image in image_data:
@@ -66,7 +69,8 @@ class ImageManager:
         return self.image_list
 
     def search_for_tag(self, tag):
-        """Etsii tagin perusteella ImageObject-olioita.
+        """Etsii tagin perusteella ImageObject-olioita. Tagi muunnetaan pienellä kirjoitetetuksi
+        ennen vertailua.
 
         Args:
             tag (string): Etsittävä tagi.

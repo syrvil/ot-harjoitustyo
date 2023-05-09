@@ -43,7 +43,7 @@ class ImageRepository:
         """Hakee kaiken kuvadatan tietokannasta.
 
         Returns:
-            Cursor: Tietokannasta haettu dataolio.
+            Cursor: Tietokannasta haettu dataolio, jossa kaikki tietokannan data.
         """
         cursor = self.connection.cursor()
         cursor.execute("""

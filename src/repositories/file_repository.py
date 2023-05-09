@@ -5,16 +5,28 @@ from config import IMAGE_FILES_PATH, IMAGE_METADATA_PATH
 
 
 class FileRepository:
-    """Class handling image file operations"""
+    """Luokka vastaa tiedostojen käsittelystä.
+    """
 
     def __init__(self,
                  file_path=IMAGE_FILES_PATH,
                  conf_path=IMAGE_METADATA_PATH):
         self.file_path = file_path
         self.conf_path = conf_path
+        """Konstruktori, joka luo olion kuvatietojen sekä metadata-tiedostojen tallenuspaikasta.
+
+        Args:
+            file_path (String): Polku kuvien tallennuspaikkaan.
+            conf_path (String): Polku kuvien metadata-tiedostoon. 
+        """
 
     def read_conf_file(self):
-        """Reads image data from file"""
+        """Lukee kuvien metadata-tiedoston, joka pitää sisällään tietoja kuvien nimistä ja tageista,
+          ja palauttaa sen sisällön.
+
+        Returns:
+            List: Lista kuvien tiedoista.
+        """
         try:
             with open(self.conf_path, 'r', encoding='utf8') as file:
                 return json.load(file)
@@ -23,12 +35,12 @@ class FileRepository:
             return None
 
     def write_conf_file(self, data):
-        """Writes image data to file"""
+        """Kirjoittaa kuvien metadata-tiedoston levylle, 
+        joka pitää sisällään tietoja kuvien nimistä ja tageista.
+        """
         try:
-            # convert image objects to list of dictionaries
             dicts = [{"name": image.name, "tags": image.tags}
                      for image in data]
-            # add: write imgage-file to disk
             with open(self.file_path, 'w', encoding='utf8') as file:
                 json.dump(dicts, file, indent=4)
         except FileNotFoundError:
