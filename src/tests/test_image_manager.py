@@ -33,8 +33,8 @@ class DbFileStub:
                 {"id": 4, "file_name": "image4.jpg", "tags": "tag7,tag8"}]
 
     def open_image(self, image_path):
-        if not image_path:
-            image = Image.open(BytesIO(IMAGE_DATA))
+        if image_path: # pylint hack
+            image = self.image_data
         else:
             image = self.image_data
         return image
