@@ -7,23 +7,36 @@ from config import SAMPLE_FILE_PATH
 
 
 class ImageApp:
+    """Sovelluksen pääikkuna.
+    """
+
     def __init__(self, master):
+        """Luokan konstruktori, joka luo pääikkunan ja painikkeet siihen, alustaa tietokannan
+        sekä lataa kuvat keskusmuistiin.
+        Args:
+            master (Tk): pääikkuna
+        """
         self.master = master
         self.images = None
         self.current_image_index = 0
         self.current_view = None
         self.searched_tag = None
         self.init_database()
-        self.load_images()  # loads images from db to memory
+        self.load_images()
         self._upper_menu()
         self._image_view()
         self._lower_menu()
         self.update_view()
 
     def init_database(self):
-        image_manager.load_json_to_db()  # init db from json
+        """Alustaa tietokannnan ImageManagerin avulla.
+        """
+        image_manager.load_json_to_db()
 
     def load_images(self):
+        """Lataa tiedot repositorioista ja tallentaa kuvaoliot keskusmuistiin.
+        Asettaa näkymäksi kaikki kuvat.
+        """
         image_manager.load_repository_data()
         self.images = image_manager.get_all_images()
         self.current_view = "All Images"
@@ -46,16 +59,13 @@ class ImageApp:
         self.stats_button.grid(row=0, column=4, padx=5, pady=5)
 
     def _image_view(self):
-        # View
         self.image_view = ttk.Label(self.master, text="All Images")
         self.image_view.grid(row=1, column=0, columnspan=5, pady=5)
 
-        # Image
         self.image_label = ttk.Label(self.master)
         self.image_label.grid(row=2, column=1, columnspan=4, padx=10, pady=10)
 
     def _lower_menu(self):
-        # Lower menu
         self.image_tags = ttk.Label(self.master, text="Tags: ")
         self.image_tags.grid(row=3, column=0, columnspan=5, pady=5)
 
@@ -85,10 +95,14 @@ class ImageApp:
         self.save_button.grid(row=5, column=4, padx=5, pady=5)
 
     def show_stats(self):
+        """Hakee tagitiedot ImageManagerin avulla ja luo niistä pylväskaavion.
+        """
         data = image_manager.tag_statistics()
         PlotStats(data).plot_hbar()
 
     def prev_image(self):
+        """Näyttää kuvanäkymän edellisen kuvan.
+        """
         if self.current_image_index == 0:
             self.current_image_index = len(self.images) - 1
         else:
@@ -96,6 +110,8 @@ class ImageApp:
         self.update_view()
 
     def next_image(self):
+        """Näyttää kuvankymän seuraavan kuvan.
+        """
         if self.current_image_index == len(self.images) - 1:
             self.current_image_index = 0
         else:
@@ -103,6 +119,8 @@ class ImageApp:
         self.update_view()
 
     def add_tag(self):
+        """Tagien lisäyikkuna
+        """
         tag_window = Toplevel(self.master)
         tag_window.title("Add Tag")
         tag_label = ttk.Label(tag_window, text="Enter tag:")
@@ -114,13 +132,19 @@ class ImageApp:
         ok_button.pack()
 
     def add_tag_to_image(self, tag, tag_window):
+        """Lisää tagin kuvaan ImageManagerin avulla.
+
+        Args:
+            tag (String): Lisättävä tagi.
+            tag_window (Toplevel): Toplevel-olio, joka suljetaan.
+        """
         if not tag:
             messagebox.showwarning("Invalid tag", "Tag cannot be empty!")
         else:
             image = self.images[self.current_image_index]
             if image_manager.add_tag(image, tag):
                 messagebox.showinfo(
-                    "Success", f"Tag '{tag}' added to image! Remeber to save!")
+                    "Success", f"Tag '{tag}' added to image!\n Remeber to save changes!")
                 self.update_image_tags()
             else:
                 messagebox.showwarning(
@@ -128,6 +152,8 @@ class ImageApp:
                 tag_window.destroy()
 
     def delete_tag(self):
+        """Tagien poistoikkuna, jossa valitaan poistettava tagi listasta.
+        """
         image = self.images[self.current_image_index]
         image_tags = image.tags
         if not image_tags:
@@ -148,16 +174,24 @@ class ImageApp:
             ok_button.pack()
 
     def delete_tag_from_image(self, tag, tag_window, image):
+        """Poistaa tagin kuvasta ImageManagerin avulla.
+
+        Args:
+            tag (String): Poistettava tagi.
+            tag_window (Toplevel): Toplevel-olio, joka suljetaan.
+            image (ImageObject): Kuva, josta tagi poistetaan.
+        """
         if image_manager.delete_tag(image, tag):
             self.update_image_tags()
             messagebox.showinfo(
-                "Success", f"Tag '{tag}' deleted from image! Remember to save!")
+                "Success", f"Tag '{tag}' deleted from image!\n Remember to save changes!")
         else:
-            # this is unneccesaary because tag are selected from a list
             messagebox.showwarning("No tags", "This image has no tags.")
         tag_window.destroy()
 
     def search_image(self):
+        """Ikkuna, josta haetaan kuvia tageilla.
+        """
         tag_window = Toplevel(self.master)
         tag_window.title("Search Image")
         tag_label = ttk.Label(tag_window, text="Enter tag to search:")
@@ -169,6 +203,12 @@ class ImageApp:
         ok_button.pack()
 
     def search_for_tag(self, tag, tag_window):
+        """Hakee kuvia ImageManagerin avulla tagin perusteella.
+
+        Args:
+            tag (String): Haettava tagi.
+            tag_window (Toplevel): Toplevel-olio, joka suljetaan.
+        """
         if not tag:
             messagebox.showwarning("Invalid tag", "Tag cannot be empty!")
         else:
@@ -185,12 +225,16 @@ class ImageApp:
         tag_window.destroy()
 
     def update_image_tags(self):
+        """Päivittää kuvan tagit näkymään.
+        """
         image = self.images[self.current_image_index]
         tags = image.tags
         tag_text = "Tags: " + ", ".join(tags)
         self.image_tags.config(text=tag_text)
 
     def show_all(self):
+        """Näyttää kaikki kuvat. Hakee kuvan tiedot repositorioista.
+        """
         self.images.clear()
         self.load_images()
         self.current_image_index = 0
@@ -198,6 +242,9 @@ class ImageApp:
         self.update_view()
 
     def add_images(self):
+        """Lataa kuvia levyltä käyttäjän valitsemasta hakemistosta. Oletuksena avataan
+        SAMPLE_FILE_PATH-muuttujassa määritelty hakemisto.
+        """
         files = filedialog.askopenfilenames(initialdir=SAMPLE_FILE_PATH,
                                             title="Select file(s)",
                                             filetypes=(("jpg files", "*.jpg"),
@@ -205,28 +252,30 @@ class ImageApp:
         if files:
             self.images.clear()
             self.images = image_manager.load_image_from_file(files)
-            messagebox.showinfo("Image Loaded",
-                                f"Image '{files}' loaded!\n Press 'Save' to add to database.")
+            messagebox.showinfo("Image(s) Loaded",
+                                f"{len(files)} new images loaded! \
+                                Press 'Save' to add to database.")
             self.current_view = "Load Images"
             self.current_image_index = 0
             self.update_view()
 
     def save_image(self):
+        """Näkymästä riippuen tallentaa kaikki kuvat tai vain tageihin tehdyt muutokset.
+        """
         if self.current_view == "Load Images":
             image_manager.save_image(self.images)
             messagebox.showinfo("New Images Added!",
                                 "Press 'Show All' to see all images!")
-            # add all images to database
         elif self.current_view == "Search Results":
-            # update database with new tags
             image_manager.save_tag_changes(self.images)
             messagebox.showinfo("Success", "Changes saved to database!")
         elif self.current_view == "All Images":
-            # update database with new tags
             image_manager.save_tag_changes(self.images)
             messagebox.showinfo("Success", "Changes saved to database!")
 
     def update_view(self):
+        """Päivittää näkymän kuvan ja tagit.
+        """
         self.image_view.config(text=self.current_view.title())
         image = self.images[self.current_image_index].picture
         image = image.resize((400, 400), Image.LANCZOS)
