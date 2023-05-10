@@ -33,7 +33,7 @@ class DbFileStub:
                 {"id": 4, "file_name": "image4.jpg", "tags": "tag7,tag8"}]
 
     def open_image(self, image_path):
-        if image_path: # pylint hack
+        if image_path:  # pylint hack
             image = self.image_data
         else:
             image = self.image_data
@@ -54,8 +54,7 @@ class TestImageManager(unittest.TestCase):
         self.tag_test_list = [["tag1", "tag2"], ["tag2", "tag4"]]
 
         self.stub_image_manager = ImageManager(data_base=DbFileStub(),
-                                                  image_files=DbFileStub())
-
+                                               image_files=DbFileStub())
 
     def test_get_all_images_number_correct(self):
         self.assertEqual(len(self.image_manager.get_all_images()), 2)
@@ -141,11 +140,13 @@ class TestImageManager(unittest.TestCase):
 
     def test_load_repository_data_returns_objects(self):
         self.stub_image_manager.load_repository_data()
-        self.assertIsInstance(self.stub_image_manager.image_list[0], ImageObject)
+        self.assertIsInstance(
+            self.stub_image_manager.image_list[0], ImageObject)
 
     def test_load_repository_data_returns_correct_file(self):
         self.stub_image_manager.load_repository_data()
-        self.assertEqual(self.stub_image_manager.image_list[0].name, "image3.jpg")
+        self.assertEqual(
+            self.stub_image_manager.image_list[0].name, "image3.jpg")
 
     def test_load_repository_data_returns_correct_tags(self):
         self.stub_image_manager.load_repository_data()
