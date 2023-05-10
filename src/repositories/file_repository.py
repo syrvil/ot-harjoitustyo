@@ -1,6 +1,5 @@
 import json
 from PIL import Image
-# from entities.image_object import ImageObject
 from config import IMAGE_FILES_PATH, IMAGE_METADATA_PATH
 
 
