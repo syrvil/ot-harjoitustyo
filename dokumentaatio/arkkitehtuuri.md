@@ -8,9 +8,13 @@ Pakkaus **ui** sisältää käyttöliittymästä, **services** sovelluslogiikast
 
 ## Käyttöliittymä
 
-- ui
-  - ImageApp: luokka vastaa käyttöliittymästä
-  - PlotStats: luokka vastaa kaavioiden piirämisestä saamastaan datasta
+Pakkaus **ui** koostuu seuraavista luokista:
+- ImageApp: luokka vastaa käyttöliittymästä
+- PlotStats: luokka vastaa kaavioiden piirämisestä saamastaan datasta
+
+Käyttöliittymä on eristetetty sovelluslogiikasta ja kutsuu vain ImageManager ja PlotStats luokkien metodeja.
+
+Käynnistettäessä sovellus ImageApp-luokka kutsuu ImageManager luokan metodeja, jotka alustavan tietokannan ja lataavat siihen konfiguraatiotiedostoissa määriteltyä dataa. Käyttöliittymässä on kolme erilaista kuvanäkymää: "Load Images", "Search Results" ja "All Images". Tieto missä näkymässä ollaan, säilytetään luokan current_view atribuutissa. Jos käyttäjä siityy "All Images" näkymään, ladataan tiedot uudelleen tietokannasta keskusmuistiin.
 
 ## Sovelluslogiikka
 - services
