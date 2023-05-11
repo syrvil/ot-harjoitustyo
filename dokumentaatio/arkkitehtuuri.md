@@ -48,20 +48,15 @@ Lisäksi luokassa on metod `load_json_to_db()`, joka alustaa tietokannan ja lata
 
 ## Tietojen tallennus
 
-Kuvaolioon säilöttäviä tietoja, joista id, nimi ja tagit ovat tietokannassa, ja kuvatiedosto, joka sijaitsee tiedostojärjestelmässä, käsitellään ImageRepository ja FileRepository luokkien avulla
+Kuvaolio tiedoista `id`, `name` ja `tags` tallennetaa SQLite-tietokantaan ja niiden ksäittelystä vastaa `ImageRepository` luokka. Sen sijaan `picture`, joka on itse kuvatiedosto, sijaitsee tiedostojärjestelmässä ja käsittelystä vastaa `FileRepository` luokka.
 
- - entities
-    - ImageObject: tietomalli, joka pitää sisällään kuva-olioiden käsittelyyn tarvittavat tiedot (id, nimi, tagit, kuvatiedosto)
-    - image_files: hakemisto kuvatiedostoille, jotka kuuluvat kuvaolioille
-  
-- repositries
-  - ImageRepository: luokka vastaa tietokantaan tallennettujen kuvaolioiden tietojen käsittelystä
-  - FileRepository: luokka vastaa tiedtoihin tallennettujen kuvaolioiden tietojen käsittelystä
+Tallennuksessa on hyödynnetty Repository-suunnittelumallia jolloin datan tallenustapaa on mahdollista tarvittaessa vaihtaa. Sovelluksen ollessa käynnissä data ladataan ja tallennetaan keskusmuistiin. Datan käsittely tapahtuu myös keskusmuistissa kunnes käyttäjä päättää itse tallentaa muutokset tai haluaa siirtyä *All Images* näkymään, jolloin data haetaan uudelleen repositorioista keskusmuistiin.
 
-- data
-  - image_metadata.json: JSON-tiedosto, johon tallennetaan kuvaolioiden dataa (nimi ja tagit). Datan avulla voidaan alustaa tietokantaan tarvittavat tiedot kuvaolioiden muodostamisa ja käsittelyä varten.
-  - image_data.db: sqlite3-tietokanta, jossa säilytetään kuvaolioiden dataa. 
+### Tiedostot
 
+Sovelluksen käyttämät kuvatiedostot sijaisetvat *entities* pakkauksen `image_files` hakemistossa. Jos käyttäjä lisää uusia kuvia, tallennetaan ne samaan hakemistoon.
+
+Sovelluksen käynnistyessä tietokanta populoidaan `image_metadata.json` nimiseen JSON-tiedostostoon tallennettujen tietojen (tiedoston nimi ja tagit) perusteella. JSON-tiedosto ja SQLite tietokanta tallennetaan ohjelman juuressa sijaisevaan *data* hakemistoon. Sovelluksen käyttämät hakemistopolut ja tiedostonimet määritellään ohjelman juuressa sijaisevassa *config.py* tiedostossa.
 
 ## Päätoiminnallisuudet
 
