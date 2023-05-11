@@ -14,9 +14,31 @@ Pakkaus **ui** koostuu seuraavista luokista:
 
 Käyttöliittymä on eristetetty sovelluslogiikasta ja kutsuu vain ImageManager ja PlotStats luokkien metodeja.
 
-Käynnistettäessä sovellus ImageApp-luokka kutsuu ImageManager luokan metodeja, jotka alustavan tietokannan ja lataavat siihen konfiguraatiotiedostoissa määriteltyä dataa. Käyttöliittymässä on kolme erilaista kuvanäkymää: "Load Images", "Search Results" ja "All Images". Tieto missä näkymässä ollaan, säilytetään luokan current_view atribuutissa. Jos käyttäjä siityy "All Images" näkymään, ladataan tiedot uudelleen tietokannasta keskusmuistiin.
+Käynnistettäessä sovellus ImageApp-luokka kutsuu ImageManager luokan metodeja, jotka alustavan tietokannan ja lataavat siihen konfiguraatiotiedostoissa määriteltyä dataa. Käyttöliittymässä on kolme erilaista kuvanäkymää: *Load Images*, *Search Results* ja *All Images*. Tieto missä näkymässä ollaan, säilytetään luokan `current_view` atribuutissa. Jos käyttäjä siityy *All Images* näkymään, ladataan tiedot uudelleen tietokannasta keskusmuistiin.
 
 ## Sovelluslogiikka
+
+Sovelluksen loogisen tietomallin muodostaa luokka ImageObject, joka kuvaa mitä tietoja kuvaolioilla on:
+
+```mermaid
+ classDiagram
+      class ImageObject{
+          id
+          name
+          tags
+          picture
+      }
+
+```
+ImageObject olioiden käsittelystä vastaa ImageManager luokka, joka tarjoaa erilaisia metodeja niiden käsittelyyn:
+- `get_all_images` 
+- `search_for_tag(tag)` 
+- `add_tag(image, tag)`
+- `delete_tag(image, tag)`
+- `tag_statistics()`
+- `save_tag_changes(image_list)`
+- `save_image(image_list)`     
+
 - services
     - ImageManager: luokka vastaa sovelluslogiikasta ja käsittelee entities hakemiston olioita ja tiedostoja repository hakemiston luokkien avulla
 
