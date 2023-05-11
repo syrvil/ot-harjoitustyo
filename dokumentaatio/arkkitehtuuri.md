@@ -94,14 +94,28 @@ sequenceDiagram
   participant ImageApp
   participant ImageManager
   User->>ImageApp: click "Search"
+  ImageApp ->> ImageApp: search_image()
+  ImageApp ->> ImageApp: search_for_tag(tag, tag_window)
   ImageApp->>ImageManager: search_for_tag(tag)
   ImageManager-->>ImageApp: image_list
-  ImageApp->>ImageApp: images_clear()
   ImageApp->>ImageApp: update_view()
-  ImageApp->>ImageApp: update_image_tagas()
+
 ```
 
 ### Tagin lisääminen
+```mermaid
+sequenceDiagram
+  actor User
+  participant ImageApp
+  participant ImageManager
+  User->>ImageApp: click "Add Tag"
+  ImageApp ->> ImageApp: add_tag()
+  ImageApp ->> ImageApp: add_tag_to_image(tag, tag_window)
+  ImageApp ->> ImageManager: add_tag(image, tag)
+  ImageManager -->> ImageApp: True 
+  ImageApp ->> ImageApp: update_image_tags()
+
+```
 
 ### Muut toiminnallisuudet
 
