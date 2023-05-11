@@ -87,8 +87,6 @@ sequenceDiagram
   ImageApp->> ImageApp: updata_view()
 ```
 
-### Uuden kuvan lisääminen
-
 ### Kuvien etsiminen tagilla
 
 ```mermaid
@@ -120,10 +118,23 @@ sequenceDiagram
 
 ```
 
+
+### Uuden kuvan lisääminen ja tallentaminen
+
 ### Muut toiminnallisuudet
 
 Tilastojen näyttäminen
 
 ## Ohjelman rakekenteeseen jääneet heikkoudet
 
-Myös kuvatiedostot olisi voinut tallentaa tietokantaan, mikä olisi yksinkertaistanut totetutusta. On kuitenkin useita skenaarioita, joissa kuvatiedstojen tallentaminen erikseen tiedostojärjestelmään ja kuvien metadatan tallennus tietokantaan on järkevämpää. Tässä tapauksessa halusin vain harjoitella hieman kompleksisemman ratkaisun toteutusta.   
+### Käyttöliittymä
+Käyttöliittymän komponentit ja metodit ovat samassa luokkassa, minkä seurauksena luokassa on turhan paljon koodia. Toiminnallisuuksia olisi voinut pilkkoa omiin luokkiinsa. Samoin kaikki toiminnit ovat samassa ikkunassa, mikä vaikuttaa sovelluksen käytettävyyteen, jos toiminnallisuuksia halutaan lisätä. Toiminnallisuudet kannattaisi jakaa omiin ikkunoihinsa tai valikkoihin.
+
+### Sovellulogiikka
+Tietoja käsitellään keskusmuistissa paitsi silloin, jos käyttäjä haluaa päivittää näkymään kaikki kuvat, jolloin tiedot haetaan uudelleen repositoroista tietokantaan. Järkevämpää ehkä olisi, että tietoja käsitellään keskusmuistissa koko ajan ja muutokset tallennetaan vain jos käyttäjä niin nimenomaan haluaa.
+
+Luokkien välistä tiedonvälitystä olisi voinut selkeyttää luokkien paremmalla kapseloinnilla. Nyt luokat välisessä kommunikoinnissa metodien väliset paramterit vaihtelevat tapauksesta riippuen. Olisi selkeämpää, jos luokkien välillä välitettäisiin vain ImageObject olidoita tai niiden atribuutteja. Osittain tämä johtuu siitä, että kuvatiedostot tallennetaan tiedostojärjestelmään ja muu data tietokantaan. 
+
+### Tietoen tallennus
+Myös kuvatiedostot olisi voinut tallentaa tietokantaan, mikä olisi yksinkertaistanut totetutusta ja selkeyttänyt luokkien välistä kommunikointia. On kuitenkin useita skenaarioita, joissa periaatteessa kuvatiedstojen tallentaminen erikseen tiedostojärjestelmään ja kuvien metadatan tallennus tietokantaan on järkevämpää. Tässä tapauksessa halusin vain harjoitella hieman kompleksisemman ratkaisun toteutusta.   
+Sovellus ei myöskään tällä hetkellä tallenna tietoja JSON-konfiguraatiotiedostoon, jos tietoja on tallennettu tai kun sovelluksen käyttö lopetetaan. 
