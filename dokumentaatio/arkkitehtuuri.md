@@ -70,6 +70,7 @@ sequenceDiagram
   participant ImageManager
   participant ImageRepository
   participant FileRepository
+  participant Entities
   User->>ImageApp: click "Show All"
   ImageApp ->> ImageApp: show_all()
   ImageApp->>ImageApp: images.clear()
@@ -78,6 +79,8 @@ sequenceDiagram
   ImageManager ->> ImageRepository: get_all_image_data()
   ImageRepository -->> ImageManager: cursor.fetchall()
   ImageManager ->> FileRepository: open_image(image_path)
+  FileRepository ->> Entities: open(image_path)
+  Entities -->> FileRepository: Image
   FileRepository -->> ImageManager: Image
   ImageApp ->> ImageManager: get_all_images()
   ImageManager -->> ImageApp: image_list
