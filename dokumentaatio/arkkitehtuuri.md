@@ -22,13 +22,14 @@ Sovelluksen loogisen tietomallin muodostaa luokka ImageObject, joka kuvaa mitä 
 
 ```mermaid
  classDiagram
+      ImageObject "1" -- "1" image_files
       class ImageObject{
           id
           name
           tags
           picture
       }
-
+      image_files
 ```
 `id`  toimii kuvaolion yskilöivänä tunnisteena. `name` on kuvatiedoston nimi, jonka avulla muodostetaan polku tiedostojärjestelmässä sijaistsevaan kuvatiedostoon, joka sitten avatataan ja säilötään atribuuttiin `picture`. `tags` pitää sisällään listan kuvaan liityvistä tageista. ImageObject olioiden mudostamisesta sekä niiden atribuuttien käsittelystä vastaa ImageManager luokka, joka tarjoaa erilaisia metodeja käsittelyyn:
 
@@ -60,8 +61,32 @@ Sovelluksen käynnistyessä tietokanta populoidaan `image_metadata.json` nimisee
 
 ## Päätoiminnallisuudet
 
+### Kaikkien kuvien näyttäminen
 
-### Sekvenssikaavio: kuvien etsiminen tagilla
+```mermaid
+sequenceDiagram
+  actor User
+  participant ImageApp
+  participant ImageManager
+  participant ImageRepository
+  participant FileRepository
+  User->>ImageApp: click "Show All"
+  ImageApp ->> ImageApp: show_all()
+  ImageApp->>ImageApp: images.clear()
+  ImageApp->>ImageApp: load_images()
+  ImageApp ->> ImageManager: load_repository_data()
+  ImageManager ->> ImageRepository: get_all_image_data()
+  ImageRepository -->> ImageManager: cursor.fetchall()
+  ImageManager ->> FileRepository: open_image(image_path)
+  FileRepository -->> ImageManager: Image
+  ImageApp ->> ImageManager: get_all_images()
+  ImageManager -->> ImageApp: image_list
+  ImageApp->> ImageApp: updata_view()
+```
+
+### Uuden kuvan lisääminen
+
+### Kuvien etsiminen tagilla
 
 ```mermaid
 sequenceDiagram
@@ -75,7 +100,12 @@ sequenceDiagram
   ImageApp->>ImageApp: update_view()
   ImageApp->>ImageApp: update_image_tagas()
 ```
+
+### Tagin lisääminen
+
 ### Muut toiminnallisuudet
+
+Tilastojen näyttäminen
 
 ## Ohjelman rakekenteeseen jääneet heikkoudet
 
