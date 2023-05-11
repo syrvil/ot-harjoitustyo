@@ -30,8 +30,11 @@ Sovelluksen loogisen tietomallin muodostaa luokka ImageObject, joka kuvaa mitä 
       }
 
 ```
-ImageObject olioiden käsittelystä vastaa ImageManager luokka, joka tarjoaa erilaisia metodeja niiden käsittelyyn:
-- `get_all_images` 
+`id`  toimii kuvaolion yskilöivänä tunnisteena. `name` on kuvatiedoston nimi, jonka avulla muodostetaan polku tiedostojärjestelmässä sijaistsevaan kuvatiedostoon, joka sitten avatataan ja säilötään atribuuttiin `picture`. `tags` pitää sisällään listan kuvaan liityvistä tageista. ImageObject olioiden mudostamisesta sekä niiden atribuuttien käsittelystä vastaa ImageManager luokka, joka tarjoaa erilaisia metodeja käsittelyyn:
+
+- `load_repository_data()` 
+- `load_image_from_file(image_paths)` 
+- `get_all_images()` 
 - `search_for_tag(tag)` 
 - `add_tag(image, tag)`
 - `delete_tag(image, tag)`
@@ -39,16 +42,14 @@ ImageObject olioiden käsittelystä vastaa ImageManager luokka, joka tarjoaa eri
 - `save_tag_changes(image_list)`
 - `save_image(image_list)`     
 
-- services
-    - ImageManager: luokka vastaa sovelluslogiikasta ja käsittelee entities hakemiston olioita ja tiedostoja repository hakemiston luokkien avulla
+Lisäksi luokassa on metod `load_json_to_db()`, joka alustaa tietokannan ja lataa siihen dataa JSON-muotoisesta konfiguraatiotiedostosta. 
 
-### Kuvaus sovelluslogiikasta
-
-ImageObject olioihin on tallennettu tietoja, joita käsitellään ImageManager luokan metodien avulla. Id toimii kuvaolion yskilöivänä tunnisteena. Nimi, on itsessa kuvatiedoston nimi, jonka avulla muodostetaan polku tiedostojärjestelmässä sijaistsevaan kuvatiedostoon, joka sitten avatataan ja säilötään kuvaolioon. 
-
-Kuvaolioon säilöttäviä tietoja, joista id, nimi ja tagit ovat tietokannassa, ja kuvatiedosto, joka sijaitsee tiedostojärjestelmässä, käsitellään ImageRepository ja FileRepository luokkien avulla.
+*ImageManager* käsittelee *ImageObject* olioiden tietoja pakkauksessa repositories olevien *ImageRepository* ja *FileRepository* luokkien kautta, jotka injektoidaan konstrutorikutsun yhteydessä.
 
 ## Tietojen tallennus
+
+Kuvaolioon säilöttäviä tietoja, joista id, nimi ja tagit ovat tietokannassa, ja kuvatiedosto, joka sijaitsee tiedostojärjestelmässä, käsitellään ImageRepository ja FileRepository luokkien avulla
+
  - entities
     - ImageObject: tietomalli, joka pitää sisällään kuva-olioiden käsittelyyn tarvittavat tiedot (id, nimi, tagit, kuvatiedosto)
     - image_files: hakemisto kuvatiedostoille, jotka kuuluvat kuvaolioille
