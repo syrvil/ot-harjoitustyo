@@ -42,13 +42,13 @@ class DbFileStub:
 
 class TestImageManager(unittest.TestCase):
     def setUp(self):
+        self.image_manager = ImageManager()
         test_image = Image.open(BytesIO(IMAGE_DATA))
         self.test_list = [
             ImageObject(1, "image1.jpg", ["tag1", "tag2"], test_image),
             ImageObject(2, "image2.jpg", ["tag2", "tag4"], test_image),
         ]
 
-        self.image_manager = ImageManager()
         self.image_manager.image_list = self.test_list
         self.test_source_data = [('image1.jpg', test_image)]
         self.tag_test_list = [["tag1", "tag2"], ["tag2", "tag4"]]
