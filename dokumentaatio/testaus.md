@@ -56,4 +56,9 @@ Käyttöliittymän ja sen toiminnallisuudet ovat testattu kokeilemalla seuraavia
 
 ## Sovellukseen jääneet laatuongelmat
 
+Sovelluksen totetutuksessa ja testauksessa on seuraavia puutteita:
 
+- Testitietokannalle ja testiedostoille ei ole määrilety omia konfiguraatiomuuttujia, jolloin paikoitellen käytetään samoja tiedostonimiä ja hakemistopolkuja kuin tuotannossa. Samoin osalle testeistä ei ole muodostettu omaa testidataa, vaan hyödynnetään tuotantodataa. Tämä on hieman sekavaa, vaikkakin testi- ja tyuontaympäristöt ovat eriytetty toisistaan.
+- Tiedostojen luku- ja kirjoitusoikeuksia ja tiedostojen puuttumista tai olemassa oloa ei tarkisteta, eikä mahdollisiin virhetilanteisiin reagoida.
+- Pääosa syötteiden tarkistuksia ja metodien saamista parametrien arvoista tarkistetaan `ImageApp` ja `ImageManager` luokissa. Jos jostain syystä syötteet ja paramterit saavat virheellisiä arvoja, niitä ei käsitellä muissa luokissa. Tällöin luokat saattavat saada käsiteltäväkseen virheellsiä arvoja, mikä voi johtaa ongelmiin.
+- Käyttäjän on mahdollista antaa tagi, joka on muotoa "t,a,g,i," jolloin muodostuu tagit "t", "a", "g", "i" ja " ". 
