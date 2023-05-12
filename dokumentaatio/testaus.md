@@ -22,6 +22,15 @@ Vastaavasti `FileRepository`-luokan olio injektoidaan TestFileRepository-testilu
 
 ### Testauskattavuus
 
+### Testaamatta jääneet metodit
+
+Automaattisisen yksikkö- ja integraatiotestaamisen ulkopuolelle on jätetty pääsääntöisesti metodit ja funktiota, jotka lukevat tai kirjoittavat dataa konfiguraatiotiedostoihin. Näitä ovat esimerkiksi:
+- `ImageRepository`-luokan metodi `init_db_from_json()`
+- `FileRepositry`-luokan metodit `read_conf_file()`, `write_conf_file()` ja `save_image()`
+- `initialize_database.py` tiedostossa määritellyt tietokantafunktiot.
+
+Edellä mainitut metodien ja funktioiden toiminta on kuitenkin joutunut epäsuoran testauksen kohteeksi aikaisempien automaattitestien sekä alla mainittujen manuaalisten järjestelmätestien yhteydessä.
+
 ## Järjestelmätestaus
 
 Sovelluksen järjestelmätestaus on suoritettu manuaalisesti.
