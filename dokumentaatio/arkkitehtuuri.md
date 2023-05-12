@@ -160,7 +160,11 @@ Tagin poistaminen toimii samalla tavalla kuin tagin lisääminen. Jos uusia kuvi
 
 ### Käyttöliittymä
 
-Käyttöliittymän komponentit ja metodit ovat samassa luokkassa, minkä seurauksena luokassa on turhan paljon koodia. Toiminnallisuuksia olisi voinut pilkkoa omiin luokkiinsa. Samoin kaikki toiminnit ovat samassa ikkunassa, mikä vaikuttaa sovelluksen käytettävyyteen, jos toiminnallisuuksia halutaan lisätä. Toiminnallisuudet kannattaisi jakaa omiin ikkunoihinsa tai valikkoihin.
+Käyttöliittymän komponentit ja metodit ovat samassa luokkassa, minkä seurauksena luokassa on turhan paljon koodia. Toiminnallisuuksia olisi voinut jakaa omiin luokkiinsa. 
+
+Käyttäjän antamien syötteiden tarkistus tehdään pääosin käyttöliittymässä. On hieman makuasia, että olisiko ollut parempi tehdä tarkastaminen sovelluslogiikan puolella. Tämän seurauksena metodeissa on jonkin verran toisteista koodia käyttäjälle annettavien viestien muodossa, vaikka *Single Responsibility* periaate totetuukin melko hyvin toteutuksissa. Viestien harmisointia ja sijoittamista omaan funktioonsa olisi voinut hyödyntää.
+
+Samoin kaikki toiminnit ovat samassa ikkunassa, mikä vaikuttaa sovelluksen käytettävyyteen, jos toiminnallisuuksia halutaan lisätä. Toiminnallisuudet kannattaisi jakaa omiin ikkunoihinsa tai valikkoihin.
 
 ### Sovellulogiikka
 
