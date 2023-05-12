@@ -24,9 +24,26 @@ Vastaavasti `FileRepository`-luokan olio injektoidaan TestFileRepository-testilu
 
 ## Järjestelmätestaus
 
+Sovelluksen järjestelmätestaus on suoritettu manuaalisesti.
+
 ### Asennus ja konfigurointi
 
+Sovelluken asennusta on testattu hakemalla viimeisin julkaisu GitHubista ja asentamalla se käyttöohjeiden mukaisesti paikallisesti Ubuntu 22.04.2 LTS ympäristöön sekä Cubbli Linux virtuaalityöasemaan VMWare Horizon etätyöpöytäsovelluksen kautta. 
+
+Konfigurointia on testattu muutammalla *.env* tiedoston ympäristömuuttujien arvoja, joissa määritellään hakemistopolkuja ja tiedostonimiä-
+
 ### Toiminnallisuudet
+
+Käyttöliittymän ja sen toiminnallisuudet ovat testattu kokeilemalla seuraavia käyttöskneerioita: 
+
+- kaikki painikkeet toimivat kun niitä painetaan 
+- kuvat vaihtuvat oikein 
+- kuvalistaukset muodustuvat oikein siirryttäessä näkymien välillä 
+- suurilla kirjaimilla kirjoitetut tagit muuttuvat pieniksi
+- tyhjiä kenttiä ei hyväksytä syötteiksi
+- kuvan ja kuvien lataaminen paikallisesta hakemistosta toimii oikein
+- paikallisesti ladattu kuva tallentuun oikeaan paikkaan, kun painetaan "Save" nappia
+- paikallisesti ladattua kuvaa ei tallenneta, jos siirrytään näkymästä toiseen eikä paineta "Save" nappia
 
 ## Sovellukseen jääneet laatuongelmat
 
