@@ -172,7 +172,10 @@ Tietoja käsitellään keskusmuistissa paitsi silloin, jos käyttäjä haluaa p�
 
 Luokkien välistä tiedonvälitystä olisi voinut selkeyttää luokkien paremmalla kapseloinnilla ja yhdenmukaisemmalla nimeämisellä. Nyt luokat välisessä kommunikoinnissa metodien väliset parametrit vaihtelevat hieman eri tapauksissa. Olisi selkeämpää, jos luokkien välillä välitettäisiin vain ImageObject olidoita tai niiden atribuutteja. Osittain tämä johtuu siitä, että kuvatiedostot tallennetaan tiedostojärjestelmään ja muu data tietokantaan. 
 
-### Tietoen tallennus
+### Tietojen tallennus
 
-Myös kuvatiedostot olisi voinut tallentaa tietokantaan, mikä olisi yksinkertaistanut totetutusta ja selkeyttänyt luokkien välistä kommunikointia. On kuitenkin useita skenaarioita, joissa periaatteessa kuvatiedstojen tallentaminen erikseen tiedostojärjestelmään ja kuvien metadatan tallennus tietokantaan on järkevämpää. Tässä tapauksessa halusin vain harjoitella hieman kompleksisemman ratkaisun toteutusta.   
+Myös kuvatiedostot olisi voinut tallentaa tietokantaan, mikä olisi yksinkertaistanut totetutusta ja selkeyttänyt luokkien välistä kommunikointia. On kuitenkin useita skenaarioita, joissa periaatteessa kuvatiedstojen tallentaminen erikseen tiedostojärjestelmään ja kuvien metadatan tallennus tietokantaan on järkevämpää. 
+
+Toteutusta ja luokkien välistä kommunikointia olisi selkeyttänyt myös, jos tagit olisi tallennettu omaan tauluunsa tietokantaan ja kuvan id:tä olisi käytetty avaimena.
+
 Sovellus ei myöskään tällä hetkellä tallenna tietoja JSON-konfiguraatiotiedostoon, jos tietoja on tallennettu tai kun sovelluksen käyttö lopetetaan. 
