@@ -152,7 +152,9 @@ sequenceDiagram
 
 ### Muut toiminnallisuudet
 
-Tilastojen näyttäminen
+Sekvenssikaavioissa on jätetty kuvaamatta kuvien selaaminen eteen- ja taaksepäin sekä tilastojen näyttäminen, koska ne ovat toiminintoina niin yksinkertaisa.
+
+Tagin poistaminen toimii samalla tavalla kuin tagin lisääminen. Jos uusia kuvia ei ole haluttu lisätä, niin tallennettaessa kuvia ei tallenneta hakemistoon ja tietokontaan päivitetään tagit kuvan id:n perustella.
 
 ## Ohjelman rakekenteeseen jääneet heikkoudet
 
