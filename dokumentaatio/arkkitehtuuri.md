@@ -166,7 +166,7 @@ Käyttöliittymän komponentit ja metodit ovat samassa luokkassa, minkä seurauk
 
 Tietoja käsitellään keskusmuistissa paitsi silloin, jos käyttäjä haluaa päivittää näkymään kaikki kuvat, jolloin tiedot haetaan uudelleen repositoroista tietokantaan. Järkevämpää ehkä olisi, että tietoja käsitellään keskusmuistissa koko ajan ja muutokset tallennetaan vain jos käyttäjä niin nimenomaan haluaa.
 
-Luokkien välistä tiedonvälitystä olisi voinut selkeyttää luokkien paremmalla kapseloinnilla. Nyt luokat välisessä kommunikoinnissa metodien väliset paramterit vaihtelevat tapauksesta riippuen. Olisi selkeämpää, jos luokkien välillä välitettäisiin vain ImageObject olidoita tai niiden atribuutteja. Osittain tämä johtuu siitä, että kuvatiedostot tallennetaan tiedostojärjestelmään ja muu data tietokantaan. 
+Luokkien välistä tiedonvälitystä olisi voinut selkeyttää luokkien paremmalla kapseloinnilla ja yhdenmukaisemmalla nimeämisellä. Nyt luokat välisessä kommunikoinnissa metodien väliset parametrit vaihtelevat hieman eri tapauksissa. Olisi selkeämpää, jos luokkien välillä välitettäisiin vain ImageObject olidoita tai niiden atribuutteja. Osittain tämä johtuu siitä, että kuvatiedostot tallennetaan tiedostojärjestelmään ja muu data tietokantaan. 
 
 ### Tietoen tallennus
 
