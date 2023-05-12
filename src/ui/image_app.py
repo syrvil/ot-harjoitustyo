@@ -140,6 +140,9 @@ class ImageApp:
         """
         if not tag:
             messagebox.showwarning("Invalid tag", "Tag cannot be empty!")
+        elif "," in tag:
+            messagebox.showwarning(
+                "Invalid tag", "Tag cannot contain commas!")
         else:
             image = self.images[self.current_image_index]
             if image_manager.add_tag(image, tag):
