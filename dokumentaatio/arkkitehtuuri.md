@@ -121,6 +121,35 @@ sequenceDiagram
 
 ### Uuden kuvan lisääminen ja tallentaminen
 
+```mermaid
+sequenceDiagram
+  actor User
+  participant ImageApp
+  participant ImageManager
+  participant FileRepository
+  participant ImageRepository
+  participant Entities
+  
+  User->>ImageApp: click "Add New"
+  ImageApp ->> ImageApp: add_images()
+  ImageApp ->> ImageManager: load_image_from_file(files)
+  ImageManager ->> FileRepository: get_list_of_images(image_paths)
+  FileRepository ->> FileRepository: open_image(path)
+  FileRepository ->> Entities: open(image_path)
+  Entities -->> FileRepository: Image
+  FileRepository -->> ImageManager: image_list
+  ImageManager -->> ImageApp: image_objects
+  ImageApp ->> ImageApp: update_view()
+  
+  User->>ImageApp: click "Save"
+  ImageApp ->> ImageApp: save_image()
+  ImageApp ->> ImageManager: save_image(images)
+  ImageManager ->> ImageRepository: add_image_data(image.name, image.tags)
+  ImageManager ->> FileRepository: save_image(image.picture, image.name)
+  FileRepository ->> Entities: image_file.save(IMAGE_FILES_PATH + image_name)
+  
+```
+
 ### Muut toiminnallisuudet
 
 Tilastojen näyttäminen
