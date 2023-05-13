@@ -37,3 +37,5 @@
   - ImageRepository
   - FileRepository
   - ImageObject
+- Muokattu tagien lisäystä siten, että tagi ei voi sisältää pilkkua
+- Lisätty toiminnallisuus, jossa käyttäjältä kystyään haluaako hän tallentaa muutokset JSON-kongiguraatiotiedostoon
