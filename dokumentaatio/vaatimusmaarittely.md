@@ -31,6 +31,9 @@ Käyttöliittymässä on näkymä yhdelle kuvalle ja toiminnallisuuksia, joilla 
 ### Kuvien ja tunnisteiden tallentaminen
 - Käyttäjä voi tallentaa kuvat, joiden tunnisteita on muokatuu - TEHTY
 
+## Ekstrat
+- Käyttäjä voi valita tallennetaanko muutokset kun ohjelman suoritus lopetetaan - TEHTY
+
 ## Jatkokehitysideoita
 
 Perusversion jälkeen järjestelmää täydennetään ajan salliessa esim. seuraavilla toiminnallisuuksilla:
@@ -50,6 +53,6 @@ Perusversion jälkeen järjestelmää täydennetään ajan salliessa esim. seura
 3. Versio (VALMIS)
 - Tietojen tallanneus JSON:in sijaan tietokantaan
 - Käyttöliittymän muokkausta ja toiminnallisuuksien lisäämistä
-4. Versio
+4. Versio (VALMIS)
 - Koodin refaktorointia ja arkkitehtuurin hiomista
 - Lopullinen julkaisu  
