@@ -18,7 +18,7 @@ Käynnistettäessä sovellus `ImageApp`-luokka kutsuu `ImageManager` luokan meto
 
 ## Sovelluslogiikka
 
-Sovelluksen loogisen tietomallin muodostaa luokka [ImageObject](../src/enities/image_object.py), joka kuvaa mitä tietoja kuvaolioilla on:
+Sovelluksen loogisen tietomallin muodostaa luokka [ImageObject](../src/enitities/image_object.py), joka kuvaa mitä tietoja kuvaolioilla on:
 
 ```mermaid
  classDiagram
