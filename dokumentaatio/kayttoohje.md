@@ -25,14 +25,18 @@ Kuvia voi hakea tageilla **Searh** painikkeen avulle. Tällöin näkymään tule
 
 ### Stats
 
-**Stats** nappia painamalla avautuu uusi ikkuna, joka näyttää pylväsdiagrammin eri tagien lukumääristä.
+**Stats** painiketta painamalla avautuu uusi ikkuna, joka näyttää pylväsdiagrammin eri tagien lukumääristä.
+
+![Tilastot](kuvat/tilastot.png)
 
 ### Add Tag & Delete Tag
 
-**Add Tag** napista avautuu ikkuna johon voi lisätä uusia tageja. Lisättävällä tagilla ei ole muita rajoituksi kuin että se ei voi sisältää pilkkua. 
+**Add Tag** painikkeesta avautuu ikkuna johon voi lisätä uusia tageja. Lisättävällä tagilla ei ole muita rajoituksi kuin että se **ei voi sisältää pilkkua**. 
 
-**Delete Tag** napista avautuu ikkuna, josta voi poistaa tageja. Tagit ovat listana, josta voi valita yksi kerrallaan poistettavan tagin.
+**Delete Tag** painikkeesta avautuu ikkuna, josta voi poistaa tageja. Tagit ovat listana, josta voi valita yksi kerrallaan poistettavan tagin.
 
 ### Ohjelman lopetus
 
 Ohjelman lopetus tapahtuu sulkemalla ikkuna. Ennen ikkunan sulkemista käyttäjältä kysytään haluaako hän tallentaa mahdolliset muutokset. Jos käyttäjä vastaa "Yes", tallennetaan kuvien metadata (kuvatiedoston nimi ja tagit) JSON-konfiguraatiotiedostoon, josta data taas ladataan tietokantaan kun ohjlema käynnistetään uudelleen.
+
+![Lopetus](kuvat/lopetus.png)
