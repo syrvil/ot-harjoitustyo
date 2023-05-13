@@ -6,19 +6,19 @@ Ohjelmaa on testattu unittestin automatisoiduilla yksikkö- ja integraatioteiste
 
 ### Sovelluslogiikka
 
-Sovelluslogiikasta vastaava `ImageManager`-luokka tetstaan TestImageManager-testiluokalla. Luokan yksikkötestejä varten alustetaan `ImageManager`-olio sekä testiluokan attribuutteeja, jotka toimivat syötteinä sekä tulosteina testeille.
+Sovelluslogiikasta vastaava `ImageManager`-luokka tetstaan [TestImageManager](../src/tests/test_image_manager.py)-testiluokalla. Luokan yksikkötestejä varten alustetaan `ImageManager`-olio sekä testiluokan attribuutteeja, jotka toimivat testisyötteinä sekä -tulosteina testeille.
 
 Integraatiotestejä varten luodaan oma erillinen `ImageManager`-olio, jolle injektoidaan riippuvuuksiksi valekomponentit `ImageRepository` ja `FileRepository` luokista (`DbFileStub`-luokka), jotka simuloivat luokkien metodien toimintaa, mutta tiedot ovat tallennettu keskusmuistiin tietokannan ja tiedostojen sijaan. Tällöin testejä varten ei tarvitse populoida erkiseen dataa tietokantaan tai luoda erillsiä testitiedostoja.
 
 ### Repositorio-luokat
 
-`ImageRepository`-luokkaa testataan TestImageRepository-testiluokalla, jolle injektoidaan `ImageRepository`-olio. Tällöin saadaan alustettu uusi tyhjä testitietokanta testejä varten. Testietietokantaan tallennetaan testidataa yksikkötestien yhteydessä, jota sitten käytettään luokan metedion testaamiseen.
+`ImageRepository`-luokkaa testataan [TestImageRepository](../src/tests/test_image_repository.py)-testiluokalla, jolle injektoidaan `ImageRepository`-olio. Tällöin saadaan alustettu uusi tyhjä testitietokanta testejä varten. Testietietokantaan tallennetaan testidataa yksikkötestien yhteydessä, jota sitten käytettään luokan metedion testaamiseen.
 
-Vastaavasti `FileRepository`-luokan olio injektoidaan TestFileRepository-testiluokalle. Testejä varten ei luoda omaan testidataa, vaan testeissä hyödynnetään `image_files\samples` hakemistossa olevia kuvatiedostoja.
+Vastaavasti `FileRepository`-luokan olio injektoidaan [TestFileRepository](../src/tests/test_file_repository.py)-testiluokalle. Testejä varten ei luoda omaan testidataa, vaan testeissä hyödynnetään `image_files\samples` hakemistossa olevia kuvatiedostoja.
 
 ### ImageObject-luokka
 
-`ImageObject`-luokkaa testataan TestImageObject-testiluokalla. Luokasta testataan vain sen sisäistä apumetodia, jonka tehtävänä on muuntaa mahdolliset isoja kirjaimia sisältävät tagit pienellä kirjoitetuksi. 
+`ImageObject`-luokkaa testataan [TestImageObject](../src/tests/test_image_object.py)-testiluokalla. Luokasta testataan vain sen sisäistä apumetodia, jonka tehtävänä on muuntaa mahdolliset isoja kirjaimia sisältävät tagit pienellä kirjoitetuksi. 
 
 ### Testauskattavuus
 
@@ -60,4 +60,6 @@ Sovelluksen totetutuksessa ja testauksessa on seuraavia puutteita:
 
 - Testitietokannalle ja testiedostoille ei ole määrilety omia konfiguraatiomuuttujia, jolloin paikoitellen käytetään samoja tiedostonimiä ja hakemistopolkuja kuin tuotannossa. Samoin osalle testeistä ei ole muodostettu omaa testidataa, vaan hyödynnetään tuotantodataa. Tämä on hieman sekavaa, vaikkakin testi- ja tyuontaympäristöt ovat eriytetty toisistaan.
 - Tiedostojen luku- ja kirjoitusoikeuksia ja tiedostojen puuttumista tai olemassa oloa ei tarkisteta, eikä mahdollisiin virhetilanteisiin reagoida.
-- Pääosa syötteiden tarkistuksia ja metodien saamista parametrien arvoista tarkistetaan `ImageApp` ja `ImageManager` luokissa. Jos jostain syystä syötteet ja paramterit saavat virheellisiä arvoja, niitä ei käsitellä muissa luokissa. Tällöin luokat saattavat saada käsiteltäväkseen virheellsiä arvoja, mikä voi johtaa ongelmiin.
+- Pääosa syötteiden tarkistuksia ja metodien saamista parametrien arvoista tarkistetaan `ImageApp` ja `ImageManager` luokissa. Jos jostain syystä syötteet ja paramterit saavat virheellisiä arvoja, niiden käsitelyyn ei olla varauduttu muissa luokissa. 
+- Edellisestä johtuen testit eivät siis testaa erityisen kaatavasti metodien toimintaa esimerkiksi virheellisten paramtrien kohdalla.
+- *Pylint* ilmoittaa liian suuresta määrästä julkisia metodeja (eli siis testeistä) `TestImageManager`-luokan kohdalla. 
