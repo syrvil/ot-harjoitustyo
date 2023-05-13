@@ -1,6 +1,40 @@
-## Käyttöohje
+# Käyttöohje
 
-Kun ohjelma käynnistetään komennolla "poetry run invoke start", ladataan automaattisesti tietokantaan julkaisun mukana tulleita testikuvia. 
+Lataa projektin viimeisimmän [releasen](https://github.com/syrvil/ot-harjoitustyo/releases) lähdekoodi valitsemalla _Assets_-osion alta _Source code_.
+
+## Konfigurointi
+
+Tallennukseen käytettävien tiedostojen nimiä voi halutessaan konfiguroida käynnistyshakemistossa _.env_-tiedostossa. Tiedostot luodaan automaattisesti _data_-hakemistoon, jos niitä ei siellä vielä ole. Tiedoston muoto on seuraava:
+
+```
+IMAGE_METADATA_FILE=image_metadata.json
+DATABASE_FILE=image_data.db
+```
+
+## Ohjelman käynnistäminen
+
+Ennen ohjelman käynnistämistä, asenna riippuvuudet komennolla:
+
+```bash
+poetry install
+```
+
+Jonka jälkeen suorita alustustoimenpiteet komennolla:
+
+```bash
+poetry run invoke build
+```
+
+Nyt ohjelman voi käynnistää komennolla:
+
+```
+poetry run invoke start
+```
+
+
+## Pääikkuna
+
+Kun ohjelma on käynnistetty, avautuu pääikkuna jossa näkyy julkaisun mukana tulleita testikuvia. 
 
 ![Pakkausrakenne](kuvat/tagging_app.png)
 
