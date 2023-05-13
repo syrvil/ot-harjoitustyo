@@ -40,7 +40,7 @@ class FileRepository:
         try:
             dicts = [{"name": image.name, "tags": image.tags}
                      for image in data]
-            with open(self.file_path, 'w', encoding='utf8') as file:
+            with open(self.conf_path, 'w', encoding='utf8') as file:
                 json.dump(dicts, file, indent=4)
         except FileNotFoundError:
             print(f"File {self.conf_path} not found")

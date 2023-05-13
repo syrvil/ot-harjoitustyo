@@ -276,6 +276,11 @@ class ImageApp:
             image_manager.save_tag_changes(self.images)
             messagebox.showinfo("Success", "Changes saved to database!")
 
+    def save_conf_changes(self):
+        """Tallentaa kuvien metadatan JSON-configuraatiotiedostoon
+        """
+        image_manager.save_configuration_data()
+
     def update_view(self):
         """Päivittää näkymän kuvan ja tagit.
         """

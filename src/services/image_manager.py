@@ -153,5 +153,9 @@ class ImageManager:
             self.data_base.add_image_data(image.name, image.tags)
             self.image_files.save_image(image.picture, image.name)
 
+    def save_configuration_data(self):
+        """Tallentaa ImageObject olioiden tiedot JSON-muodossa olevaan tiedostoon.
+        """
+        self.image_files.write_conf_file(self.image_list)
 
 image_manager = ImageManager()
