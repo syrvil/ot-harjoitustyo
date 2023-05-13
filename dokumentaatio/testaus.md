@@ -22,6 +22,10 @@ Vastaavasti `FileRepository`-luokan olio injektoidaan [TestFileRepository](../sr
 
 ### Testauskattavuus
 
+Käyttöliittymäkerrosta lukuunottamatta sovelluksen testauksen haarautumakattavuus on 83%
+
+![](./kuvat/testausraportti.png)
+
 ### Testaamatta jääneet metodit
 
 Automaattisisen yksikkö- ja integraatiotestaamisen ulkopuolelle on jätetty pääsääntöisesti metodit ja funktiota, jotka lukevat tai kirjoittavat dataa konfiguraatiotiedostoihin. Näitä ovat esimerkiksi:
