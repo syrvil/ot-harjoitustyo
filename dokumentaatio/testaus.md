@@ -41,7 +41,7 @@ Sovelluksen järjestelmätestaus on suoritettu manuaalisesti.
 
 ### Asennus ja konfigurointi
 
-Sovelluken asennusta on testattu hakemalla viimeisin julkaisu GitHubista ja asentamalla se käyttöohjeiden mukaisesti paikallisesti Ubuntu 22.04.2 LTS ympäristöön sekä Cubbli Linux virtuaalityöasemaan VMWare Horizon etätyöpöytäsovelluksen kautta. 
+Sovelluken asennusta on testattu hakemalla viimeisin julkaisu GitHubista ja asentamalla se käyttöohjeiden mukaisesti paikallisesti Ubuntu 22.04.2 LTS (Python 3.8.16) ympäristöön sekä Cubbli Linux (Python 3.10.6) virtuaalityöasemaan VMWare Horizon etätyöpöytäsovelluksen kautta. 
 
 Konfigurointia on testattu muutammalla *.env* tiedoston ympäristömuuttujien arvoja, joissa määritellään hakemistopolkuja ja tiedostonimiä-
 
