@@ -158,4 +158,5 @@ class ImageManager:
         """
         self.image_files.write_conf_file(self.image_list)
 
+
 image_manager = ImageManager()
