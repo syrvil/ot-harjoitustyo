@@ -9,16 +9,16 @@ Pakkaus **ui** sisältää käyttöliittymästä, **services** sovelluslogiikast
 ## Käyttöliittymä
 
 Pakkaus **ui** koostuu seuraavista luokista:
-- ImageApp: luokka vastaa käyttöliittymästä
-- PlotStats: luokka vastaa kaavioiden piirämisestä saamastaan datasta
+- [ImageApp](../src/ui/image_app.py): luokka vastaa käyttöliittymästä
+- [PlotStats](../src/ui/plot_stats.py): luokka vastaa kaavioiden piirämisestä saamastaan datasta
 
-Käyttöliittymä on eristetetty sovelluslogiikasta ja kutsuu vain ImageManager ja PlotStats luokkien metodeja.
+Käyttöliittymä on eristetetty sovelluslogiikasta ja kutsuu vain `ImageManager` ja `PlotStats` luokkien metodeja.
 
-Käynnistettäessä sovellus ImageApp-luokka kutsuu ImageManager luokan metodeja, jotka alustavan tietokannan ja lataavat siihen konfiguraatiotiedostoissa määriteltyä dataa. Käyttöliittymässä on kolme erilaista kuvanäkymää: *Load Images*, *Search Results* ja *All Images*. Tieto missä näkymässä ollaan, säilytetään luokan `current_view` atribuutissa. Jos käyttäjä siityy *All Images* näkymään, ladataan tiedot uudelleen tietokannasta keskusmuistiin.
+Käynnistettäessä sovellus `ImageApp`-luokka kutsuu `ImageManager` luokan metodeja, jotka alustavat tietokannan ja lataavat siihen konfiguraatiotiedostoissa määriteltyä dataa. Käyttöliittymässä on kolme erilaista kuvanäkymää: *Load Images*, *Search Results* ja *All Images*. Tieto missä näkymässä ollaan, säilytetään luokan `current_view` attribuutissa. Jos käyttäjä siityy *All Images* näkymään, ladataan tiedot uudelleen tietokannasta keskusmuistiin.
 
 ## Sovelluslogiikka
 
-Sovelluksen loogisen tietomallin muodostaa luokka ImageObject, joka kuvaa mitä tietoja kuvaolioilla on:
+Sovelluksen loogisen tietomallin muodostaa luokka [ImageObject](../src/enities/image_object.py), joka kuvaa mitä tietoja kuvaolioilla on:
 
 ```mermaid
  classDiagram
@@ -31,7 +31,7 @@ Sovelluksen loogisen tietomallin muodostaa luokka ImageObject, joka kuvaa mitä 
       }
       image_files
 ```
-`id`  toimii kuvaolion yskilöivänä tunnisteena. `name` on kuvatiedoston nimi, jonka avulla muodostetaan polku tiedostojärjestelmässä sijaistsevaan kuvatiedostoon, joka sitten avatataan ja säilötään atribuuttiin `picture`. `tags` pitää sisällään listan kuvaan liityvistä tageista. ImageObject olioiden mudostamisesta sekä niiden atribuuttien käsittelystä vastaa ImageManager luokka, joka tarjoaa erilaisia metodeja käsittelyyn:
+`id`  toimii kuvaolion yskilöivänä tunnisteena. `name` on kuvatiedoston nimi, jonka avulla muodostetaan polku tiedostojärjestelmässä sijaistsevaan kuvatiedostoon, joka sitten avatataan ja säilötään atribuuttiin `picture`. `tags` pitää sisällään listan kuvaan liityvistä tageista. `ImageObject` olioiden mudostamisesta sekä niiden attribuuttien käsittelystä vastaa `ImageManager` luokka, joka tarjoaa erilaisia metodeja käsittelyyn:
 
 - `load_repository_data()` 
 - `load_image_from_file(image_paths)` 
@@ -45,11 +45,11 @@ Sovelluksen loogisen tietomallin muodostaa luokka ImageObject, joka kuvaa mitä 
 
 Lisäksi luokassa on metod `load_json_to_db()`, joka alustaa tietokannan ja lataa siihen dataa JSON-muotoisesta konfiguraatiotiedostosta. 
 
-*ImageManager* käsittelee *ImageObject* olioiden tietoja pakkauksessa repositories olevien *ImageRepository* ja *FileRepository* luokkien kautta, jotka injektoidaan konstrutorikutsun yhteydessä.
+`ImageManager` käsittelee `ImageObject` olioiden tietoja pakkauksessa repositories olevien [ImageRepository](../src/repositories/image_repository.py) ja [FileRepository](../src/repositories/file_repository.py) luokkien kautta, jotka injektoidaan konstrutorikutsun yhteydessä.
 
 ## Tietojen tallennus
 
-Kuvaolio tiedoista `id`, `name` ja `tags` tallennetaa SQLite-tietokantaan ja niiden ksäittelystä vastaa `ImageRepository` luokka. Sen sijaan `picture`, joka on itse kuvatiedosto, sijaitsee tiedostojärjestelmässä ja käsittelystä vastaa `FileRepository` luokka.
+Kuvaolion attribuuteista `id`, `name` ja `tags` tallennetaa SQLite-tietokantaan ja niiden ksäittelystä vastaa [ImageRepository](../src/repositories/image_repository.py) luokka. Sen sijaan attribuutti `picture`, joka on itse kuvatiedosto, sijaitsee tiedostojärjestelmässä ja käsittelystä vastaa [FileRepository](../src/repositories/file_repository.py) luokka.
 
 Tallennuksessa on hyödynnetty Repository-suunnittelumallia jolloin datan tallenustapaa on mahdollista tarvittaessa vaihtaa. Sovelluksen ollessa käynnissä data ladataan ja tallennetaan keskusmuistiin. Datan käsittely tapahtuu myös keskusmuistissa kunnes käyttäjä päättää itse tallentaa muutokset tai haluaa siirtyä *All Images* näkymään, jolloin data haetaan uudelleen repositorioista keskusmuistiin.
 
@@ -57,7 +57,7 @@ Tallennuksessa on hyödynnetty Repository-suunnittelumallia jolloin datan tallen
 
 Sovelluksen käyttämät kuvatiedostot sijaisetvat *entities* pakkauksen `image_files` hakemistossa. Jos käyttäjä lisää uusia kuvia, tallennetaan ne samaan hakemistoon.
 
-Sovelluksen käynnistyessä tietokanta populoidaan `image_metadata.json` nimiseen JSON-tiedostostoon tallennettujen tietojen (tiedoston nimi ja tagit) perusteella. JSON-tiedosto ja SQLite tietokanta tallennetaan ohjelman juuressa sijaisevaan *data* hakemistoon. Sovelluksen käyttämät hakemistopolut ja tiedostonimet määritellään ohjelman juuressa sijaisevassa *config.py* tiedostossa.
+Sovelluksen käynnistyessä tietokanta populoidaan [image_metadata.json](../src/data/image_metadata.json) nimiseen JSON-tiedostostoon tallennettujen tietojen (tiedoston nimi ja tagit) perusteella. JSON-tiedosto ja SQLite tietokanta tallennetaan ohjelman juuressa sijaisevaan *data* hakemistoon. Sovelluksen käyttämät hakemistopolut ja tiedostonimet määritellään ohjelman juuressa sijaisevassa [config.py](../src/config.py) tiedostossa.
 
 ## Päätoiminnallisuudet
 
@@ -152,30 +152,28 @@ sequenceDiagram
 
 ### Muut toiminnallisuudet
 
-Sekvenssikaavioissa on jätetty kuvaamatta kuvien selaaminen eteen- ja taaksepäin sekä tilastojen näyttäminen, koska ne ovat toiminintoina niin yksinkertaisa.
+Sekvenssikaavioissa on jätetty kuvaamatta kuvien selaaminen eteen- ja taaksepäin, tilastojen näyttäminen sekä konfiguraatiotiedoston tallennus lopetettaessa ohjelman käyttö, koska ne ovat toiminintoina melko yksinkertaisa.
 
-Tagin poistaminen toimii samalla tavalla kuin tagin lisääminen. Jos uusia kuvia ei ole haluttu lisätä, niin tallennettaessa kuvia ei tallenneta hakemistoon ja tietokontaan päivitetään tagit kuvan id:n perustella.
+Tagin poistaminen toimii samalla tavalla kuin tagin lisääminen. Jos uusia kuvia ei ole haluttu lisätä, niin tallennettaessa kuvia ei tallenneta hakemistoon. Tagimuutokset päivitetään tietokontaan kuvan id:n perustella.
 
 ## Ohjelman rakekenteeseen jääneet heikkoudet
 
 ### Käyttöliittymä
 
-Käyttöliittymän komponentit ja metodit ovat samassa luokkassa, minkä seurauksena luokassa on turhan paljon koodia. Toiminnallisuuksia olisi voinut jakaa omiin luokkiinsa. 
+Käyttöliittymän komponenttien muodostaminen ja toiminnallisuuksista vastaavata metodit ovat samassa luokkassa, minkä seurauksena luokassa on turhan paljon koodia. Komponenttien muodostamiset ja toiminnallisuuksia olisi voinut koota yhteen ja jakaa omiin luokkiinsa. Pylint huomauttaakin että `ImageApp` luokassa on liian monta instanssiattribuuttia.
 
-Käyttäjän antamien syötteiden tarkistus tehdään pääosin käyttöliittymässä. On hieman makuasia, että olisiko ollut parempi tehdä tarkastaminen sovelluslogiikan puolella. Tämän seurauksena metodeissa on jonkin verran toisteista koodia käyttäjälle annettavien viestien muodossa, vaikka *Single Responsibility* periaate totetuukin melko hyvin toteutuksissa. Viestien harmisointia ja sijoittamista omaan funktioonsa olisi voinut hyödyntää.
+Käyttäjän antamien syötteiden tarkistus tehdään pääosin käyttöliittymässä. On hieman makuasia, että olisiko ollut parempi tehdä tarkastaminen sovelluslogiikan puolella. Tämän seurauksena metodeissa on jonkin verran toisteista koodia esimerkiksi käyttäjälle annettavien viestien muodossa, vaikka *Single Responsibility* periaate totetuukin melko hyvin toteutuksissa.
 
-Samoin kaikki toiminnit ovat samassa ikkunassa, mikä vaikuttaa sovelluksen käytettävyyteen, jos toiminnallisuuksia halutaan lisätä. Toiminnallisuudet kannattaisi jakaa omiin ikkunoihinsa tai valikkoihin.
+Edellisistä johtuen kaikki painikkeet ovat yhdessä ja samassa pääikkunassa, mikä vaikuttaa sovelluksen käytettävyyteen, jos toiminnallisuuksia halutaan lisätä. Tästäkin syystä toiminnallisuudet kannattaisi jakaa omiin ikkunoihinsa tai valikkoihin.
 
 ### Sovellulogiikka
 
 Tietoja käsitellään keskusmuistissa paitsi silloin, jos käyttäjä haluaa päivittää näkymään kaikki kuvat, jolloin tiedot haetaan uudelleen repositoroista tietokantaan. Järkevämpää ehkä olisi, että tietoja käsitellään keskusmuistissa koko ajan ja muutokset tallennetaan vain jos käyttäjä niin nimenomaan haluaa.
 
-Luokkien välistä tiedonvälitystä olisi voinut selkeyttää luokkien paremmalla kapseloinnilla ja yhdenmukaisemmalla nimeämisellä. Nyt luokat välisessä kommunikoinnissa metodien väliset parametrit vaihtelevat hieman eri tapauksissa. Olisi selkeämpää, jos luokkien välillä välitettäisiin vain ImageObject olidoita tai niiden atribuutteja. Osittain tämä johtuu siitä, että kuvatiedostot tallennetaan tiedostojärjestelmään ja muu data tietokantaan. 
+Luokkien välistä tiedonvälitystä olisi voinut selkeyttää luokkien paremmalla kapseloinnilla/abstraktoinnilla. Nyt luokat välisessä kommunikoinnissa metodien väliset parametrit vaihtelevat hieman eri tapauksissa. Olisi selkeämpää, jos luokkien välillä välitettäisiin esimerkiksi vain ImageObject olidoita tai niiden atribuutteja. Osittain vaihtelevat käytänteet johtuvat siitä, että kuvatiedostot tallennetaan tiedostojärjestelmään ja muu data tietokantaan. 
 
 ### Tietojen tallennus
 
-Myös kuvatiedostot olisi voinut tallentaa tietokantaan, mikä olisi yksinkertaistanut totetutusta ja selkeyttänyt luokkien välistä kommunikointia. On kuitenkin useita skenaarioita, joissa periaatteessa kuvatiedstojen tallentaminen erikseen tiedostojärjestelmään ja kuvien metadatan tallennus tietokantaan on järkevämpää. 
+Myös kuvatiedostot olisi voinut tallentaa tietokantaan, mikä olisi yksinkertaistanut totetutusta ja selkeyttänyt luokkien välistä kommunikointia. On kuitenkin useita skenaarioita, joissa kuvatiedstojen tallentaminen tiedostojärjestelmään ja kuvien metadatan tallennus tietokantaan on järkevämpää. 
 
-Toteutusta ja luokkien välistä kommunikointia olisi selkeyttänyt myös, jos tagit olisi tallennettu omaan tauluunsa tietokantaan ja kuvan id:tä olisi käytetty avaimena.
-
-Sovellus ei myöskään tällä hetkellä tallenna tietoja JSON-konfiguraatiotiedostoon, jos tietoja on tallennettu tai kun sovelluksen käyttö lopetetaan. 
+Toteutusta ja luokkien välistä kommunikointia olisi selkeyttänyt myös, jos tagit olisi tallennettu omaan tauluunsa tietokantaan merkkijonon sijaan ja kuvan id:tä olisi käytetty avaimena.
