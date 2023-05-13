@@ -8,7 +8,7 @@ Sovelluksen avulla käyttäjän on mahdollista selata, lisätä tai muokata kuvi
 - [Työaikakirjanpito](./dokumentaatio/tuntikirjanpito.md)
 - [Muutosloki](./dokumentaatio/changelog.md)
 - [Testausdokumentti](./dokumentaatio/testaus.md)
-- [Viikon 6 julkaisu (Release)](https://github.com/syrvil/ot-harjoitustyo/releases/tag/viikko6.1)
+- [Julkaisut (Release)](https://github.com/syrvil/ot-harjoitustyo/releases/)
 - [Käyttöohje](./dokumentaatio/kayttoohje.md)
 
 ## Asennus
