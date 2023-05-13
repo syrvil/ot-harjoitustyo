@@ -22,6 +22,9 @@
 |  7.5. | 6    | ImageManager ja ImageRepository (tietokanta) luokkien välisten rajapintojen ja kommunnikoinnin uudelleen suunnittelua ja tietokantafunktioiden testausta|
 |  8.5. | 2    | Docstring dokumentointia ja ImageApp luokan refaktoroinnin pohdintaa |
 |  8.5. | 4    | Valekomponentin toteutus ImageManager, ImageRepository ja FileRepositoryn testaamisessa|
-|  9.5. | 3    | Jatekttu testausta ja docstring dokuentointia|
+|  9.5. | 3    | Jatekttu testausta ja docstring dokumentointia|
 | 10.5. | 1    | Docstring|
-| yht   | 88   | | 
+| 11.5. | 8    | Loppudokumentaatiota, pääosin arkkitehtuuridokumentaatio|
+| 12.5. | 8    | Dokukumentointia: arkkitehtuuri ja käyttöohjeet, pieni muokkaus tagien lisäämiseen|
+| 13.5. | 4    | Ekstatoiminnallisuus, dokumentaation viimeistelyä ja lopullinen julkaisu|
+| yht   |**106**| | 
