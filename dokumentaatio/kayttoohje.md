@@ -19,12 +19,6 @@ Ennen ohjelman käynnistämistä, asenna riippuvuudet komennolla:
 poetry install
 ```
 
-Jonka jälkeen suorita alustustoimenpiteet komennolla:
-
-```bash
-poetry run invoke build
-```
-
 Nyt ohjelman voi käynnistää komennolla:
 
 ```
@@ -39,15 +33,15 @@ Kun ohjelma on käynnistetty, avautuu pääikkuna jossa näkyy julkaisun mukana 
 ![Pakkausrakenne](kuvat/tagging_app.png)
 
 Käyttöliittymässä on kolme eri näkymää kuvien selausta ja tagien muokkausta varten: 
-- Show All: näyttää kaikki tietokannassa olevat kuvat
-- Serach: tag-haun avulla löytyneet kuvat
-- Add New: paikallisesti lisätyty uude kuvat.
+- *Show All*: näyttää kaikki tietokannassa olevat kuvat
+- *Serach*: tag-haun avulla löytyneet kuvat
+- *Add New*: paikallisesti lisätyty uude kuvat.
 
 ### Add New
 
 Uusien kuvien lisäys pakallisesta hakemistosta tapahtuu **Add New** painikkeen avulla. Oletusravoisesti avautuu hakemisto, jossa on valmiiksi kolme testikuvaa, joita ei ole lisätty tietokantaan. Kerralla voi lisätä yhden tai useammaan kuvan.
 
-Näkymässä voi selata kuvia ja muokata (lisätä tai poistaa) niiden tageja. Jos kuvat ja mahdolliset tagit haluaa tallentaa tietokantaan, täytyy painaa **Save** painiketta. Jos tallenusta ei tee ja siirtyy toiseen näkumään (Search/Show All), uudet kuvat menetetään.
+Näkymässä voi selata kuvia ja muokata (lisätä tai poistaa) niiden tageja. Jos kuvat ja mahdolliset tagit haluaa tallentaa tietokantaan, täytyy painaa **Save** painiketta. Jos tallenusta ei tee ja siirtyy toiseen näkumään (*Search/Show All*), uudet kuvat menetetään.
 
 ### Search
 
